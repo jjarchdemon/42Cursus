@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 17:05:18 by jambatt           #+#    #+#             */
-/*   Updated: 2024/12/05 14:43:46 by jambatt          ###   ########.fr       */
+/*   Created: 2024/12/05 14:23:35 by jambatt           #+#    #+#             */
+/*   Updated: 2024/12/05 15:23:48 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-#include <unistd.h>
-#include <stdarg.h>
+int	ft_printf(const char *s, ...)
+{
+	int	return_value;
 
-#endif
+	return_value = 0;
+	if (!s)
+		return (-1); //TODO verify this
+	while (*s)
+	{
+		if (*s == '%')
+		{
+			//TODO add functions to deal with respective values
+		}
+		//TODO function to write char
+	}
+	return (1);//TODO return no of char
+}
