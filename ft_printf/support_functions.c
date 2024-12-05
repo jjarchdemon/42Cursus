@@ -12,10 +12,6 @@
 
 #include "libftprintf.h"
 
-//TODO 
-//	%p
-//	%%
-
 int	ft_putchar(char c)
 {
 	int	count;
@@ -37,7 +33,7 @@ int	ft_putstr(const char *str)
 	return(count);
 }
 
-int	ft_putint(int nb, int issigned)
+int	ft_putnumbr(int nb, int issigned) //TODO for unsigned int ?
 {
 	long	num;
 	int	count;
@@ -55,18 +51,18 @@ int	ft_putint(int nb, int issigned)
 	if (num == 0 && count == 0)
 		count += ft_putchar('0');
 	if (num >= 10)
-		count += ft_putint(num / 10, issigned);
+		count += ft_putnumbr(num / 10, issigned);
 	count += ft_putchar((num % 10) + '0');
 	return (count);
 }
 
-int	ft_puthex(unsigned int nb, char letter)//TODO verify the type
+int	ft_puthex(unsigned int nb, char letter)
 {
 	int	count;
 	unsigned long num;
 
-	num = (unsigned long)nb;//TODO necessary
-	count = 0; 		//TODO error handling
+	num = (unsigned long)nb;//TODO necessary?
+	count = 0;		//TODO error handling
 	if (num >= 16)
 		count += ft_puthex(num / 16, letter);
 	if (num % 16 < 10)	//TODO understand this ifelse  properly
@@ -76,31 +72,15 @@ int	ft_puthex(unsigned int nb, char letter)//TODO verify the type
 	return (count);
 }
 
-#include <stdio.h>
-
-int main()
+int	ft_putptr(unsigned long long ptr) //TODO ptr function
 {
-	char	*s = "123456789";
-	char c = 'c';
-	int negnbr = -123456789;
-	int nbr = 123456789;
-	printf(" contains :%i chars\n", ft_putchar(c));
-	printf(" contains :%i chars\n", ft_putstr(s));
-	printf(" contains :%i chars\n", ft_putint(nbr, 1));
-	printf(" contains :%i chars\n", ft_putint(negnbr, 1));
-	printf(" contains :%i chars\n", ft_puthex(nbr, 'a'));
-	printf(" contains :%i chars\n", ft_puthex(nbr, 'A'));
-	printf("Void pointer is %p\n", NULL);
+	int	count;
+
+	count = 0;
+	count += ft_putstr("0x");
+	if (ptr == 0)
+		count += ft_putchar('0');
+	else
+		ft_puthex((unsigned int)ptr, 'x');
+	return (count);
 }
-
-
-
-
-
-
-
-
-
-
-
-
