@@ -14,17 +14,15 @@
 
 int	ft_puthex(unsigned long nb, char letter)
 {
-	int				count;
-	unsigned long	num;
+	int	count;
 
-	num = (unsigned long)nb;//TODO necessary?
 	count = 0;//TODO error handling
-	if (num >= 16)
-		count += ft_puthex(num / 16, letter);
-	if (num % 16 < 10) //TODO understand this ifelse  properly
-		count += ft_putchar((num % 16) + '0');
+	if (nb >= 16)
+		count += ft_puthex(nb / 16, letter);
+	if (nb % 16 < 10) //TODO understand this ifelse  properly
+		count += ft_putchar((nb % 16) + '0');
 	else
-		count += ft_putchar((num % 16) - 10 + letter);
+		count += ft_putchar((nb % 16) - 10 + letter);
 	return (count);
 }
 
@@ -37,6 +35,6 @@ int	ft_putptr(void * ptr) //TODO ptr function
 	if (ptr == 0)
 		count += ft_putchar('0');
 	else
-		ft_puthex((unsigned long)ptr, 'x');
+		count += ft_puthex((unsigned long)ptr, 'x');
 	return (count);
 }
