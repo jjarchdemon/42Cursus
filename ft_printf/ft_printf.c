@@ -48,6 +48,24 @@ int main()
 	else
 		printf("\033[1;31mFailed\033[0m\n");
 	printf("********************************************\n");
+	int ft_countc = ft_printf(" %c %c %c ", '0', 0, '1');
+	printf("my printed: %i chars\n", ft_count);
+	int countc = printf(" %c %c %c ", '0', 0, '1');
+	printf("og printed: %i chars\n", count);
+	if (ft_countc == countc)
+		printf("\033[32mPassed\033[0m\n");
+	else
+		printf("\033[1;31mFailed\033[0m\n");
+	printf("********************************************\n");
+	int ft_countc1 = ft_printf(" %c %c %c ", '1', '2', '3');
+	printf("my printed: %i chars\n", ft_count);
+	int countc1 = printf(" %c %c %c ", '1', '2', '3');
+	printf("og printed: %i chars\n", count);
+	if (ft_countc1 == countc1)
+		printf("\033[32mPassed\033[0m\n");
+	else
+		printf("\033[1;31mFailed\033[0m\n");
+	printf("********************************************\n");
 	int ft_count1 = ft_printf("This is: %d\n",-152);
 	printf("printed: %i chars\n", ft_count1);
 	int count1 = printf("This is: %d\n", -152);
@@ -96,4 +114,5 @@ int main()
 	printf("********************************************\n");
 
 	return(1);
-}*/
+}
+*/

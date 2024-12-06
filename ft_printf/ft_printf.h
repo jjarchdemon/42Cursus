@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 //support functions (strs and ptrs)
-int	ft_putchar(char c);
+int	ft_putchar(int c);
 int	ft_putstr(const char *str);
 //hexptr functions
 int	ft_puthex(unsigned long nb, char letter);
