@@ -14,7 +14,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
-SRC  = ft_printf.c support_functions.c sort_formatter.c
+SRC  = ft_printf.c pick_formatter.c \
+	 support_functions.c nbr_functions.c hexptr_functions.c
 OBJ  = $(SRC:.c=.o) 
 
 #default rule

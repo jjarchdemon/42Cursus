@@ -3,37 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:23:35 by jambatt           #+#    #+#             */
-/*   Updated: 2024/12/05 15:23:48 by jambatt          ###   ########.fr       */
+/*   Updated: 2024/12/06 14:56:27 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *s, ...)
 {
 	va_list	ag;
-	int	count;
+	int		count;
 
 	count = 0;
 	va_start(ag, s);
-	if (!s)
-		return (-1); //TODO verify this
 	while (*s)
 	{
 		if (*s == '%')
 		{
-			if (*(s+1) == '%')
-				count += ft_putchar('%');
-			else if (*(s+1) == '\0') //TODO what happens here
-				return(-2);
-			else
-			{
-				count += pick_formatter(ag, *(s+1)); //why
-				s++;
-			}
+			count += pick_formatter(ag, *(s + 1));
+			s++;
+			if (count == -1)
+				return (-1);
 		}
 		else
 			count += ft_putchar(*s);
@@ -42,7 +35,7 @@ int	ft_printf(const char *s, ...)
 	va_end(ag);
 	return (count);
 }
-
+/*
 #include <stdio.h>
 int main()
 {
@@ -75,7 +68,7 @@ int main()
 	printf("********************************************\n");
 	int count3 = printf("This is: %u\n", -52);
 	printf("printed: %i chars\n", count3);
-	int ft_count3 = ft_printf("This is: %u\n", -52); //TODO doesn't work
+	int ft_count3 = ft_printf("This is: %u\n", -52); 
 	printf("printed: %i chars\n", ft_count3);
 	if (ft_count3 == count3)
 		printf("\033[32mPassed\033[0m\n");
@@ -90,6 +83,17 @@ int main()
 		printf("\033[32mPassed\033[0m\n");
 	else
 		printf("\033[1;31mFailed\033[0m\n");
+	printf("********************************************\n");
+	char *nullptr = NULL;
+	int count5 = printf(" NULL %s NULL ", nullptr);//NULL);
+	printf("printed: %i chars\n", count);
+	int ft_count5 = ft_printf(" NULL %s NULL ", nullptr);//NULL);
+	printf("printed: %i chars\n", ft_count);
+	if (ft_count5 == count5)
+		printf("\033[32mPassed\033[0m\n");
+	else
+		printf("\033[1;31mFailed\033[0m\n");
+	printf("********************************************\n");
 
 	return(1);
-}
+}*/
