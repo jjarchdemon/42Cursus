@@ -73,10 +73,10 @@ int main()
 	else
 		printf("\033[1;31mFailed\033[0m\n");
 	printf("********************************************\n");
-	int ft_count3 = ft_printf("This is: %u\n", -52); //TODO doesn't work
-	printf("printed: %i chars\n", ft_count3);
 	int count3 = printf("This is: %u\n", -52);
 	printf("printed: %i chars\n", count3);
+	int ft_count3 = ft_printf("This is: %u\n", -52); //TODO doesn't work
+	printf("printed: %i chars\n", ft_count3);
 	if (ft_count3 == count3)
 		printf("\033[32mPassed\033[0m\n");
 	else

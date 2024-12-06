@@ -35,19 +35,23 @@ int	ft_putstr(const char *str)
 
 int	ft_putnumbr(int nb, int issigned) //TODO for unsigned int ?
 {
-	long	num;
+	unsigned long	num;
 	int	count;
 
-	num = (long)nb;//TODO error handling
+	//num = (long)nb;//TODO error handling
 	count = 0;
 	if (issigned)
 	{
-		if (num < 0)
+		if (nb < 0)
 		{
 			count += ft_putchar('-');
-			num = -num;
+			num = (unsigned long)-nb;
 		}
+		else
+			num = (unsigned long)nb;
 	}
+	else
+		num = (unsigned long)nb;
 	if (num == 0 && count == 0)
 		count += ft_putchar('0');
 	if (num >= 10)
