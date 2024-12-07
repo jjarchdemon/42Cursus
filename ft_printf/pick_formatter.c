@@ -26,11 +26,9 @@ int	pick_formatter(va_list ag, const char formatter)
 	else if (formatter == 'd' || formatter == 'i')
 		count += ft_putnumbr(va_arg(ag, int));
 	else if (formatter == 'u')
-		count += ft_putunumbr(va_arg(ag, unsigned int));
-	else if (formatter == 'x')
-		count += ft_puthex(va_arg(ag, unsigned long), 'a');
-	else if (formatter == 'X')
-		count += ft_puthex(va_arg(ag, unsigned long), 'A');
+		count += ft_putnumbr(va_arg(ag, unsigned int));
+	else if (formatter == 'x' || formatter == 'X')
+		count += ft_puthex(va_arg(ag, unsigned int), formatter);
 	else if (formatter == '%')
 		count += ft_putchar('%');
 	else

@@ -15,15 +15,15 @@
 
 # include <unistd.h>
 # include <stdarg.h>
-//support functions (strs and ptrs)
+//support functions
+//(strs and chars)
 int	ft_putchar(int c);
 int	ft_putstr(const char *str);
-//hexptr functions
+//(hex and ptr)
 int	ft_puthex(unsigned long nb, char letter);
 int	ft_putptr(void *ptr);
 //nbr functions
-int	ft_putnumbr(int nb);
-int	ft_putunumbr(unsigned int nb);
+int	ft_putnumbr(long nb);
 
 //function to chose the formatter
 int	pick_formatter(va_list ag, const char formatter);
