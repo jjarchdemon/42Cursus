@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:44:21 by jambatt           #+#    #+#             */
-/*   Updated: 2024/12/06 17:12:43 by jambatt          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:06:11 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,12 @@ int	ft_putptr(void *ptr)
 	int	count;
 
 	count = 0;
-	count += ft_putstr("0x");
 	if (ptr == 0)
-		count += ft_putchar('0');
+		return(count += ft_putstr("(nil)"));
 	else
+	{
+		count += ft_putstr("0x");
 		count += ft_puthex((unsigned long)ptr, 'x'); //TODO wtf?
+	}
 	return (count);
 }

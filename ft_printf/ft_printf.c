@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:23:35 by jambatt           #+#    #+#             */
-/*   Updated: 2024/12/06 14:56:27 by jambatt          ###   ########.fr       */
+/*   Updated: 2024/12/09 12:18:31 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int main()
 	else
 		printf("\033[1;31mFailed\033[0m\n");
 	printf("********************************************\n");
-	char *nullptr = NULL;
+	char *nullptr = NULL;			//understand
 	int count5 = printf(" NULL %s NULL ", nullptr);//NULL);
 	printf("printed: %i chars\n", count);
 	int ft_count5 = ft_printf(" NULL %s NULL ", nullptr);//NULL);
@@ -112,7 +112,16 @@ int main()
 	else
 		printf("\033[1;31mFailed\033[0m\n");
 	printf("********************************************\n");
+	void *realnullptr = 0;
+	int count6 = printf(" NULL %p NULL ", realnullptr);//NULL);
+	printf("printed: %i chars\n", count6);
+	int ft_count6 = ft_printf(" NULL %p NULL ", realnullptr);//NULL);
+	printf("printed: %i chars\n", ft_count6);
+	if (ft_count6 == count6)
+		printf("\033[32mPassed\033[0m\n");
+	else
+		printf("\033[1;31mFailed\033[0m\n");
+	printf("********************************************\n");
 
 	return(1);
-}
-*/
+}*/
