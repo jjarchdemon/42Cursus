@@ -56,31 +56,31 @@ int	ft_putnumbr(long num)
 	return (count);
 }
 
-int     ft_puthex(unsigned long nb, char letter)
+int	ft_puthex(unsigned long nb, char letter)
 {
-        int     count;
-        char    *base;
+	int		count;
+	char	*base;
 
-        count = 0;
-        if (letter == 'x')
-                base = "0123456789abcdef";
-        else
-                base = "0123456789ABCDEF";
-        if (nb >= 16) //TODO still to understand
-                count += ft_puthex(nb / 16, letter);
-        count += ft_putchar(base[nb % 16]);
-        return (count);
+	count = 0;
+	if (letter == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	if (nb >= 16) //TODO still to understand
+		count += ft_puthex(nb / 16, letter);
+	count += ft_putchar(base[nb % 16]);
+	return (count);
 }
 
-int     ft_putptr(void *ptr) 
+int	ft_putptr(void *ptr)
 {
-        int     count;
+	int	count;
 
-        count = 0;
-        count += ft_putstr("0x");
-        if (ptr == 0)
-                count += ft_putchar('0');
-        else
-                count += ft_puthex((unsigned long)ptr, 'x'); //TODO wtf?
-        return (count);
+	count = 0;
+	count += ft_putstr("0x");
+	if (ptr == 0)
+		count += ft_putchar('0');
+	else
+		count += ft_puthex((unsigned long)ptr, 'x'); //TODO wtf?
+	return (count);
 }
