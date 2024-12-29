@@ -18,19 +18,19 @@ int	pick_formatter(va_list ag, const char formatter)
 
 	count = 0;
 	if (formatter == 'c')
-		count += ft_putchar(va_arg(ag, int));
+		count = ft_putchar(va_arg(ag, int));
 	else if (formatter == 's')
-		count += ft_putstr(va_arg(ag, const char *));
+		count = ft_putstr(va_arg(ag, const char *));
 	else if (formatter == 'p')
-		count += ft_putptr(va_arg(ag, void *));
+		count = ft_putptr(va_arg(ag, void *));
 	else if (formatter == 'd' || formatter == 'i')
-		count += ft_putnumbr(va_arg(ag, int));
+		count = ft_putnumbr(va_arg(ag, int));
 	else if (formatter == 'u')
-		count += ft_putnumbr(va_arg(ag, unsigned int));
+		count = ft_putnumbr(va_arg(ag, unsigned int));
 	else if (formatter == 'x' || formatter == 'X')
-		count += ft_puthex(va_arg(ag, unsigned int), formatter);
+		count = ft_puthex(va_arg(ag, unsigned int), formatter);
 	else if (formatter == '%')
-		count += ft_putchar('%');
+		count = ft_putchar('%');
 	else
 		return (-1);
 	return (count);
