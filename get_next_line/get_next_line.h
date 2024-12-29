@@ -19,6 +19,7 @@
 
 # include <stdlib.h>
 # include <stdint.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
