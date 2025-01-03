@@ -6,13 +6,13 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:47:52 by jambatt           #+#    #+#             */
-/*   Updated: 2024/12/09 12:50:00 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/01/03 12:56:53 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_free(char *buffer, char *buf) //TODO
+char	*ft_free(char *buffer, char *buf)
 {
 	char	*temp;
 
@@ -24,7 +24,7 @@ char	*ft_free(char *buffer, char *buf) //TODO
 //extract portion of buffer after the first line
 //returns extracted portion
 //frees original buffer
-char	*ft_next(char *buffer) //TODO
+char	*ft_next(char *buffer)
 {
 	int		i;
 	int		j;
@@ -49,7 +49,7 @@ char	*ft_next(char *buffer) //TODO
 
 //parse file line by line
 // isolates first line from buffer
-char	*ft_line(char *buffer) //TODO
+char	*ft_line(char *buffer)
 {
 	char	*line;
 	int		i;
@@ -74,7 +74,7 @@ char	*ft_line(char *buffer) //TODO
 //reads file incrementally by BUFFER_SIZE 
 //appends read data to res
 //stops if \n is encountered or end of file
-char	*read_file(int fd, char *res)//TODO understnad this fn
+char	*read_file(int fd, char *res)
 {
 	char	*buffer;
 	int		byte_read;
@@ -105,7 +105,6 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	// error handling
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	buffer = read_file(fd, buffer);
