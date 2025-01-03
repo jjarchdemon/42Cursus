@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_free(char *buffer, char *buf)
+char	*join_free(char *buffer, char *buf)
 {
 	char	*temp;
 
@@ -24,11 +24,11 @@ char	*ft_free(char *buffer, char *buf)
 //extract portion of buffer after the first line
 //returns extracted portion
 //frees original buffer
-char	*ft_next(char *buffer)
+char	*trim_buffer_after_line(char *buffer)
 {
 	int		i;
 	int		j;
-	char	*line;
+	char	*remaining_buffer;
 
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
@@ -38,18 +38,18 @@ char	*ft_next(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	remaining_buffer = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
 	i++;
 	j = 0;
 	while (buffer[i])
-		line[j++] = buffer[i++];
+		remaining_buffer[j++] = buffer[i++];
 	free(buffer);
-	return (line);
+	return (remaining_buffer);
 }
 
 //parse file line by line
 // isolates first line from buffer
-char	*ft_line(char *buffer)
+char	*extract_line(char *buffer)
 {
 	char	*line;
 	int		i;
@@ -74,13 +74,13 @@ char	*ft_line(char *buffer)
 //reads file incrementally by BUFFER_SIZE 
 //appends read data to res
 //stops if \n is encountered or end of file
-char	*read_file(int fd, char *res)
+char	*read_expand_buffer(int fd, char *buffer_collector)
 {
 	char	*buffer;
 	int		byte_read;
 
-	if (!res)
-		res = ft_calloc(1, 1);
+	if (!buffer_collector)
+		buffer_collector = ft_calloc(1, 1);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	byte_read = 1;
 	while (byte_read > 0)
@@ -89,16 +89,16 @@ char	*read_file(int fd, char *res)
 		if (byte_read == -1)
 		{
 			free(buffer);
-			free(res);
+			free(buffer_collector);
 			return (NULL);
 		}
 		buffer[byte_read] = 0;
-		res = ft_free(res, buffer);
+		buffer_collector = join_free(buffer_collector, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
 	free(buffer);
-	return (res);
+	return (buffer_collector);
 }
 
 char	*get_next_line(int fd)
@@ -115,10 +115,10 @@ char	*get_next_line(int fd)
 		}
 		return (NULL);
 	}
-	buffer = read_file(fd, buffer);
+	buffer = read_expand_buffer(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	line = ft_line(buffer);
-	buffer = ft_next(buffer);
+	line = extract_line(buffer);
+	buffer = trim_buffer_after_line(buffer);
 	return (line);
 }
