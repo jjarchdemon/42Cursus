@@ -12,18 +12,20 @@
 
 #include "get_next_line.h"
 
-char	*join_free(char *buffer, char *buf)
+//joins two strings and frees the first
+//returns new string
+char	*join_free(char *str1, char *str2)
 {
-	char	*temp;
+	char	*result;
 
-	temp = ft_strjoin(buffer, buf);
-	free(buffer);
-	return (temp);
+	temp = ft_strjoin(str1, str2);
+	free(str1);
+	return (result);
 }
 
 //extract portion of buffer after the first line
-//returns extracted portion
 //frees original buffer
+//returns extracted portion
 char	*trim_buffer_after_line(char *buffer)
 {
 	int		i;
@@ -47,7 +49,6 @@ char	*trim_buffer_after_line(char *buffer)
 	return (remaining_buffer);
 }
 
-//parse file line by line
 // isolates first line from buffer
 char	*extract_line(char *buffer)
 {
