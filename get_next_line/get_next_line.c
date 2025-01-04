@@ -18,7 +18,7 @@ char	*join_free(char *str1, char *str2)
 {
 	char	*result;
 
-	temp = ft_strjoin(str1, str2);
+	result = ft_strjoin(str1, str2);
 	free(str1);
 	return (result);
 }
@@ -40,11 +40,17 @@ char	*trim_buffer_after_line(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	remaining_buffer = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	remaining_buffer = ft_calloc(ft_strlen(buffer) - i, sizeof(char));
+	if (!remaining_buffer)
+	{
+		free(buffer);
+		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (buffer[i])
 		remaining_buffer[j++] = buffer[i++];
+	remaining_buffer[j] = '\0';
 	free(buffer);
 	return (remaining_buffer);
 }
@@ -56,7 +62,7 @@ char	*extract_line(char *buffer)
 	int		i;
 
 	i = 0;
-	if (!buffer[i])
+	if (!buffer || !buffer[i])
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
@@ -68,7 +74,7 @@ char	*extract_line(char *buffer)
 		i++;
 	}
 	if (buffer[i] && buffer[i] == '\n')
-		line[i++] = '\n';
+		line[i] = '\n';
 	return (line);
 }
 
@@ -93,7 +99,7 @@ char	*read_expand_buffer(int fd, char *buffer_collector)
 			free(buffer_collector);
 			return (NULL);
 		}
-		buffer[byte_read] = 0;
+		buffer[byte_read] = '\0';
 		buffer_collector = join_free(buffer_collector, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
