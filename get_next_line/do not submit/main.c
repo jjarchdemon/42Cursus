@@ -19,13 +19,19 @@ char	*line;
 int	fd;
 
 fd = open("./text.txt", O_RDONLY);
+if (fd < 0)
+{
+	printf("Error opening file");
+	return(1);
+}
 line = get_next_line(fd);
-printf("%s", line);
-line = get_next_line(fd);
-printf("%s", line);
-line = get_next_line(fd);
-printf("%s", line);
-line = get_next_line(fd);
-printf("%s", line);
+while (line)
+{
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+}
+free(line);
+close(fd);
 return(0);
 }
