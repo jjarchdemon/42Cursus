@@ -23,9 +23,14 @@ char	*join_free(char *str1, char *str2)
 	return (result);
 }
 
-//extract portion of buffer after the first line
-//frees original buffer
-//returns extracted portion
+//extract portion of buffer after the first \n, frees original buffer,
+returns extracted portion
+
+//scans the buffer to find the position of the \n
+//if no \n, it frees the buffer and returns NULL
+//if \n found, allocates memory for remaining part of the buffer(after \n).
+//copies the remaining characters from the buffer into a new remaining_buffer
+//frees the original buffer and returns the remaining_buffer
 char	*trim_buffer_after_line(char *buffer)
 {
 	int		i;
@@ -56,6 +61,13 @@ char	*trim_buffer_after_line(char *buffer)
 }
 
 // isolates first line from buffer
+
+//function checks if buffer is valid (not NULL or empty).
+//scans through the buffer until the first newline (\n) 
+//or the end of the string is reached.
+//allocates memory for a new string line to store the extracted line, 
+//including the newline character if it exists.
+//copies the characters from buffer to line up until the newline or end of the string.
 char	*extract_line(char *buffer)
 {
 	char	*line;
