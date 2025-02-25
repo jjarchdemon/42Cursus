@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:11:25 by jambatt           #+#    #+#             */
-/*   Updated: 2025/02/24 18:31:06 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:21:22 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	conv_n_transmit(const char *message, int server_pid)
 			else
 				kill(server_pid, SIGUSR2);
 			sigpos /= 2;
-			usleep(100);
+			usleep(300);
 		}
 		message++;
 	}

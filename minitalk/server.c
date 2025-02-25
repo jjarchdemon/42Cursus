@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 11:11:36 by jambatt           #+#    #+#             */
-/*   Updated: 2025/02/24 17:35:25 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:00:02 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	bin2ascii(char *bin_message)
 void	signal_handler(int sig)
 {
 	static int	i = 0;
-	static char	bin_message[8];
+	static char	bin_message[9]; //or [8] without the TODO
 
 	if (sig == SIGUSR1)
 		bin_message[i] = '1';
@@ -58,6 +58,7 @@ void	signal_handler(int sig)
 	i++;
 	if (i == 8)
 	{
+		bin_message[i] = '\0'; //TODO
 		bin2ascii(bin_message);
 		i = 0;
 	}
@@ -73,6 +74,6 @@ int	main(void)
 	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
 	while (1)
-		sleep(1);
+		pause();
 	return (0);
 }
