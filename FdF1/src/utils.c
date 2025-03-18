@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 15:21:10 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:32 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_close(fdf *data)
 				mlx_destroy_window(data->mlx, data->wnd);
 			if (data->img)
 				mlx_destroy_image(data->mlx, data->img);
-			if (data->mlx)
-				mlx_destroy_display(data->mlx);
+			//if (data->mlx)	commented out for mac
+			//	mlx_destroy_display(data->mlx);
 			free(data->mlx);
 			data->mlx = NULL;
 		}
@@ -46,7 +46,7 @@ int	close_window(fdf *data)
 	if (data->mlx)
 	{
 		mlx_loop_end(data->mlx);
-		mlx_destroy_display(data->mlx);
+	//	mlx_destroy_display(data->mlx);	commented out for mac
 		free(data->mlx);
 	}
 	if (data->map.render_map)
