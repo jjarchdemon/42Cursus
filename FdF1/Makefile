@@ -1,13 +1,23 @@
-# ************************************************************************** #
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/18 10:35:43 by jambatt           #+#    #+#              #
+#    Updated: 2025/03/18 10:48:25 by jambatt          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 CC = cc
-CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/mlx_linux
+CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux
 
 SRC_DIR = src
 INCLUDE = include
 
 LIBFT = $(INCLUDE)/my_libft
-MLX = $(INCLUDE)/mlx_linux
+MLX = $(INCLUDE)/minilibx-linux
 
 LIBFT_A = $(LIBFT)/libft.a
 MLX_A = $(MLX)/libmlx.a

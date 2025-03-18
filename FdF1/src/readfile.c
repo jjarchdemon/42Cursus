@@ -1,4 +1,14 @@
 /* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readfile.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/18 10:35:10 by jambatt           #+#    #+#             */
+/*   Updated: 2025/03/18 10:54:25 by jambatt          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/fdf.h"
 
@@ -41,7 +51,7 @@ int	get_size(int *height, char *file, int *width)
 	if (!fd)
 		return (-1);
 	line = get_next_line(fd);
-	*width = count_words(line, ' ');
+	*width = count_words(line, ' ');//TODO WTF
 	while (line)
 	{
 		free(line);
