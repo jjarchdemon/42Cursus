@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:38 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 13:15:55 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:58:01 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	draw_pixel(fdf *data, int x, int y, int color)
 {
 	char	*dst;
-	int	pixel_offset;
+	int		pixel_offset;
 
 	pixel_offset = y * data->size_line + x * (data->bpp / 8);
 	if (x >= 0 && x < WIDTH && y >= 0 && y <= HEIGHT)

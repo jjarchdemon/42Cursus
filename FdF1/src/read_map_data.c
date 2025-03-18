@@ -6,13 +6,13 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:10 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 14:00:16 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:22:53 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-fdf	*read_map_data(fdf *data, char **file)  //readfile(... char **file)
+fdf	*read_map_data(fdf *data, char **file)//readfile(... char **file)
 {
 	int		fd;
 	int		i;
@@ -64,7 +64,7 @@ int	get_size(int *height, char *file, int *width)
 	return (i);
 }
 
-int	*parse_map_line(int *map_line, int width, char *line)  //fill_map
+int	*parse_map_line(int *map_line, int width, char *line)//fill_map
 {
 	int		i;
 	char	**number;
