@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:13 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 10:34:17 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:56:37 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 unsigned int get_color(int z1, int z2)
 {
-    float	blended;
+    float	blend_ratio;
     int	red;
     int	green;
 
-    blended = (((z1 + z2) / 2.0) + 30.0) / 110.0;
-    red = (int)(blended * 255);
-    green = (int)((1 - blended) * 255);
+    blend_ratio = (((z1 + z2) / 2.0) + 30.0) / 110.0;
+    red = (int)(blend_ratio * 255);
+    green = (int)((1 - blend_ratio) * 255);
     return ((red << 16) | (green << 8) | 150);
 }
 

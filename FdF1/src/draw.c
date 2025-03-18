@@ -6,21 +6,23 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 10:34:26 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:53:59 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void set_pixels(fdf *data) {
+void	set_pixels(fdf *data) 
+{
     ft_bzero(data->address_data, WIDTH * HEIGHT * 4);
     mlx_clear_window(data->mlx, data->wnd);
     draw_map(data);
     mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
 }
 
-void draw_map(fdf *data) {
-    t_point p;
+void	draw_map(fdf *data)
+{
+    line_points	p;
 
     if (!data || !data->map.render_map)
         return;
@@ -38,7 +40,8 @@ void draw_map(fdf *data) {
     }
 }
 
-void line(int x2, int y2, fdf *data, t_point p) {
+void	line(int x2, int y2, fdf *data, line_points p)
+{
     p.x2 = x2;
     p.y2 = y2;
     data->side.z1 = data->map.render_map[p.y1][p.x1];
@@ -58,31 +61,33 @@ void line(int x2, int y2, fdf *data, t_point p) {
         positive_slope(p.x1, p.y1, data);
 }
 
-void reproduce_pixels(t_point *p, fdf *data) {
-    custom math;
+void	reproduce_pixels(line_points *p, fdf *data)
+{
+    map_scale	scaling;
 
     if (data->map.width > data->map.height)
-        math.max_d = data->map.width;
+        scaling.max_dimension = data->map.width;
     else
-        math.max_d = data->map.height;
-    math.x_scale = (WIDTH * 0.8) / math.max_d;
-    math.y_scale = (HEIGHT * 0.8) / math.max_d;
-    if (math.x_scale < math.y_scale)
-        math.scale = math.x_scale;
+        scaling.max_dimension = data->map.height;
+    scaling.x_scale = (WIDTH * 0.8) / scaling.max_dimension;
+    scaling.y_scale = (HEIGHT * 0.8) / scaling.max_dimension;
+    if (scaling.x_scale < scaling.y_scale)
+        scaling.scale_factor = scaling.x_scale;
     else
-        math.scale = math.y_scale;
-    if (math.scale > 10)
-        math.scale = 10;
-    p->x1 *= math.scale + data->window.zoom;
-    p->y1 *= math.scale + data->window.zoom;
-    p->x2 *= math.scale + data->window.zoom;
-    p->y2 *= math.scale + data->window.zoom;
-    data->side.z1 *= math.scale + data->window.zoom + data->side.iso;
-    data->side.z2 *= math.scale + data->window.zoom + data->side.iso;
+        scaling.scale_factor = scaling.y_scale;
+    if (scaling.scale_factor > 10)
+        scaling.scale_factor = 10;
+    p->x1 *= scaling.scale_factor + data->window.zoom;
+    p->y1 *= scaling.scale_factor + data->window.zoom;
+    p->x2 *= scaling.scale_factor + data->window.zoom;
+    p->y2 *= scaling.scale_factor + data->window.zoom;
+    data->side.z1 *= scaling.scale_factor + data->window.zoom + data->side.iso;
+    data->side.z2 *= scaling.scale_factor + data->window.zoom + data->side.iso;
 }
 
-void locate(t_point *p, fdf *data) {
-    control _;
+void	locate(line_points *p, fdf *data)
+{
+    view_control _;
 
     _.shift_down = data->window.shift_down;
     _.shift_up = data->window.shift_up;

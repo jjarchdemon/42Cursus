@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:31:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 11:34:24 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:56:32 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 
 typedef	struct
 {
-	int	scale;
-	int	max_d;
+	int	scale_factor;	//scale
+	int	max_dimension; //max_d
 	int	x_scale;
 	int	y_scale;
-}	custom;
+}	map_scale;	//custom;
 
 typedef	struct
 {
@@ -42,7 +42,7 @@ typedef	struct
 	int	x2;
 	int	y1;
 	int	y2;
-}	t_point;
+}	line_points;	//t_point
 
 typedef	struct
 {
@@ -54,7 +54,7 @@ typedef	struct
 	int	shift_right;
 	int	shift_left;
 	int	key_states[MAX_KEYS];	//TODO what is this
-}	control;
+}	view_control;	//control
 
 typedef	struct
 {
@@ -63,7 +63,7 @@ typedef	struct
 	int	dx;
 	int	dy;
 	int	iso;
-}	pixels;
+}	line_data;	//pixels;
 
 typedef	struct
 {
@@ -74,10 +74,10 @@ typedef	struct
 
 typedef	struct
 {
-	control	window;
-	pixels	side;
+	view_control	window;
+	line_data	side;
 	map		map;
-	int		b_per_pixel;
+	int		bpp;	//b_per_pixel;
 	int		color;
 	int		bvg_color;
 	int		size_line;
@@ -88,17 +88,17 @@ typedef	struct
 	void	*img;
 }	fdf;
 
-//readfile
-fdf	*readfile(fdf *data, char **file);
+//read_map_data
+fdf     *read_map_data(fdf *data, char **file); 
 int	get_size(int *height, char *file, int *width);
-int	*fill_map(int *map_line, int width, char *line);
+int     *parse_map_line(int *map_line, int width, char *line);
 
 //draw
 void set_pixels(fdf *data);
 void draw_map(fdf *data);
-void line(int x2, int y2, fdf *data, t_point p);
-void reproduce_pixels(t_point *p, fdf *data);
-void locate(t_point *p, fdf *data);
+void line(int x2, int y2, fdf *data, line_points p);
+void reproduce_pixels(line_points *p, fdf *data);
+void locate(line_points *p, fdf *data);
 
 //algo
 void negative_slope(int x1, int y1, fdf *data);

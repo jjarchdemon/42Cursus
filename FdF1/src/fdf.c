@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:24:24 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 11:39:02 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:55:45 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int my_mlx(fdf *data) {
     data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
     if (!data->img)
         return (ft_close(data), 1);
-    data->address_data = mlx_get_data_addr(data->img, &data->b_per_pixel,
+    data->address_data = mlx_get_data_addr(data->img, &data->bpp,
                                          &data->size_line, &data->endian);
     if (!data->address_data)
         return (ft_close(data), 1);
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
     data = create_fdf_data();
     if (!data)
         return (1);
-    data = readfile(data, argv);
+    data = read_map_data(data, argv);
     if (!data)
         return (1);
     if (my_mlx(data))

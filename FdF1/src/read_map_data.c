@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   readfile.c                                         :+:      :+:    :+:   */
+/*   read_map_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:10 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 10:54:25 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:00:16 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-fdf	*readfile(fdf *data, char **file)
+fdf	*read_map_data(fdf *data, char **file)  //readfile(... char **file)
 {
 	int		fd;
 	int		i;
@@ -31,7 +31,7 @@ fdf	*readfile(fdf *data, char **file)
 	line = get_next_line(fd);
 	while (i < data->map.height && line)
 	{
-		fill_map(data->map.render_map[i++], data->map.width, line);
+		parse_map_line(data->map.render_map[i++], data->map.width, line);
 		line = get_next_line(fd);
 	}
 	data->map.render_map[data->map.height] = NULL;
@@ -56,7 +56,7 @@ int	get_size(int *height, char *file, int *width)
 	{
 		free(line);
 		line = get_next_line(fd);
-		i += 1;
+		i++;
 	}
 	free(line);
 	*height = i;
@@ -64,7 +64,7 @@ int	get_size(int *height, char *file, int *width)
 	return (i);
 }
 
-int	*fill_map(int *map_line, int width, char *line)
+int	*parse_map_line(int *map_line, int width, char *line)  //fill_map
 {
 	int		i;
 	char	**number;
