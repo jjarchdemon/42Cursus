@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 10:35:25 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:32:45 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ int close_window(fdf *data) {
     exit(0);
 }
 
-fdf *ft_lst(void) {
+fdf *create_fdf_data(void) {
     fdf *data;
 
-    data = NULL;
     data = (fdf *)malloc(sizeof(fdf));
     if (!data)
         return (NULL);

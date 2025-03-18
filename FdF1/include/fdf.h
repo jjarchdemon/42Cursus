@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:31:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/07 15:44:46 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:34:24 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void isometric(int *x, int *y, int z);
 //utils
 void ft_close(fdf *data);
 int close_window(fdf *data);
-fdf *ft_lst(void);
+fdf *create_fdf_data(void);
 void free_arr(char **str);
 void free_map(int **arr);
 

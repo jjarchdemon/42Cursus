@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:24:24 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/07 15:38:38 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:39:02 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
     data = NULL;
     if (argc != 2)
         return (ft_printf("./fdf [map]\n"), 1);
-    data = ft_lst();
+    data = create_fdf_data();
     if (!data)
         return (1);
     data = readfile(data, argv);

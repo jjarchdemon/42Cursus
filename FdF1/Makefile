@@ -6,7 +6,7 @@
 #    By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/18 10:35:43 by jambatt           #+#    #+#              #
-#    Updated: 2025/03/18 10:48:25 by jambatt          ###   ########.fr        #
+#    Updated: 2025/03/18 11:41:43 by jambatt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
 
 #sources from object files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS := $(filter-out  $(SRC_DIR)/alt/%, $(SRCS))  # Exclude the folder
 OBJS = $(SRCS:.c=.o)
 
 
