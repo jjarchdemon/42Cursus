@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 13:53:59 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:17:59 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	reproduce_pixels(line_points *p, fdf *data)
 
 void	locate(line_points *p, fdf *data)
 {
+	
     view_control _;
 
     _.shift_down = data->window.shift_down;
@@ -98,4 +99,10 @@ void	locate(line_points *p, fdf *data)
     p->y1 += (HEIGHT / 8) - (data->map.height * _.zoom / 2) + _.shift_up;
     p->x2 += (WIDTH / 2) - (data->map.width * _.zoom / 2) + _.shift_right;
     p->y2 += (HEIGHT / 8) - (data->map.height * _.zoom / 2) + _.shift_down;
+	/*
+    p->x1 += (WIDTH / 2) - (data->map.width);
+    p->y1 += (HEIGHT / 8) - (data->map.height);
+    p->x2 += (WIDTH / 2) - (data->map.width);
+    p->y2 += (HEIGHT / 8) - (data->map.height);
+*/
 }
