@@ -11,29 +11,37 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux
+OS = $(shell uname)
 
 SRC_DIR = src
 INCLUDE = include
 
 LIBFT = $(INCLUDE)/my_libft
-MLX = $(INCLUDE)/minilibx-linux
 
 LIBFT_A = $(LIBFT)/libft.a
-MLX_A = $(MLX)/libmlx.a
-
-#how to get gnl and printf srcs separately
 
 NAME = fdf
 
-LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
 
 #sources from object files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 SRCS := $(filter-out  $(SRC_DIR)/alt/%, $(SRCS))  # Exclude the folder
 OBJS = $(SRCS:.c=.o)
 
-
+###################################################################
+# Platform-dependent compilation
+ifeq ($(OS), Linux)
+        LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext	#conditional
+        MLX = $(INCLUDE)/minilibx-linux				#conditional
+        MLX_A = $(MLX)/libmlx.a					#conditional
+        CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux 	#conditional
+else
+        LINUX_FLAGS =  -L/usr/X11/lib -lXext -lX11 -framework OpenGl -framework Appkit	#conditional
+        MLX = include/mlx_macos				#conditional
+        MLX_A = include/mlx_macos/libmlx.a					#conditional
+        CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/mlx_macos		#conditional
+endif
+#####################################################################
 
 all: $(NAME)
 

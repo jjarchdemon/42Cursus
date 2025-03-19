@@ -45,7 +45,7 @@ int	close_window(fdf *data)
 		mlx_destroy_window(data->mlx, data->wnd);
 	if (data->mlx)
 	{
-		mlx_loop_end(data->mlx);
+//		mlx_loop_end(data->mlx);  commented out for mac
 	//	mlx_destroy_display(data->mlx);	commented out for mac
 		free(data->mlx);
 	}
