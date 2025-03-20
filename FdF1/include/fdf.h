@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800
+# define HEIGHT 400
 
 # define ESCAPE 65307
 
@@ -69,54 +69,51 @@ typedef	struct
 {
 	int	height;
 	int	width;
-	int	**render_map;
+	int	**input_map;//render_map
 }	map;
 
 typedef	struct
 {
+	void			*mlx;
+	void			*img;
+	void			*wnd;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	char			*address_data;
 	view_control	window;
-	line_data	side;
-	map		map;
-	int		bpp;	//b_per_pixel;
-	int		color;
-	int		bvg_color;
-	int		size_line;
-	int		endian;
-	char	*address_data;
-	void	*mlx;
-	void	*wnd;
-	void	*img;
+	line_data		side;
+	map				map;
 }	fdf;
 
 //read_map_data
-fdf     *read_map_data(fdf *data, char **file); 
+fdf	*read_map_data(fdf *data, char **file);
 int	get_size(int *height, char *file, int *width);
-int     *parse_map_line(int *map_line, int width, char *line);
-
+int	*parse_map_line(int *map_line, int width, char *line);
 //draw
-void set_pixels(fdf *data);
-void draw_map(fdf *data);
-void line(int x2, int y2, fdf *data, line_points p);
-void reproduce_pixels(line_points *p, fdf *data);
-void locate(line_points *p, fdf *data);
+void	set_pixels(fdf *data);
+void	draw_map(fdf *data);
+void	line(int x2, int y2, fdf *data, line_points p);
+void	reproduce_pixels(line_points *p, fdf *data);
+void	locate(line_points *p, fdf *data);
 
 //algo
-void negative_slope(int x1, int y1, fdf *data);
-void positive_slope(int x1, int y1, fdf *data);
-void isometric(int *x, int *y, int z);
+void	negative_slope(int x1, int y1, fdf *data);
+void	positive_slope(int x1, int y1, fdf *data);
+void	isometric(int *x, int *y, int z);
 
 //utils
-void ft_close(fdf *data);
-int close_window(fdf *data);
-fdf *create_fdf_data(void);
-void free_arr(char **str);
-void free_map(int **arr);
+int	clean_close(fdf *data);
+fdf	*create_fdf_data(void);
+void	free_arr(char **str);
+void	free_map(int **arr);
 
 int	handle_keypress(int key, fdf *data);
 void	draw_pixel(fdf *data, int x, int y, int color);
 
 //color
-unsigned int get_color(int z1, int z2);
+unsigned int	get_color(int z1, int z2);
 
 size_t	count_words(char const *s, char c);//TODO delete this
+
 #endif

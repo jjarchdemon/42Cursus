@@ -24,7 +24,7 @@ void	draw_map(fdf *data)
 {
 	line_points	p;
 
-	if (!data || !data->map.render_map)
+	if (!data || !data->map.input_map)
 		return ;
 	p.x1 = 0;
 	while (p.x1 < data->map.width)
@@ -46,13 +46,14 @@ void	line(int x2, int y2, fdf *data, line_points p)
 {
 	p.x2 = x2;
 	p.y2 = y2;
-	data->side.z1 = data->map.render_map[p.y1][p.x1];
-	data->side.z2 = data->map.render_map[p.y2][p.x2];
+	data->side.z1 = data->map.input_map[p.y1][p.x1];
+	data->side.z2 = data->map.input_map[p.y2][p.x2];
 	reproduce_pixels(&p, data);
 	locate(&p, data);
 	isometric(&p.x1, &p.y1, data->side.z1);
 	isometric(&p.x2, &p.y2, data->side.z2);
-	if ((p.x1 < 0 && p.x2 < 0) || (p.x1 > WIDTH && p.x2 > WIDTH) || (p.y1 < 0 && p.y2 < 0) || (p.y1 > HEIGHT && p.y2 > HEIGHT))
+	if ((p.x1 < 0 && p.x2 < 0) || (p.x1 > WIDTH && p.x2 > WIDTH)
+		|| (p.y1 < 0 && p.y2 < 0) || (p.y1 > HEIGHT && p.y2 > HEIGHT))
 		return ;
 	data->side.dx = p.x2 - p.x1;
 	data->side.dy = p.y2 - p.y1;

@@ -12,7 +12,26 @@
 
 #include "../include/fdf.h"
 
-void	ft_close(fdf *data)
+fdf	*create_fdf_data(void)
+{
+	fdf	*data;
+
+	data = (fdf *)malloc(sizeof(fdf));
+	if (!data)
+		return (NULL);
+	data->side.iso = 0;
+	data->window.offset_x = (WIDTH / 10);
+	data->window.offset_y = (HEIGHT / 3);
+	data->window.zoom = 0;
+	data->mlx = NULL;
+	data->wnd = NULL;
+	data->img = NULL;
+	data->address_data = NULL;
+	data->map.input_map = NULL;
+	return (data);
+}
+
+int	clean_close(fdf *data)
 {
 	if (data)
 	{
@@ -25,18 +44,15 @@ void	ft_close(fdf *data)
 			//if (data->mlx)	commented out for mac
 			//	mlx_destroy_display(data->mlx);
 			free(data->mlx);
-			data->mlx = NULL;
 		}
-		if (data->map.render_map)
-		{
-			free_map(data->map.render_map);
-			data->map.render_map = NULL;
-		}
+		free_map(data->map.input_map);
 		free(data);
-		data = NULL;
 	}
+	exit(0);
+	return (0); //it doesnt reach here
 }
 
+/*
 int	close_window(fdf *data)
 {
 	if (data->img)
@@ -49,33 +65,14 @@ int	close_window(fdf *data)
 	//	mlx_destroy_display(data->mlx);	commented out for mac
 		free(data->mlx);
 	}
-	if (data->map.render_map)
-		free_map(data->map.render_map);
+	if (data->map.input_map)
+		free_map(data->map.input_map);
 	ft_printf("Project exited\n");
 	if (data)
 		free(data);
 	exit(0);
 }
-
-fdf	*create_fdf_data(void)
-{
-	fdf	*data;
-
-	data = (fdf *)malloc(sizeof(fdf));
-	if (!data)
-		return (NULL);
-	data->side.iso = 0;
-	data->color = 0xffff;
-	data->bvg_color = 0x1E1E1E;
-	data->window.offset_x = (WIDTH / 3) + (WIDTH / 10);
-	data->window.offset_y = (HEIGHT / 10);
-	data->window.zoom = 0;
-	data->mlx = NULL;
-	data->wnd = NULL;
-	data->img = NULL;
-	data->address_data = NULL;
-	return (data);
-}
+*/
 
 void	free_arr(char **str)
 {

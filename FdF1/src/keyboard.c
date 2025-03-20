@@ -16,7 +16,7 @@ int	handle_keypress(int key, fdf *data)
 {
 	if (key == ESCAPE)
 	{
-		ft_close(data);//TODO change name
+		clean_close(data);
 		exit(0);
 	}
 	return (0);

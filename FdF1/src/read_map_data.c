@@ -24,17 +24,17 @@ fdf	*read_map_data(fdf *data, char **file)//readfile(... char **file)
 		return (free(data), NULL);
 	if (get_size(&data->map.height, file[1], &data->map.width) == 1)
 		return (free(data), NULL);
-	data->map.render_map = malloc(sizeof(int *) * (data->map.height + 1));
+	data->map.input_map = malloc(sizeof(int *) * (data->map.height + 1));
 	while (i < data->map.height)
-		data->map.render_map[i++] = malloc(sizeof(int) * data->map.width);
+		data->map.input_map[i++] = malloc(sizeof(int) * data->map.width);
 	i = 0;
 	line = get_next_line(fd);
 	while (i < data->map.height && line)
 	{
-		parse_map_line(data->map.render_map[i++], data->map.width, line);
+		parse_map_line(data->map.input_map[i++], data->map.width, line);
 		line = get_next_line(fd);
 	}
-	data->map.render_map[data->map.height] = NULL;
+	data->map.input_map[data->map.height] = NULL;
 	close(fd);
 	return (data);
 }
