@@ -79,25 +79,18 @@ void	reproduce_pixels(line_points *p, fdf *data)
 		scaling.scale_factor = scaling.y_scale;
 	if (scaling.scale_factor > 10)
 		scaling.scale_factor = 10;
-	p->x1 *= scaling.scale_factor + data->window.zoom;
-	p->y1 *= scaling.scale_factor + data->window.zoom;
-	p->x2 *= scaling.scale_factor + data->window.zoom;
-	p->y2 *= scaling.scale_factor + data->window.zoom;
-	data->side.z1 *= scaling.scale_factor + data->window.zoom + data->side.iso;
-	data->side.z2 *= scaling.scale_factor + data->window.zoom + data->side.iso;
+	p->x1 *= scaling.scale_factor;
+	p->y1 *= scaling.scale_factor;
+	p->x2 *= scaling.scale_factor;
+	p->y2 *= scaling.scale_factor;
+	data->side.z1 *= scaling.scale_factor + data->side.iso;
+	data->side.z2 *= scaling.scale_factor + data->side.iso;
 }
 
 void	locate(line_points *p, fdf *data)
 {
-	view_control	_;
-
-	_.shift_down = data->window.shift_down;
-	_.shift_up = data->window.shift_up;
-	_.shift_left = data->window.shift_left;
-	_.shift_right = data->window.shift_right;
-	_.zoom = data->window.zoom;
-	p->x1 += (WIDTH / 2) - (data->map.width * _.zoom / 2) + _.shift_left;
-	p->y1 += (HEIGHT / 8) - (data->map.height * _.zoom / 2) + _.shift_up;
-	p->x2 += (WIDTH / 2) - (data->map.width * _.zoom / 2) + _.shift_right;
-	p->y2 += (HEIGHT / 8) - (data->map.height * _.zoom / 2) + _.shift_down;
+	p->x1 += (WIDTH / 2) - (data->map.width / 2);
+	p->y1 += (HEIGHT / 8) - (data->map.height / 2);
+	p->x2 += (WIDTH / 2) - (data->map.width / 2);
+	p->y2 += (HEIGHT / 8) - (data->map.height / 2);
 }

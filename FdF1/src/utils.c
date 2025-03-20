@@ -20,9 +20,9 @@ fdf	*create_fdf_data(void)
 	if (!data)
 		return (NULL);
 	data->side.iso = 0;
-	data->window.offset_x = (WIDTH / 10);
-	data->window.offset_y = (HEIGHT / 3);
-	data->window.zoom = 0;
+	//data->window.offset_x = (WIDTH / 10);
+	//data->window.offset_y = (HEIGHT / 3);
+	//data->window.zoom = 0;
 	data->mlx = NULL;
 	data->wnd = NULL;
 	data->img = NULL;

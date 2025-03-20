@@ -26,7 +26,7 @@
 
 # define ESCAPE 65307
 
-# define MAX_KEYS 65536	//TODO what is this
+//# define MAX_KEYS 65536	//TODO what is this
 
 typedef	struct
 {
@@ -43,7 +43,7 @@ typedef	struct
 	int	y1;
 	int	y2;
 }	line_points;	//t_point
-
+/*
 typedef	struct
 {
 	int	offset_x;
@@ -55,7 +55,7 @@ typedef	struct
 	int	shift_left;
 	int	key_states[MAX_KEYS];	//TODO what is this
 }	view_control;	//control
-
+*/
 typedef	struct
 {
 	int	z1;
@@ -81,7 +81,7 @@ typedef	struct
 	int				size_line;
 	int				endian;
 	char			*address_data;
-	view_control	window;
+	//view_control	window;
 	line_data		side;
 	map				map;
 }	fdf;
