@@ -12,17 +12,17 @@
 
 #include "../include/fdf.h"
 
-fdf	*read_map_data(fdf *data, char **file)//readfile(... char **file)
+fdf	*read_map_data(fdf *data, char *file)//readfile(... char **file)
 {
 	int		fd;
 	int		i;
 	char	*line;
 
 	i = 0;
-	fd = open(file[1], O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (free(data), NULL);
-	if (get_size(&data->map.height, file[1], &data->map.width) == 1)
+	if (get_size(file, &data->map.height, &data->map.width) == 1) //enough?
 		return (free(data), NULL);
 	data->map.input_map = malloc(sizeof(int *) * (data->map.height + 1));
 	while (i < data->map.height)
@@ -39,19 +39,22 @@ fdf	*read_map_data(fdf *data, char **file)//readfile(... char **file)
 	return (data);
 }
 
-int	get_size(int *height, char *file, int *width)
+//width = no of integers in a line i.e. columns
+//height = no of lines i.e. rows
+//determines the dimensions of the map by reading the file line by line
+int	get_size(char *file, int *height, int *width)
 {
 	int		i;
 	int		fd;
 	char	*line;
 
 	i = 0;
-	line = NULL;
+	line = NULL; //necessary?
 	fd = open(file, O_RDONLY);
-	if (!fd)
+	if (fd == -1)
 		return (-1);
 	line = get_next_line(fd);
-	*width = count_words(line, ' ');//TODO WTF
+	*width = count_words(line, ' ');
 	while (line)
 	{
 		free(line);
@@ -64,18 +67,18 @@ int	get_size(int *height, char *file, int *width)
 	return (i);
 }
 
-int	*parse_map_line(int *map_line, int width, char *line)//fill_map
+int	*parse_map_line(int *row, int column_count, char *line_content)
 {
 	int		i;
 	char	**number;
 
 	i = 0;
-	number = ft_split(line, ' ');
-	while (i < width)
+	number = ft_split(line_content, ' ');
+	while (i < column_count)
 	{
-		map_line[i] = ft_atoi(number[i]);
+		row[i] = ft_atoi(number[i]);
 		i++;
 	}
 	free_arr(number);
-	return (map_line);
+	return (row);
 }

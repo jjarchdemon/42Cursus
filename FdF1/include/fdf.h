@@ -87,8 +87,8 @@ typedef	struct
 }	fdf;
 
 //read_map_data
-fdf	*read_map_data(fdf *data, char **file);
-int	get_size(int *height, char *file, int *width);
+fdf	*read_map_data(fdf *data, char *file);
+int	get_size(char *file, int *height, int *width);
 int	*parse_map_line(int *map_line, int width, char *line);
 //draw
 void	set_pixels(fdf *data);

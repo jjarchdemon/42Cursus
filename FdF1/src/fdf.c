@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 	data = create_fdf_data();
 	if (!data)
 		return (1);
-	data = read_map_data(data, av);
+	data = read_map_data(data, av[1]);
 	if (!data)
 		return (1);
 	if (my_mlx(data))

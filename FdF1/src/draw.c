@@ -14,7 +14,7 @@
 
 void	set_pixels(fdf *data)
 {
-	ft_bzero(data->address_data, WIDTH * HEIGHT * 4);
+	ft_bzero(data->address_data, WIDTH * HEIGHT * 4);//4  bcoz 4 bytes per pixel
 	mlx_clear_window(data->mlx, data->wnd);
 	draw_map(data);
 	mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
@@ -36,9 +36,9 @@ void	draw_map(fdf *data)
 				line(p.x1 + 1, p.y1, data, p);
 			if (p.y1 < data->map.height - 1)
 				line(p.x1, p.y1 + 1, data, p);
-			p.y1 += 1;
+			p.y1++;
 		}
-		p.x1 += 1;
+		p.x1++;
 	}
 }
 
