@@ -90,7 +90,7 @@ void	reproduce_pixels(line_points *p, fdf *data)
 void	locate(line_points *p, fdf *data)
 {
 	p->x1 += (WIDTH / 2) - (data->map.width / 2);
-	p->y1 += (HEIGHT / 8) - (data->map.height / 2);
+	p->y1 += (HEIGHT / 10) - (data->map.height / 2);
 	p->x2 += (WIDTH / 2) - (data->map.width / 2);
-	p->y2 += (HEIGHT / 8) - (data->map.height / 2);
+	p->y2 += (HEIGHT / 10) - (data->map.height / 2);
 }
