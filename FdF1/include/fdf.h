@@ -69,6 +69,8 @@ typedef	struct
 {
 	int	height;
 	int	width;
+	int	max_z;
+	int	min_z;
 	int	**input_map;//render_map
 }	map;
 
@@ -84,12 +86,15 @@ typedef	struct
 	//view_control	window;
 	line_data		side;
 	map				map;
+	float scale_factor; // Add this field to store the scaling factor
 }	fdf;
 
 //read_map_data
 fdf	*read_map_data(fdf *data, char *file);
 int	get_size(char *file, int *height, int *width);
 int	*parse_map_line(int *map_line, int width, char *line);
+int	find_max_z(fdf *data);
+int	find_min_z(fdf *data);
 //draw
 void	set_pixels(fdf *data);
 void	draw_map(fdf *data);

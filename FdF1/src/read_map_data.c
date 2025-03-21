@@ -35,6 +35,8 @@ fdf	*read_map_data(fdf *data, char *file)//readfile(... char **file)
 		line = get_next_line(fd);
 	}
 	data->map.input_map[data->map.height] = NULL;
+	data->map.max_z = find_max_z(data);
+	data->map.min_z = find_min_z(data);
 	close(fd);
 	return (data);
 }
@@ -81,4 +83,48 @@ int	*parse_map_line(int *row, int column_count, char *line_content)
 	}
 	free_arr(number);
 	return (row);
+}
+
+int	find_max_z(fdf *data)
+{
+    int	max_z;
+    int	i;
+    int	j;
+
+    max_z = data->map.input_map[0][0]; // Initialize with the first value
+    i = 0;
+    while (i < data->map.height)
+    {
+        j = 0;
+        while (j < data->map.width)
+        {
+            if (data->map.input_map[i][j] > max_z)
+                max_z = data->map.input_map[i][j];
+            j++;
+        }
+        i++;
+    }
+    return (max_z);
+}
+
+int	find_min_z(fdf *data)
+{
+    int	min_z;
+    int	i;
+    int	j;
+
+    min_z = data->map.input_map[0][0]; // Initialize with the first value
+    i = 0;
+    while (i < data->map.height)
+    {
+        j = 0;
+        while (j < data->map.width)
+        {
+            if (data->map.input_map[i][j] < min_z)
+                min_z = data->map.input_map[i][j];
+            j++;
+        }
+        i++;
+    }
+    return (min_z);
 }
