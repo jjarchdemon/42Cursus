@@ -6,19 +6,24 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:33:39 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 14:40:35 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:09:04 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	negative_slope(int x1, int y1, fdf *data)
+void	negative_slope(int x1, int y1, fdf *data, int color1, int color2)
 {
-	int	i;
-	int	p;
+	int		i;
+	int		p;
+	float	color_step;
+	float	current_color;
 
 	p = (2 * abs(data->side.dy)) - abs(data->side.dx);
 	i = -1;
+	// Calculate the color step for interpolation
+	color_step = (float)(color2 - color1) / abs(data->side.dx);
+	current_color = color1;
 	while (++i < abs(data->side.dx))
 	{
 		if (data->side.dx > 0)
@@ -35,17 +40,24 @@ void	negative_slope(int x1, int y1, fdf *data)
 				y1--;
 			p = p + (2 * abs(data->side.dy)) - (2 * abs(data->side.dx));
 		}
-		draw_pixel(data, x1, y1, get_color(data->side.z1, data->side.z2));
+	// Draw the pixel with the interpolated color
+		draw_pixel(data, x1, y1, (int)current_color);
+		current_color += color_step;
 	}
 }
 
-void	positive_slope(int x1, int y1, fdf *data)
+void	positive_slope(int x1, int y1, fdf *data, int color1, int color2)
 {
 	int	i;
 	int	p;
+	float	color_step;
+	float	current_color;
 
 	p = (2 * abs(data->side.dy)) - abs(data->side.dx);
 	i = -1;
+	// Calculate the color step for interpolation
+	color_step = (float)(color2 - color1) / abs(data->side.dy);
+	current_color = color1;
 	while (++i < abs(data->side.dy))
 	{
 		if (data->side.dy > 0)
@@ -62,7 +74,9 @@ void	positive_slope(int x1, int y1, fdf *data)
 				x1--;
 			p = p + (2 * abs(data->side.dx)) - (2 * abs(data->side.dy));
 		}
-		draw_pixel(data, x1, y1, get_color(data->side.z1, data->side.z2));
+	// Draw the pixel with the interpolated color
+		draw_pixel(data, x1, y1, (int)current_color);
+		current_color += color_step;
 	}
 }
 

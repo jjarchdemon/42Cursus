@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 15:59:32 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:32:12 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,34 +45,12 @@ int	clean_close(fdf *data)
 			//	mlx_destroy_display(data->mlx);
 			free(data->mlx);
 		}
-		free_map(data->map.input_map);
+		free_map(data->map.input_map, data->map.height, data->map.width);
 		free(data);
 	}
 	exit(0);
 	return (0); //it doesnt reach here
 }
-
-/*
-int	close_window(fdf *data)
-{
-	if (data->img)
-		mlx_destroy_image(data->mlx, data->img);
-	if (data->wnd)
-		mlx_destroy_window(data->mlx, data->wnd);
-	if (data->mlx)
-	{
-//		mlx_loop_end(data->mlx);  commented out for mac
-	//	mlx_destroy_display(data->mlx);	commented out for mac
-		free(data->mlx);
-	}
-	if (data->map.input_map)
-		free_map(data->map.input_map);
-	ft_printf("Project exited\n");
-	if (data)
-		free(data);
-	exit(0);
-}
-*/
 
 void	free_arr(char **str)
 {
@@ -89,17 +67,51 @@ void	free_arr(char **str)
 	free(str);
 }
 
-void	free_map(int **arr)
+void	free_map(int ***arr, int height, int width)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	if (!arr || !*arr)
+	if (!arr)
 		return ;
-	while (arr[i])
+	// Iterate over the height (rows)
+	while (i < height)
 	{
-		free(arr[i]);
+		if (arr[i])
+		{
+			j = 0;
+			// Iterate over the width (columns)
+			while (j < width)
+			{
+				free(arr[i][j]);
+				j++;
+			}
+			free(arr[i]);
+		}
 		i++;
 	}
 	free(arr);
+}
+
+static int	get_hex_value(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (c - '0');
+	if (c >= 'a' && c <= 'f')
+		return (c - 'a' + 10);
+	return (c - 'A' + 10);
+}
+
+int	ft_atoi_base(const char *str)
+{
+	int	result;
+
+	result = 0;
+	while (*str)
+	{
+		result = (result << 4) + get_hex_value(*str);
+		str++;
+	}
+	return (result);
 }

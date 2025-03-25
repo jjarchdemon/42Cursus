@@ -32,8 +32,8 @@ OBJS = $(SRCS:.c=.o)
 # Platform-dependent compilation
 ifeq ($(OS), Linux)
         LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext	#conditional
-        MLX = $(INCLUDE)/minilibx-linux				#conditional
-        MLX_A = $(MLX)/libmlx.a					#conditional
+        MLX = include/minilibx-linux				#conditional
+        MLX_A = include/minilibx-linux/libmlx.a					#conditional
         CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux 	#conditional
 else
         LINUX_FLAGS =  -L/usr/X11/lib -lXext -lX11 -framework OpenGl -framework Appkit	#conditional

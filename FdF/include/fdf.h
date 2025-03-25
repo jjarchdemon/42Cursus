@@ -21,12 +21,10 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIDTH 800
-# define HEIGHT 400
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define ESCAPE 65307
-
-//# define MAX_KEYS 65536	//TODO what is this
 
 typedef	struct
 {
@@ -43,19 +41,7 @@ typedef	struct
 	int	y1;
 	int	y2;
 }	line_points;	//t_point
-/*
-typedef	struct
-{
-	int	offset_x;
-	int	offset_y;
-	int	zoom;
-	int	shift_up;
-	int	shift_down;
-	int	shift_right;
-	int	shift_left;
-	int	key_states[MAX_KEYS];	//TODO what is this
-}	view_control;	//control
-*/
+
 typedef	struct
 {
 	int	z1;
@@ -71,7 +57,7 @@ typedef	struct
 	int	width;
 	int	max_z;
 	int	min_z;
-	int	**input_map;//render_map
+	int	***input_map;//3D array to store height & optional color
 }	map;
 
 typedef	struct
@@ -92,7 +78,7 @@ typedef	struct
 //read_map_data
 fdf	*read_map_data(fdf *data, char *file);
 int	get_size(char *file, int *height, int *width);
-int	*parse_map_line(int *map_line, int width, char *line);
+int	*parse_map_line(int **row, int column_count, char *line_content);
 int	find_max_z(fdf *data);
 int	find_min_z(fdf *data);
 //draw
@@ -103,15 +89,15 @@ void	reproduce_pixels(line_points *p, fdf *data);
 void	locate(line_points *p, fdf *data);
 
 //algo
-void	negative_slope(int x1, int y1, fdf *data);
-void	positive_slope(int x1, int y1, fdf *data);
+void	negative_slope(int x1, int y1, fdf *data, int color1, int color2);
+void	positive_slope(int x1, int y1, fdf *data, int color1, int color2);
 void	isometric(int *x, int *y, int z);
 
 //utils
 int	clean_close(fdf *data);
 fdf	*create_fdf_data(void);
 void	free_arr(char **str);
-void	free_map(int **arr);
+void	free_map(int ***arr, int height, int width);
 
 int	handle_keypress(int key, fdf *data);
 void	draw_pixel(fdf *data, int x, int y, int color);
@@ -120,5 +106,8 @@ void	draw_pixel(fdf *data, int x, int y, int color);
 unsigned int	get_color(int z1, int z2);
 
 size_t	count_words(char const *s, char c);//TODO delete this
+
+unsigned int	get_default_color(int z, fdf *data);
+int ft_atoi_base(const char *str);
 
 #endif

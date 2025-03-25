@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:24:24 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 15:29:24 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:16:07 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	my_mlx(fdf *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (free_map(data->map.input_map), free(data), 1);
+		return (free_map(data->map.input_map, data->map.height,
+				data->map.width), free(data), 1);
 	data->wnd = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
 	if (!data->wnd)
 		return (clean_close(data), 1);
