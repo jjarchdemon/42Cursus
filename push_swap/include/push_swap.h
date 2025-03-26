@@ -13,4 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+include "../my_libft/ft_printf.h"
+include "../my_libft/get_next_line.h"
+include "../my_libft/libft.h"
+
 #endif
