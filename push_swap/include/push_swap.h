@@ -40,7 +40,7 @@ typedef struct s_node
 
 //stack utils
 
-//commands
+//instructions
 
 //algo
 
