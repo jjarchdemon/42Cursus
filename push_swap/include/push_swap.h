@@ -39,8 +39,18 @@ typedef struct s_node
 //nodes initiation
 
 //stack utils
+t_node  *get_last_node(t_node *stack);
+int     stack_len(t_node *stack);
+bool    is_sorted(t_node *stack);
+t_node  *get_min(t_node *stack);
+t_node  *get_max(t_node *stack);
 
 //instructions
+void    pa(t_node **a, t_node **b);
+void    pb(t_node **b, t_node **a);
+void    ra(t_node **a);
+void    rb(t_node **b);
+void    rr(t_node **a, t_node **b);
 
 //algo
 
