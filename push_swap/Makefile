@@ -48,10 +48,11 @@ clean:
 fclean: clean
 	@$(MAKE) fclean -s -C $(LIBFT)
 	@rm -f $(NAME)
-	@echo "\033[0;33mAll exe and object files removed!\033[0m"
+	@echo "\033[0;33mCompleyely cleaned!\033[0m"
 
 # Rebuild everything
 re: fclean all
+	@echo "\033[0;33mCleaned & Compiled again!\033[0m"
 
 # PHONY targets
 .PHONY: all clean fclean re
