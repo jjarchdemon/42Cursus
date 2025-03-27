@@ -59,5 +59,5 @@ void    sb(t_node **b);
 void    ss(t_node **a, t_node **b);
 
 //algo
-
+void    sort_3stack(t_node **stack);
 #endif
