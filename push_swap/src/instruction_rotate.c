@@ -5,7 +5,7 @@
 static void	rotate(t_node **stack)
 {
 	t_node	*temp;
-	 
+
 	if (!*stack || !(*stack)->next)
 		return ;
 	temp = *stack;

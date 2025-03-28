@@ -4,7 +4,7 @@
 
 void	sort_3stack(t_node **stack)
 {
-	t_node = max;
+	t_node	*max;
 
 	max = get_max(*stack);
 	if (*stack == max)
