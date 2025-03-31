@@ -12,38 +12,42 @@
 
 #include "../include/push_swap.h"
 
-//make every function a single character by using c as anything <= 32 ?
-static int	count_words(char *s, char c)
+static int	is_delimiter(char c)
+{
+	return (c <= 32);
+}
+
+static int	count_words(char *s)
 {
 	int	count;
 
 	count = 0;
 	while (*s)
 	{
-		while (*s == c)
+		while (*s && is_delimiter(*s))
 			s++;
 		if (*s)
 		{
 			count++;
-			while (*s && *s != c)
+			while (*s && !is_delimiter(*s))
 				s++;
 		}
 	}
 	return (count);
 }
 
-static char	*get_next_word(char *s, char c)
+static char	*get_next_word(char *s)
 {
 	static int	pos = 0;
-	char	*next_word;
-	int	len
-	int	i;
+	char		*next_word;
+	int			len;
+	int			i;
 
 	len = 0;
 	i = 0;
-	while (s[pos] == c)
+	while (s[pos] && is_delimiter(s[pos]))
 		pos++;
-	while (s[pos] && s[pos] != c)
+	while (s[pos] && !is_delimiter(s[pos]))
 	{
 		len++;
 		pos++;
@@ -51,36 +55,37 @@ static char	*get_next_word(char *s, char c)
 	next_word = malloc(len * sizeof(char) + 1);
 	if (!next_word)
 		return (NULL);
-	while (s[pos] && s[pos] != c)
+	pos -= len; // Reset position to start of the word
+	while (len--)
 		next_word[i++] = s[pos++];
 	next_word[i] = '\0';
-	return(next_word);
+	return (next_word);
 }
 
-char	**split(char *s, char c)
+char	**split(char *s)
 {
-	int	word_count;
+	int		word_count;
 	char	**array;
-	int	i;
+	int		i;
 
 	i = 0;
-	word_count = count_words(s, c);
+	word_count = count_words(s);
 	if (!word_count)
-		exit (1);
-	array = malloc(word_count * sizeof(char *) + 2);
+		exit(1);
+	array = malloc((word_count + 1) * sizeof(char *));
 	if (!array)
 		return (NULL);
-	while (word_count-- >= 0) 
+	while (i < word_count)
 	{
-		if (i == 0)
+		array[i] = get_next_word(s);
+		if (!array[i])
 		{
-			array[i] = malloc(sizeof(char));
-			if (!array[i])
-				return (NULL);
-			array[i++][0] = '\0';
-			continue ;
+			while (i > 0)
+				free(array[--i]);
+			free(array);
+			return (NULL);
 		}
-		array[i++] = get_next_word(s, c);
+		i++;
 	}
 	array[i] = NULL;
 	return (array);

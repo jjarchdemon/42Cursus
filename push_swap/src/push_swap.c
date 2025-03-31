@@ -19,9 +19,16 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
-	if (ac != 2)
+	if (ac == 1 || ac ==2 && !av[1][0])
 		return (1);	//error message
 	else if (ac == 2)
-		(void)av;	//actual code to come here
+		av = split(av[1]);
+	init_stack_a(&a, av + 1);
+	if (!is_sorted(a))
+	{
+		//sorting when stack length is 2
+		//sorting when stack length is 3
+		//turkish algo
+	}
 	return (0);
 }
