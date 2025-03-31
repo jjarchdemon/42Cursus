@@ -21,6 +21,9 @@ LIBFT_A = $(LIBFT)/libft.a
 
 NAME = push_swap
 
+# for including .c files in all subdirectories
+# SRCS = $(shell find $(SRC_DIR) -type f -name "*.c")
+
 #sources from object files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:.c=.o)
