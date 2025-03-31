@@ -35,7 +35,10 @@ typedef struct s_node
 //handle errors
 
 //stack initiation
-
+int	has_invalid_syntax(char *c);
+int 	has_duplicate(t_node *a, int n);
+void	free_stack(t_node **stack);
+void	init_stack_a(t_node **a, char **av);
 //nodes initiation
 
 //stack utils

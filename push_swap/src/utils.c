@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 
+#include "../include/push_swap.h"
 t_node	*get_last_node(t_node *stack)
 {
 	if (!stack)

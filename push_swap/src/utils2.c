@@ -1,3 +1,6 @@
+/* ************************************************************************** */
+
+#include "../include/push_swap.h"
 
 //store ref to the next node in temp so as to not lose the
 //pointer when freeing the current node
@@ -14,5 +17,3 @@ void	free_stack(t_node **stack)
 		*stack = tmp;
 	}
 }
-
-
