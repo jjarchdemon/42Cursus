@@ -1,10 +1,10 @@
 
 static long	ft_atol(char *s)
 {
-	long	result;
+	long	num;
 	int	sign;
 
-	result = 0;
+	num = 0;
 	sign = 1;
 	while (*s <= 32)
 		s++;
@@ -15,6 +15,26 @@ static long	ft_atol(char *s)
 		s++;
 	}
 	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
+	{
+		num = num * 10 + (*s - '0');
+		s++;
+	}
+	return (num * sign);
+}
+
+static void	append_node(t_node **stack, int n)
+{
+}
+
+void	init_stack_a(t_node **a, char **av)
+{
+	long	n;
+	int	i;
+
+	i = 0;
+	while (*av)
+	{
+		if 
+	}
+
 }
