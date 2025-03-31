@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 
 	a = NULL;
 	b = NULL;
+	// if (ac == 1 || (ac == 2 && (!av[1][0] || !ft_strlen(ft_strtrim(av[1], ' ')))))
 	if (ac == 1 || (ac ==2 && !av[1][0]))
 		return (1);	//error message
 	else if (ac == 2)

@@ -35,3 +35,24 @@ int 	has_duplicate(t_node *a, int n)
 }
 
 //write functions for the 3 error messages in init_stack
+
+void	handle_invalid_syntax(t_node **a)
+{
+	free_stack(a);
+	ft_printf("Error: invalid syntax\n");
+	exit(1);
+}
+
+void	handle_oveflow(t_node **a)
+{
+	free_stack(a);
+	ft_printf("Error: number out of range\n");
+	exit(1);
+}
+
+void	handle_duplicate(t_node **a)
+{
+	free_stack(a);
+	ft_printf("Error: duplicate number\n");
+	exit(1);
+}

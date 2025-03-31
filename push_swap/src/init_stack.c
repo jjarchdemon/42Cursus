@@ -62,24 +62,12 @@ void	init_stack_a(t_node **a, char **av)
 	while (*av)
 	{
 		if (has_invalid_syntax(*av))
-		{
-			free_stack(a);
-			ft_printf("Error: invalid syntax\n");
-			exit(1);
-		}
+			handle_invalid_syntax(a);
 		n = ft_atol(*av);
 		if (n > INT_MAX || n < INT_MIN)
-		{
-			free_stack(a);
-			ft_printf("Error: number out of range\n");
-			exit(1);
-		}
+			handle_overflow(a);
 		if (has_duplicate(*a, (int)n))
-		{
-			free_stack(a);
-			ft_printf("Error: duplicate number\n");
-			exit(1);
-		}
+			handle_duplicate(a);
 		append_node(a, (int)n);
 		av++;
 	}
