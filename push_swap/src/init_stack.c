@@ -49,7 +49,7 @@ static void	append_node(t_node **stack, int n)
 	}
 	else
 	{
-		last_node = get_last_node(stack);
+		last_node = get_last_node(*stack);
 		last_node->next = new_node;
 		new_node->prev = last_node;
 	}

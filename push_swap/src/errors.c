@@ -43,7 +43,7 @@ void	handle_invalid_syntax(t_node **a)
 	exit(1);
 }
 
-void	handle_oveflow(t_node **a)
+void	handle_overflow(t_node **a)
 {
 	free_stack(a);
 	ft_printf("Error: number out of range\n");
