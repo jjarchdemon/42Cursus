@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-static int	is_delimiter(char c)
+int	is_delimiter(char c)
 {
 	return (c <= 32);
 }
