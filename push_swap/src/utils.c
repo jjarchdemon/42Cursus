@@ -17,7 +17,7 @@ int	stack_len(t_node *stack)
 	if (!stack)
 		return (0);
 	len = 0;
-	while (stack->next)
+	while (stack)
 	{
 		stack = stack->next;
 		len++;

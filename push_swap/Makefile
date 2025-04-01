@@ -22,10 +22,10 @@ LIBFT_A = $(LIBFT)/libft.a
 NAME = push_swap
 
 # for including .c files in all subdirectories
-# SRCS = $(shell find $(SRC_DIR) -type f -name "*.c")
+SRCS = $(shell find $(SRC_DIR) -type f -name "*.c")
 
 #sources from object files
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+# SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -40,7 +40,7 @@ $(LIBFT_A):
 	@echo "\033[0;32mmy_libft library built successfully!\033[0m"
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean object files
 clean:

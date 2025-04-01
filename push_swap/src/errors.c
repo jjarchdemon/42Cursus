@@ -22,14 +22,17 @@ int	has_invalid_syntax(char *c)
 
 int 	has_duplicate(t_node *a, int n)
 {
-	t_node *current;
-
-	current = a;
-	while (current)
+	if (!a)
+		return (0);
+	while (a)
 	{
-		if (current->num == n)
+		ft_printf("Comparing %d with %d\n", a->num, n); // Debug print
+		if (a->num == n)
+		{
+			ft_printf("duplicate found: %d\n", a->num); //debug print
 			return (1);
-		current = current->next;
+		}
+		a = a->next;
 	}
 	return (0);
 }

@@ -58,17 +58,25 @@ static void	append_node(t_node **stack, int n)
 void	init_stack_a(t_node **a, char **av)
 {
 	long	n;
+	int		i;
 
-	while (*av)
+	i = 0;
+	while (av[i])
 	{
-		if (has_invalid_syntax(*av))
+		if (has_invalid_syntax(av[i]))
 			handle_invalid_syntax(a);
-		n = ft_atol(*av);
+		n = ft_atol(av[i]);
+		ft_printf("Parsed number: %d\n", n); //debug print
 		if (n > INT_MAX || n < INT_MIN)
 			handle_overflow(a);
 		if (has_duplicate(*a, (int)n))
+		{
+			ft_printf("Duplicate detected for: %d\n", (int)n); // Debug print
 			handle_duplicate(a);
+		}
 		append_node(a, (int)n);
-		av++;
+		ft_printf("Stack after adding %d: ", (int)n); // Debug print
+        print_stack(*a); // Debug print
+		i++;
 	}
 }

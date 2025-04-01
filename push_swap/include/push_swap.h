@@ -69,4 +69,8 @@ void    ss(t_node **a, t_node **b);
 
 //algo
 void    sort_3stack(t_node **stack);
+
+//debug functions
+void	print_stack(t_node *stack);
+void	print_stack_reverse(t_node *stack);
 #endif

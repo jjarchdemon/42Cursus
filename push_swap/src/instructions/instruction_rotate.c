@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 static void	rotate(t_node **stack)
 {
