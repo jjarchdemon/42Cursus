@@ -22,11 +22,11 @@
 
 typedef struct s_node
 {
-	int	num;
-	int	index;
-	int	push_cost;
-	bool	above_median;
-	bool	cheapest;
+	int				num;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
 	struct s_node	*next;
 	struct s_node	*prev;
 	struct s_node	*target;
@@ -38,7 +38,7 @@ void	handle_overflow(t_node **a);
 void	handle_duplicate(t_node **a);
 
 //stack initiation
-int	has_invalid_syntax(char *c);
+int		has_invalid_syntax(char *c);
 int 	has_duplicate(t_node *a, int n);
 void	free_stack(t_node **stack);
 void	init_stack_a(t_node **a, char **av);

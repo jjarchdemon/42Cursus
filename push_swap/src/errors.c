@@ -38,7 +38,6 @@ int 	has_duplicate(t_node *a, int n)
 }
 
 //write functions for the 3 error messages in init_stack
-
 void	handle_invalid_syntax(t_node **a)
 {
 	free_stack(a);

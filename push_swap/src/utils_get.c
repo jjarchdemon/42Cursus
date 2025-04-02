@@ -42,3 +42,16 @@ t_node	*get_last_node(t_node *stack)
 		stack = stack->next;
 	return (stack);
 }
+
+t_node	*get_cheapest(t_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
