@@ -10,12 +10,12 @@ static void rotate_both(t_node **a, t_node **b, t_node *cheapest_node, bool rev)
 			rr(a, b);
 		else
 			rrr(a, b);
-		set_index_n_median(*a);//why is this redundant?
-		set_index_n_median(*b);//why is this redundant?
+		//set_index_n_median(*a);//why is this redundant?
+		//set_index_n_median(*b);//why is this redundant?
 	}
 }
 
-static move_a_to_b(t_node **a, t_node **b)
+static void	move_a_to_b(t_node **a, t_node **b)
 {
 	t_node *cheapest;
 

@@ -15,10 +15,10 @@
 int	main(int ac, char **av)
 {
 	t_node	*a;
-	//t_node	*b;
+	t_node	*b;
 
 	a = NULL;
-	//b = NULL;
+	b = NULL;
 	
 	// if (ac == 1 || (ac == 2 && (!av[1][0] || !ft_strlen(ft_strtrim(av[1], ' ')))))
 	if (ac == 1 || (ac == 2 && !av[1][0]))
@@ -43,8 +43,9 @@ int	main(int ac, char **av)
 		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else
-			ft_printf("turkish algo\n");//turkish algo
+			sort_turk(&a, &b);
 	}
+	print_stack(a);//debug print
 	free_stack(&a);
 	return (0);
 }
