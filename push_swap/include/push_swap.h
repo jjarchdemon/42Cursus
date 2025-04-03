@@ -18,7 +18,7 @@
 # include "./my_libft/libft.h"		//unistd stdarg
 
 # include <stdbool.h>			//true & false
-# include <limits.h>			//int min & max
+# include <limits.h>			//int/long min & max
 
 typedef struct s_node
 {
@@ -53,6 +53,8 @@ t_node	*get_cheapest(t_node *stack);
 void	set_index_n_median(t_node *stack);
 void	set_target_a(t_node *a, t_node *b);
 void	set_target_b(t_node *a, t_node *b);
+void	set_pushcost_a(t_node *a, t_node *b);
+void	set_cheapest(t_node *stack);
 
 //stack utils
 void	push_to_top(t_node **stack, t_node *top_node, char stack_name);

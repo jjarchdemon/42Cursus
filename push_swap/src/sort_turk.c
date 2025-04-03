@@ -16,6 +16,17 @@ static move_a_to_b(t_node **a, t_node **b)
 	pb(b,a);
 }
 
+static void push_min_to_top(t_node **a)
+{
+	while ((*a)->num != get_min(*a)->num)
+	{
+		if (get_min(*a)->above_median)
+			ra(a);
+		else
+			rra(a);
+	}
+}
+
 void	sort_turk(t_node **a, t_node **b)
 {
 	int	len_a;
@@ -33,9 +44,9 @@ void	sort_turk(t_node **a, t_node **b)
 	sort_three(a);
 	while (*b)
 	{
-		//prep_stack_b(*a, *b);
+		prep_stack_b(*a, *b);
 		//move_b_to_a(a, b);
 	}
-	//refresh current postion of a
-	//ensure smallest number is 
+	set_index_n_median(*a);
+	push_min_to_top(a);
 }
