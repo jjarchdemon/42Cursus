@@ -2,7 +2,7 @@
 
 #include "../include/push_swap.h"
 
-void	sort_3stack(t_node **stack)
+void	sort_three(t_node **stack)
 {
 	t_node	*max;
 

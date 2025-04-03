@@ -41,7 +41,7 @@ int	main(int ac, char **av)
 		if (stack_len(a) == 2)
 			sa(&a);
 		else if (stack_len(a) == 3)
-			sort_3stack(&a);
+			sort_three(&a);
 		else
 			ft_printf("turkish algo\n");//turkish algo
 	}
