@@ -33,7 +33,7 @@ typedef struct s_node
 }	t_node;
 
 //algo
-void    sort_three(t_node **stack);
+void	sort_three(t_node **stack);
 void	sort_turk(t_node **a, t_node **b);
 
 //stack initiation
@@ -41,9 +41,9 @@ void	init_stack_a(t_node **a, char **av);
 void	free_stack(t_node **stack);
 
 //get & set utils
-t_node  *get_last_node(t_node *stack);
-t_node  *get_min(t_node *stack);
-t_node  *get_max(t_node *stack);
+t_node	*get_last_node(t_node *stack);
+t_node	*get_min(t_node *stack);
+t_node	*get_max(t_node *stack);
 t_node	*get_cheapest(t_node *stack);
 
 void	set_index_n_median(t_node *stack);
@@ -55,30 +55,30 @@ void	set_cheapest(t_node *stack);
 //stack utils
 void	prep_stack_a(t_node *a, t_node *b);
 void	prep_stack_b(t_node *a, t_node *b);
-int     stack_len(t_node *stack);
-bool    is_sorted(t_node *stack);
+int		stack_len(t_node *stack);
+bool	is_sorted(t_node *stack);
 void	push_to_top(t_node **stack, t_node *top_node, char stack_name);
 
 char	**split(char *s);
 //errors & error handling 
 int		has_invalid_syntax(char *c);
-int 	has_duplicate(t_node *a, int n);
+int		has_duplicate(t_node *a, int n);
 void	handle_invalid_syntax(t_node **a);
 void	handle_overflow(t_node **a);
 void	handle_duplicate(t_node **a);
 
 //instructions
-void    pa(t_node **a, t_node **b);
-void    pb(t_node **b, t_node **a);
-void    ra(t_node **a);
-void    rb(t_node **b);
-void    rr(t_node **a, t_node **b);
-void    rra(t_node **a);
-void    rrb(t_node **b);
-void    rrr(t_node **a, t_node **b);
-void    sa(t_node **a);
-void    sb(t_node **b);
-void    ss(t_node **a, t_node **b);
+void	pa(t_node **a, t_node **b);
+void	pb(t_node **b, t_node **a);
+void	ra(t_node **a);
+void	rb(t_node **b);
+void	rr(t_node **a, t_node **b);
+void	rra(t_node **a);
+void	rrb(t_node **b);
+void	rrr(t_node **a, t_node **b);
+void	sa(t_node **a);
+void	sb(t_node **b);
+void	ss(t_node **a, t_node **b);
 
 //debug functions
 void	print_stack(t_node *stack);
