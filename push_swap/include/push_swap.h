@@ -37,12 +37,8 @@ void    sort_three(t_node **stack);
 void	sort_turk(t_node **a, t_node **b);
 
 //stack initiation
-int		has_invalid_syntax(char *c);
-int 	has_duplicate(t_node *a, int n);
-void	free_stack(t_node **stack);
 void	init_stack_a(t_node **a, char **av);
-
-//nodes initiation
+void	free_stack(t_node **stack);
 
 //get & set utils
 t_node  *get_last_node(t_node *stack);
@@ -57,14 +53,16 @@ void	set_pushcost_a(t_node *a, t_node *b);
 void	set_cheapest(t_node *stack);
 
 //stack utils
-void	push_to_top(t_node **stack, t_node *top_node, char stack_name);
 void	prep_stack_a(t_node *a, t_node *b);
 void	prep_stack_b(t_node *a, t_node *b);
 int     stack_len(t_node *stack);
 bool    is_sorted(t_node *stack);
+void	push_to_top(t_node **stack, t_node *top_node, char stack_name);
 
 char	**split(char *s);
-//handle errors
+//errors & error handling 
+int		has_invalid_syntax(char *c);
+int 	has_duplicate(t_node *a, int n);
 void	handle_invalid_syntax(t_node **a);
 void	handle_overflow(t_node **a);
 void	handle_duplicate(t_node **a);

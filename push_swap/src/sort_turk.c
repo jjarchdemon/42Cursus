@@ -2,18 +2,37 @@
 
 #include "../include/push_swap.h"
 
+static void rotate_both(t_node **a, t_node **b, t_node *cheapest_node, bool rev)
+{
+	while (*b != cheapest_node->target && *a != cheapest_node)
+	{
+		if (!rev)
+			rr(a, b);
+		else
+			rrr(a, b);
+		set_index_n_median(*a);//why is this redundant?
+		set_index_n_median(*b);//why is this redundant?
+	}
+}
+
 static move_a_to_b(t_node **a, t_node **b)
 {
 	t_node *cheapest;
 
 	cheapest = get_cheapest(*a);
 	if (cheapest->above_median && cheapest->target->above_median)
-		//function rotate_both()
+		rotate_both(a, b, cheapest, false);//function rotate_both()
 	else if (!(cheapest->above_median) && cheapest->target->above_median)
-		//function rev_rotate_both()
-	//prep for push(a, cheapest_node, 'a')
-	//prep for push(b, cheapest_node->target, 'b')
+		rotate_both(a, b, cheapest, true);//function rev_rotate_both()
+	push_to_top(a, cheapest, 'a');//prep for push(a, cheapest_node, 'a')
+	push_to_top(b, cheapest->target, 'b');//prep for push(b, cheapest_node->target, 'b')
 	pb(b,a);
+}
+
+static void move_b_to_a(t_node **a, t_node **b)
+{
+	push_to_top(a, (*b)->target, 'a');//prep for push(b, cheapest_node, 'b')
+	pa(a,b);
 }
 
 static void push_min_to_top(t_node **a)
@@ -45,7 +64,7 @@ void	sort_turk(t_node **a, t_node **b)
 	while (*b)
 	{
 		prep_stack_b(*a, *b);
-		//move_b_to_a(a, b);
+		move_b_to_a(a, b);
 	}
 	set_index_n_median(*a);
 	push_min_to_top(a);
