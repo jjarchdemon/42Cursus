@@ -24,4 +24,3 @@ void	sort_three(t_node **stack)
 		print_stack(*stack); //debug print
 	}
 }
-

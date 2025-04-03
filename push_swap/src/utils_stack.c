@@ -30,7 +30,7 @@ bool	is_sorted(t_node *stack)
 	return (true);
 }
 
-void push_to_top(t_node **stack, t_node *top_node, char stack_name)
+void	push_to_top(t_node **stack, t_node *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{

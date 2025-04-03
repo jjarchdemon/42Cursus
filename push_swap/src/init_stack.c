@@ -5,7 +5,7 @@
 static long	ft_atol(char *s)
 {
 	long	num;
-	int	sign;
+	int		sign;
 
 	num = 0;
 	sign = 1;
@@ -76,7 +76,7 @@ void	init_stack_a(t_node **a, char **av)
 		}
 		append_node(a, (int)n);
 		ft_printf("Stack after adding %d: ", (int)n); // Debug print
-        print_stack(*a); // Debug print
+		print_stack(*a);// Debug print
 		i++;
 	}
 }

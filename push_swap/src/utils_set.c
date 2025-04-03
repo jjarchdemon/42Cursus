@@ -25,7 +25,7 @@ void	set_index_n_median(t_node *stack)
 }
 
 //set target in b for each node in a
-void set_target_a(t_node *a, t_node *b)
+void	set_target_a(t_node *a, t_node *b)
 {
 	t_node	*current_b;
 	t_node	*target_node;
@@ -54,7 +54,7 @@ void set_target_a(t_node *a, t_node *b)
 }
 
 //set target in a for each node in b
-void set_target_b(t_node *a, t_node *b)
+void	set_target_b(t_node *a, t_node *b)
 {
 	t_node	*current_a;
 	t_node	*target_node;
