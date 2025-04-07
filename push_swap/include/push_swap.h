@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:11:18 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 17:12:25 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:04:48 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	sort_turk(t_node **a, t_node **b);
 //stack initiation
 void	init_stack_a(t_node **a, char **av);
 void	free_stack(t_node **stack);
+void	free_split(char **split);
 
 //get & set utils
 t_node	*get_last_node(t_node *stack);

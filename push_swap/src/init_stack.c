@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:30:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 13:00:18 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:06:03 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,19 @@ void	init_stack_a(t_node **a, char **av)
 	while (av[i])
 	{
 		if (has_invalid_syntax(av[i]))
+		{
+			free_split(av);
 			handle_invalid_syntax(a);
+		}
 		n = ft_atol(av[i]);
 		if (n > INT_MAX || n < INT_MIN)
+		{
+			free_split(av);
 			handle_overflow(a);
+		}
 		if (has_duplicate(*a, (int)n))
 		{
+			free_split(av);
 			handle_duplicate(a);
 		}
 		append_node(a, (int)n);

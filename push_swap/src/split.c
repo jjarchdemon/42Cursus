@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:09:30 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 14:08:06 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:12:05 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,28 @@ static int	count_words(char *s)
 	return (count);
 }
 
-static char	*get_next_word(char *s, int *pos)
+static char	*get_next_word(char *s)
 {
-	//static int	pos = 0;
+	static int	pos = 0;
 	char		*next_word;
 	int			len;
 	int			i;
 
 	len = 0;
 	i = 0;
-	while (s[*pos] && is_delimiter(s[*pos]))
-		(*pos)++;
-	while (s[*pos] && !is_delimiter(s[*pos]))
+	while (s[pos] && is_delimiter(s[pos]))
+		(pos)++;
+	while (s[pos] && !is_delimiter(s[pos]))
 	{
 		len++;
-		(*pos)++;
+		(pos)++;
 	}
 	next_word = malloc(len * sizeof(char) + 1);
 	if (!next_word)
 		return (NULL);
-	*pos -= len; 
+	pos -= len; 
 	while (len--)
-		next_word[i++] = s[(*pos)++];
+		next_word[i++] = s[(pos)++];
 	next_word[i] = '\0';
 	return (next_word);
 }
@@ -67,10 +67,8 @@ char	**split(char *s)
 	int		word_count;
 	char	**array;
 	int		i;
-	int		pos;
 
 	i = 0;
-	pos = 0;
 	word_count = count_words(s);
 	if (!word_count)
 		exit(1);
@@ -79,7 +77,7 @@ char	**split(char *s)
 		return (NULL);
 	while (i < word_count)
 	{
-		array[i] = get_next_word(s, &pos);
+		array[i] = get_next_word(s);
 		if (!array[i])
 		{
 			while (i > 0)
