@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 14:44:21 by jambatt           #+#    #+#             */
-/*   Updated: 2024/12/09 12:06:11 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 12:44:38 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_puthex(unsigned long nb, char letter)
 		base = "0123456789abcdef";
 	else
 		base = "0123456789ABCDEF";
-	if (nb >= 16) //TODO still to understand
+	if (nb >= 16)
 		count += ft_puthex(nb / 16, letter);
 	count += ft_putchar(base[nb % 16]);
 	return (count);
@@ -78,11 +78,11 @@ int	ft_putptr(void *ptr)
 
 	count = 0;
 	if (ptr == 0)
-		return(count += ft_putstr("(nil)"));
+		return (count += ft_putstr("(nil)"));
 	else
 	{
 		count += ft_putstr("0x");
-		count += ft_puthex((unsigned long)ptr, 'x'); //TODO wtf?
+		count += ft_puthex((unsigned long)ptr, 'x');
 	}
 	return (count);
 }

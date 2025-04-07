@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:47:52 by jambatt           #+#    #+#             */
-/*   Updated: 2025/01/03 12:56:53 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 12:36:44 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ char	*trim_buffer_after_line(char *buffer)
 //or the end of the string is reached.
 //allocates memory for a new string line to store the extracted line, 
 //including the newline character if it exists.
-//copies the characters from buffer to line up until the newline or end of the string.
+//copies the characters from buffer to line up until the newline or
+//end of the string.
 char	*extract_line(char *buffer)
 {
 	char	*line;
