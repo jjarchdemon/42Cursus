@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:29:48 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 12:59:00 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 13:32:08 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,20 @@ int	has_duplicate(t_node *a, int n)
 void	handle_invalid_syntax(t_node **a)
 {
 	free_stack(a);
-	ft_printf("Error: invalid syntax\n");
+	ft_printf("Error\n");
 	exit(1);
 }
 
 void	handle_overflow(t_node **a)
 {
 	free_stack(a);
-	ft_printf("Error: number out of range\n");
+	ft_printf("Error\n");
 	exit(1);
 }
 
 void	handle_duplicate(t_node **a)
 {
 	free_stack(a);
-	ft_printf("Error: duplicate number\n");
+	ft_printf("Error\n");
 	exit(1);
 }

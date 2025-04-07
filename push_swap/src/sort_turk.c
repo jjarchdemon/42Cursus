@@ -6,12 +6,14 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:30:55 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 13:04:00 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 13:35:53 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+//set_index_n_median(*a);//why is this redundant?
+//set_index_n_median(*b);//why is this redundant?
 static void	rotate_both(t_node **a, t_node **b, t_node *cheapest_node, bool rev)
 {
 	while (*b != cheapest_node->target && *a != cheapest_node)
@@ -20,8 +22,6 @@ static void	rotate_both(t_node **a, t_node **b, t_node *cheapest_node, bool rev)
 			rr(a, b);
 		else
 			rrr(a, b);
-		//set_index_n_median(*a);//why is this redundant?
-		//set_index_n_median(*b);//why is this redundant?
 	}
 }
 
