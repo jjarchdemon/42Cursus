@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:30:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 12:30:14 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 13:00:18 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ static void	append_node(t_node **stack, int n)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 	{
-		free_stack(stack); //reqd?
-		ft_printf("Error in memory allocation"); //reqd?
+		free_stack(stack);
+		ft_printf("Error in memory allocation");
 		return ;
 	}
 	new_node->num = n;
 	new_node->next = NULL;
-	new_node->cheapest = 0; //why is this here?
 	if (!(*stack))
 	{
 		*stack = new_node;
@@ -76,17 +75,13 @@ void	init_stack_a(t_node **a, char **av)
 		if (has_invalid_syntax(av[i]))
 			handle_invalid_syntax(a);
 		n = ft_atol(av[i]);
-		ft_printf("Parsed number: %d\n", n); //debug print
 		if (n > INT_MAX || n < INT_MIN)
 			handle_overflow(a);
 		if (has_duplicate(*a, (int)n))
 		{
-			ft_printf("Duplicate detected for: %d\n", (int)n); // Debug print
 			handle_duplicate(a);
 		}
 		append_node(a, (int)n);
-		ft_printf("Stack after adding %d: ", (int)n); // Debug print
-		print_stack(*a);// Debug print
 		i++;
 	}
 }

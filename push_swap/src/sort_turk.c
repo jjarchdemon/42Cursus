@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_turk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:30:55 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 12:30:59 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 13:04:00 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	move_a_to_b(t_node **a, t_node **b)
 
 	cheapest = get_cheapest(*a);
 	if (cheapest->above_median && cheapest->target->above_median)
-		rotate_both(a, b, cheapest, false);//function rotate_both()
+		rotate_both(a, b, cheapest, false);
 	else if (!(cheapest->above_median) && cheapest->target->above_median)
-		rotate_both(a, b, cheapest, true);//function rev_rotate_both()
+		rotate_both(a, b, cheapest, true);
 	push_to_top(a, cheapest, 'a');
 	push_to_top(b, cheapest->target, 'b');
 	pb(b, a);
@@ -41,7 +41,7 @@ static void	move_a_to_b(t_node **a, t_node **b)
 
 static void	move_b_to_a(t_node **a, t_node **b)
 {
-	push_to_top(a, (*b)->target, 'a');//prep for push(b, cheapest_node, 'b')
+	push_to_top(a, (*b)->target, 'a');
 	pa(a, b);
 }
 
@@ -68,7 +68,7 @@ void	sort_turk(t_node **a, t_node **b)
 	while (len_a-- > 3 && !is_sorted(*a))
 	{
 		prep_stack_a(*a, *b);
-		move_a_to_b(a, b);//change name?
+		move_a_to_b(a, b);
 	}
 	sort_three(a);
 	while (*b)

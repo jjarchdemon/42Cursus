@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:09:30 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 17:09:32 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 13:04:46 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*get_next_word(char *s)
 	next_word = malloc(len * sizeof(char) + 1);
 	if (!next_word)
 		return (NULL);
-	pos -= len; // Reset position to start of the word
+	pos -= len; 
 	while (len--)
 		next_word[i++] = s[pos++];
 	next_word[i] = '\0';

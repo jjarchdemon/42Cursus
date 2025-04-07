@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:29:48 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 12:29:59 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 12:59:00 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,8 @@ int	has_duplicate(t_node *a, int n)
 		return (0);
 	while (a)
 	{
-		ft_printf("Comparing %d with %d\n", a->num, n); // Debug print
 		if (a->num == n)
-		{
-			ft_printf("duplicate found: %d\n", a->num); //debug print
 			return (1);
-		}
 		a = a->next;
 	}
 	return (0);

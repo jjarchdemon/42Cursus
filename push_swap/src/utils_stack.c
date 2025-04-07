@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:32:24 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 12:32:34 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 13:05:14 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	stack_len(t_node *stack)
 bool	is_sorted(t_node *stack)
 {
 	if (!stack)
-		return (1);//is this enough?
+		return (1);
 	while (stack->next)
 	{
 		if (stack->num > stack->next->num)
