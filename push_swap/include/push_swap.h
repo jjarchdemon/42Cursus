@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:11:18 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/07 15:04:48 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:42:27 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		stack_len(t_node *stack);
 bool	is_sorted(t_node *stack);
 void	push_to_top(t_node **stack, t_node *top_node, char stack_name);
 
-char	**split(char *s);
 //errors & error handling 
 int		has_invalid_syntax(char *c);
 int		has_duplicate(t_node *a, int n);
