@@ -13,7 +13,7 @@
 #include "../include/fdf.h"
 
 //TODO change fn name to draw_pixel ?? , also order of params
-void	draw_pixel(fdf *data, int x, int y, int color)
+void	draw_pixel(t_fdf *data, int x, int y, int color)
 {
 	char	*dst;
 	int		pixel_offset;

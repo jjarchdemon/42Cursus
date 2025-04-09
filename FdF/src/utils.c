@@ -12,11 +12,11 @@
 
 #include "../include/fdf.h"
 
-fdf	*create_fdf_data(void)
+t_fdf	*create_fdf_data(void)
 {
-	fdf	*data;
+	t_fdf	*data;
 
-	data = (fdf *)malloc(sizeof(fdf));
+	data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!data)
 		return (NULL);
 	data->side.iso = 0;
@@ -27,11 +27,11 @@ fdf	*create_fdf_data(void)
 	data->wnd = NULL;
 	data->img = NULL;
 	data->address_data = NULL;
-	data->fdf_map.input_map = NULL;
+	data->data_map.input_map = NULL;
 	return (data);
 }
 
-int	clean_close(fdf *data)
+int	clean_close(t_fdf *data)
 {
 	if (data)
 	{
@@ -45,7 +45,7 @@ int	clean_close(fdf *data)
 			//	mlx_destroy_display(data->mlx);
 			free(data->mlx);
 		}
-		free_map(data->fdf_map.input_map, data->fdf_map.height, data->fdf_map.width);
+		free_map(data->data_map.input_map, data->data_map.height, data->data_map.width);
 		free(data);
 	}
 	exit(0);

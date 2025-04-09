@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-int	handle_keypress(int key, fdf *data)
+int	handle_keypress(int key, t_fdf *data)
 {
 	if (key == ESCAPE)
 	{

@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-void	negative_slope(int x1, int y1, fdf *data, int color1, int color2)
+void	negative_slope(int x1, int y1, t_fdf *data, int color1, int color2)
 {
 	int		i;
 	int		p;
@@ -46,7 +46,7 @@ void	negative_slope(int x1, int y1, fdf *data, int color1, int color2)
 	}
 }
 
-void	positive_slope(int x1, int y1, fdf *data, int color1, int color2)
+void	positive_slope(int x1, int y1, t_fdf *data, int color1, int color2)
 {
 	int	i;
 	int	p;

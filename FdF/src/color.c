@@ -51,12 +51,12 @@ size_t	count_words(char const *s, char c)
 }
 
 // Blue Green Yellow Orange Red
-unsigned int	get_default_color(int z, fdf *data)
+unsigned int	get_default_color(int z, t_fdf *data)
 {
 	float	percentage;
 
-	percentage = (float)(z - data->fdf_map.min_z)
-		/ (data->fdf_map.max_z - data->fdf_map.min_z);
+	percentage = (float)(z - data->data_map.min_z)
+		/ (data->data_map.max_z - data->data_map.min_z);
 	if (percentage < 0.2)
 		return (0x0000FF);
 	else if (percentage < 0.4)

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   t_fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,12 +13,12 @@
 #include "../include/fdf.h"
 
 // main mlx function
-int	my_mlx(fdf *data)
+int	my_mlx(t_fdf *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (free_map(data->fdf_map.input_map, data->fdf_map.height,
-				data->fdf_map.width), free(data), 1);
+		return (free_map(data->data_map.input_map, data->data_map.height,
+				data->data_map.width), free(data), 1);
 	data->wnd = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
 	if (!data->wnd)
 		return (clean_close(data), 1);
@@ -34,7 +34,7 @@ int	my_mlx(fdf *data)
 }
 
 // keyboard and mouse handler
-void	my_hook(fdf *data)
+void	my_hook(t_fdf *data)
 {
 	mlx_hook(data->wnd, 17, 0, clean_close, data);// Handles close button
 	mlx_hook(data->wnd, 2, 0, handle_keypress, data);// Handles key press
@@ -42,10 +42,10 @@ void	my_hook(fdf *data)
 
 int	main(int ac, char **av)
 {
-	fdf	*data;
+	t_fdf	*data;
 
 	if (ac != 2)
-		return (ft_printf("./fdf [fdf_map]\n"), 1);
+		return (ft_printf("./t_fdf [data_map]\n"), 1);
 	data = create_fdf_data();
 	if (!data)
 		return (1);

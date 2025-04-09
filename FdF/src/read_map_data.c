@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-fdf	*read_map_data(fdf *data, char *file)
+t_fdf	*read_map_data(t_fdf *data, char *file)
 {
 	int		fd;
 	int		i;
@@ -22,27 +22,27 @@ fdf	*read_map_data(fdf *data, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (free(data), NULL);
-	if (get_size(file, &data->fdf_map.height, &data->fdf_map.width) == 1) //enough?
+	if (get_size(file, &data->data_map.height, &data->data_map.width) == 1) //enough?
 		return (free(data), NULL);
 	//allocate memory for 3D input_map	
-	data->fdf_map.input_map = malloc(sizeof(int **) * (data->fdf_map.height + 1));
-	if (!data->fdf_map.input_map)
+	data->data_map.input_map = malloc(sizeof(int **) * (data->data_map.height + 1));
+	if (!data->data_map.input_map)
 		return (free(data), NULL);
-	while (i < data->fdf_map.height)
+	while (i < data->data_map.height)
 	{
-		data->fdf_map.input_map[i] = malloc(sizeof(int *) * data->fdf_map.width);
-		if (!data->fdf_map.input_map[i])
+		data->data_map.input_map[i] = malloc(sizeof(int *) * data->data_map.width);
+		if (!data->data_map.input_map[i])
 		{
-			free_map(data->fdf_map.input_map, i, data->fdf_map.width);
+			free_map(data->data_map.input_map, i, data->data_map.width);
 			free(data);
 			return (NULL);
 		}
-		for (int j = 0; j < data->fdf_map.width; j++)
+		for (int j = 0; j < data->data_map.width; j++)
 		{
-			data->fdf_map.input_map[i][j] = malloc(sizeof(int) * 2); // [z, color]
-			if (!data->fdf_map.input_map[i][j])
+			data->data_map.input_map[i][j] = malloc(sizeof(int) * 2); // [z, color]
+			if (!data->data_map.input_map[i][j])
 			{
-				free_map(data->fdf_map.input_map, i, data->fdf_map.width);
+				free_map(data->data_map.input_map, i, data->data_map.width);
 				free(data);
 				return (NULL);
 			}
@@ -52,23 +52,23 @@ fdf	*read_map_data(fdf *data, char *file)
 	//read the file line by line and parse the content
 	i = 0;
 	line = get_next_line(fd);
-	while (i < data->fdf_map.height && line)
+	while (i < data->data_map.height && line)
 	{
-		parse_map_line(data->fdf_map.input_map[i], data->fdf_map.width, line);
+		parse_map_line(data->data_map.input_map[i], data->data_map.width, line);
 		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
-	data->fdf_map.input_map[data->fdf_map.height] = NULL;
-	data->fdf_map.max_z = find_max_z(data);
-	data->fdf_map.min_z = find_min_z(data);
+	data->data_map.input_map[data->data_map.height] = NULL;
+	data->data_map.max_z = find_max_z(data);
+	data->data_map.min_z = find_min_z(data);
 	close(fd);
 	return (data);
 }
 
 //width = no of integers in a line i.e. columns
 //height = no of lines i.e. rows
-//determines the dimensions of the fdf_map by reading the file line by line
+//determines the dimensions of the data_map by reading the file line by line
 int	get_size(char *file, int *height, int *width)
 {
 	int		i;
@@ -117,21 +117,21 @@ int	*parse_map_line(int **row, int column_count, char *line_content)
 	return (*row);
 }
 
-int	find_max_z(fdf *data)
+int	find_max_z(t_fdf *data)
 {
 	int	max_z;
 	int	i;
 	int	j;
 
-	max_z = data->fdf_map.input_map[0][0][0]; // Initialize with the first value
+	max_z = data->data_map.input_map[0][0][0]; // Initialize with the first value
 	i = 0;
-	while (i < data->fdf_map.height)
+	while (i < data->data_map.height)
 	{
 		j = 0;
-		while (j < data->fdf_map.width)
+		while (j < data->data_map.width)
 		{
-			if (data->fdf_map.input_map[i][j][0] > max_z)
-				max_z = data->fdf_map.input_map[i][j][0];
+			if (data->data_map.input_map[i][j][0] > max_z)
+				max_z = data->data_map.input_map[i][j][0];
 			j++;
 		}
 		i++;
@@ -139,21 +139,21 @@ int	find_max_z(fdf *data)
 	return (max_z);
 }
 
-int	find_min_z(fdf *data)
+int	find_min_z(t_fdf *data)
 {
 	int	min_z;
 	int	i;
 	int	j;
 
-	min_z = data->fdf_map.input_map[0][0][0]; // Initialize with the first value
+	min_z = data->data_map.input_map[0][0][0]; // Initialize with the first value
 	i = 0;
-	while (i < data->fdf_map.height)
+	while (i < data->data_map.height)
 	{
 		j = 0;
-		while (j < data->fdf_map.width)
+		while (j < data->data_map.width)
 		{
-			if (data->fdf_map.input_map[i][j][0] < min_z)
-				min_z = data->fdf_map.input_map[i][j][0];
+			if (data->data_map.input_map[i][j][0] < min_z)
+				min_z = data->data_map.input_map[i][j][0];
 			j++;
 		}
 		i++;
