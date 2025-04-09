@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:31:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 13:56:32 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:52:15 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 
 typedef	struct
 {
-	int	scale_factor;	//scale
-	int	max_dimension; //max_d
+	int	scale_factor;
+	int	max_dimension;
 	int	x_scale;
 	int	y_scale;
-}	map_scale;	//custom;
+}	map_scale;
 
 typedef	struct
 {
@@ -40,7 +40,7 @@ typedef	struct
 	int	x2;
 	int	y1;
 	int	y2;
-}	line_points;	//t_point
+}	line_points;
 
 typedef	struct
 {
@@ -49,15 +49,16 @@ typedef	struct
 	int	dx;
 	int	dy;
 	int	iso;
-}	line_data;	//pixels;
+}	line_data;
 
+//input_map : 3D array to store height & optional color
 typedef	struct
 {
 	int	height;
 	int	width;
 	int	max_z;
 	int	min_z;
-	int	***input_map;//3D array to store height & optional color
+	int	***input_map;
 }	map;
 
 typedef	struct
@@ -69,10 +70,9 @@ typedef	struct
 	int				size_line;
 	int				endian;
 	char			*address_data;
-	//view_control	window;
 	line_data		side;
 	map				map;
-	float scale_factor; // Add this field to store the scaling factor
+	float scale_factor;
 }	fdf;
 
 //read_map_data
@@ -105,7 +105,7 @@ void	draw_pixel(fdf *data, int x, int y, int color);
 //color
 unsigned int	get_color(int z1, int z2);
 
-size_t	count_words(char const *s, char c);//TODO delete this
+size_t	count_words(char const *s, char c);
 
 unsigned int	get_default_color(int z, fdf *data);
 int ft_atoi_base(const char *str);
