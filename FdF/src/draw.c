@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 18:14:00 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	draw_map(fdf *data)
 {
 	line_points	p;
 
-	if (!data || !data->map.input_map)
+	if (!data || !data->fdf_map.input_map)
 		return ;
 	p.x1 = 0;
-	while (p.x1 < data->map.width)
+	while (p.x1 < data->fdf_map.width)
 	{
 		p.y1 = 0;
-		while (p.y1 < data->map.height)
+		while (p.y1 < data->fdf_map.height)
 		{
-			if (p.x1 < data->map.width - 1)
+			if (p.x1 < data->fdf_map.width - 1)
 				line(p.x1 + 1, p.y1, data, p);
-			if (p.y1 < data->map.height - 1)
+			if (p.y1 < data->fdf_map.height - 1)
 				line(p.x1, p.y1 + 1, data, p);
 			p.y1++;
 		}
@@ -49,10 +49,10 @@ void	line(int x2, int y2, fdf *data, line_points p)
 	p.x2 = x2;
 	p.y2 = y2;
 	//extracting z and color values
-	data->side.z1 = data->map.input_map[p.y1][p.x1][0];
-	data->side.z2 = data->map.input_map[p.y2][p.x2][0];
-	color1 = data->map.input_map[p.y1][p.x1][1];
-	color2 = data->map.input_map[p.y2][p.x2][1];
+	data->side.z1 = data->fdf_map.input_map[p.y1][p.x1][0];
+	data->side.z2 = data->fdf_map.input_map[p.y2][p.x2][0];
+	color1 = data->fdf_map.input_map[p.y1][p.x1][1];
+	color2 = data->fdf_map.input_map[p.y2][p.x2][1];
 	//use default color if no color is provided
 	if (color1 == -1)
 		color1 = get_default_color(data->side.z1, data);
@@ -80,11 +80,11 @@ void	reproduce_pixels(line_points *p, fdf *data)
 	map_scale	scaling;
 	int			z_range;
 
-	if (data->map.width > data->map.height)
-		scaling.max_dimension = data->map.width;
+	if (data->fdf_map.width > data->fdf_map.height)
+		scaling.max_dimension = data->fdf_map.width;
 	else
-		scaling.max_dimension = data->map.height;
-	z_range = data->map.max_z - data->map.min_z;
+		scaling.max_dimension = data->fdf_map.height;
+	z_range = data->fdf_map.max_z - data->fdf_map.min_z;
 	if (z_range > scaling.max_dimension)
 		scaling.max_dimension = z_range;
 	scaling.x_scale = (WIDTH * 0.7) / scaling.max_dimension;
@@ -107,13 +107,13 @@ void	reproduce_pixels(line_points *p, fdf *data)
 void	locate(line_points *p, fdf *data)
 {
 	/*
-	p->x1 += (WIDTH / 2) - ((data->map.width * data->scale_factor) / 2);
-    p->y1 += (HEIGHT / 2) - ((data->map.height * data->scale_factor) / 2);
-    p->x2 += (WIDTH / 2) - ((data->map.width * data->scale_factor) / 2);
-    p->y2 += (HEIGHT / 2) - ((data->map.height * data->scale_factor) / 2);
+	p->x1 += (WIDTH / 2) - ((data->fdf_map.width * data->scale_factor) / 2);
+    p->y1 += (HEIGHT / 2) - ((data->fdf_map.height * data->scale_factor) / 2);
+    p->x2 += (WIDTH / 2) - ((data->fdf_map.width * data->scale_factor) / 2);
+    p->y2 += (HEIGHT / 2) - ((data->fdf_map.height * data->scale_factor) / 2);
 	*/
-	p->x1 += (WIDTH / 2) - (data->map.width / 2);
-	p->y1 += (HEIGHT / 10) - (data->map.height / 2);
-	p->x2 += (WIDTH / 2) - (data->map.width / 2);
-	p->y2 += (HEIGHT / 10) - (data->map.height / 2);
+	p->x1 += (WIDTH / 2) - (data->fdf_map.width / 2);
+	p->y1 += (HEIGHT / 10) - (data->fdf_map.height / 2);
+	p->x2 += (WIDTH / 2) - (data->fdf_map.width / 2);
+	p->y2 += (HEIGHT / 10) - (data->fdf_map.height / 2);
 }

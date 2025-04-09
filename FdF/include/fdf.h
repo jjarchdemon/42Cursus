@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:31:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/09 16:52:15 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:13:51 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef	struct
 	int				endian;
 	char			*address_data;
 	line_data		side;
-	map				map;
+	map				fdf_map;
 	float scale_factor;
 }	fdf;
 

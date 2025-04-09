@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 18:32:12 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ fdf	*create_fdf_data(void)
 	data->wnd = NULL;
 	data->img = NULL;
 	data->address_data = NULL;
-	data->map.input_map = NULL;
+	data->fdf_map.input_map = NULL;
 	return (data);
 }
 
@@ -45,7 +45,7 @@ int	clean_close(fdf *data)
 			//	mlx_destroy_display(data->mlx);
 			free(data->mlx);
 		}
-		free_map(data->map.input_map, data->map.height, data->map.width);
+		free_map(data->fdf_map.input_map, data->fdf_map.height, data->fdf_map.width);
 		free(data);
 	}
 	exit(0);

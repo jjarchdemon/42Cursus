@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:24:24 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 18:16:07 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	my_mlx(fdf *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (free_map(data->map.input_map, data->map.height,
-				data->map.width), free(data), 1);
+		return (free_map(data->fdf_map.input_map, data->fdf_map.height,
+				data->fdf_map.width), free(data), 1);
 	data->wnd = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
 	if (!data->wnd)
 		return (clean_close(data), 1);
@@ -45,7 +45,7 @@ int	main(int ac, char **av)
 	fdf	*data;
 
 	if (ac != 2)
-		return (ft_printf("./fdf [map]\n"), 1);
+		return (ft_printf("./fdf [fdf_map]\n"), 1);
 	data = create_fdf_data();
 	if (!data)
 		return (1);

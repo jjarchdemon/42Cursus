@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:13 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 17:32:34 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ unsigned int	get_default_color(int z, fdf *data)
 {
 	float	percentage;
 
-	percentage = (float)(z - data->map.min_z)
-		/ (data->map.max_z - data->map.min_z);
+	percentage = (float)(z - data->fdf_map.min_z)
+		/ (data->fdf_map.max_z - data->fdf_map.min_z);
 	if (percentage < 0.2)
 		return (0x0000FF);
 	else if (percentage < 0.4)
