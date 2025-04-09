@@ -6,11 +6,12 @@
 #    By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/18 10:35:43 by jambatt           #+#    #+#              #
-#    Updated: 2025/03/18 11:41:43 by jambatt          ###   ########.fr        #
+#    Updated: 2025/04/09 14:33:47 by jambatt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
+CFLAGS = -Wall -Wextra -Werror
 OS = $(shell uname)
 
 SRC_DIR = src
@@ -31,22 +32,23 @@ OBJS = $(SRCS:.c=.o)
 ###################################################################
 # Platform-dependent compilation
 ifeq ($(OS), Linux)
-        LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext	#conditional
-        MLX = include/minilibx-linux				#conditional
-        MLX_A = include/minilibx-linux/libmlx.a					#conditional
-        CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux 	#conditional
+        LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
+        MLX = include/minilibx-linux
+        MLX_A = include/minilibx-linux/libmlx.a
+        INC_FLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux
 else
-        LINUX_FLAGS =  -L/usr/X11/lib -lXext -lX11 -framework OpenGl -framework Appkit	#conditional
-        MLX = include/mlx_macos				#conditional
-        MLX_A = include/mlx_macos/libmlx.a					#conditional
-        CFLAGS = -I $(INCLUDE) -I$(INCLUDE)/mlx_macos		#conditional
+        LINUX_FLAGS =  -L/usr/X11/lib -lXext -lX11 \
+		       -framework OpenGl -framework Appkit
+        MLX = include/mlx_macos
+        MLX_A = include/mlx_macos/libmlx.a	
+        INC_FLAGS = -I $(INCLUDE) -I$(INCLUDE)/mlx_macos
 endif
 #####################################################################
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) $(LINUX_FLAGS) -lm \
+	$(CC) $(CFLAGS) $(INC_FLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) $(LINUX_FLAGS) -lm \
 		-o $(NAME)
 
 #compile libft
@@ -57,7 +59,7 @@ $(MLX_A):
 	$(MAKE) -s -C $(MLX)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC_FLAGS) -c $< -o $@
 
 # Clean object files
 clean:

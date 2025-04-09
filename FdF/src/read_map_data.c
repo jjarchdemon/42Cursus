@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:10 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 18:37:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:26:58 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ fdf	*read_map_data(fdf *data, char *file)
 	int		fd;
 	int		i;
 	char	*line;
-	int		j;
 
 	i = 0;
 	fd = open(file, O_RDONLY);
