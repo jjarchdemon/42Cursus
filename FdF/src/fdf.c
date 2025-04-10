@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_fdf.c                                              :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 11:24:24 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/10 13:51:23 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ int	my_mlx(t_fdf *data)
 	return (0);
 }
 
-// keyboard and mouse handler
+// 17 - handles close button
+// 2 - handles keypress
 void	my_hook(t_fdf *data)
 {
-	mlx_hook(data->wnd, 17, 0, clean_close, data);// Handles close button
-	mlx_hook(data->wnd, 2, 0, handle_keypress, data);// Handles key press
+	mlx_hook(data->wnd, 17, 0, clean_close, data);
+	mlx_hook(data->wnd, 2, 0, handle_keypress, data);
 }
 
 int	main(int ac, char **av)

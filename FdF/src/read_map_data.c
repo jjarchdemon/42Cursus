@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:10 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/10 14:03:51 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ t_fdf	*read_map_data(t_fdf *data, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (free(data), NULL);
-	if (get_size(file, &data->data_map.height, &data->data_map.width) == 1) //enough?
+	if (get_size(file, &data->data_map.height, &data->data_map.width) == 1)
 		return (free(data), NULL);
-	//allocate memory for 3D input_map	
 	data->data_map.input_map = malloc(sizeof(int **) * (data->data_map.height + 1));
 	if (!data->data_map.input_map)
 		return (free(data), NULL);
@@ -39,7 +38,7 @@ t_fdf	*read_map_data(t_fdf *data, char *file)
 		}
 		for (int j = 0; j < data->data_map.width; j++)
 		{
-			data->data_map.input_map[i][j] = malloc(sizeof(int) * 2); // [z, color]
+			data->data_map.input_map[i][j] = malloc(sizeof(int) * 2);
 			if (!data->data_map.input_map[i][j])
 			{
 				free_map(data->data_map.input_map, i, data->data_map.width);
@@ -49,7 +48,6 @@ t_fdf	*read_map_data(t_fdf *data, char *file)
 		}
 		i++;
 	}
-	//read the file line by line and parse the content
 	i = 0;
 	line = get_next_line(fd);
 	while (i < data->data_map.height && line)
@@ -76,7 +74,7 @@ int	get_size(char *file, int *height, int *width)
 	char	*line;
 
 	i = 0;
-	line = NULL; //necessary?
+	line = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (-1);
@@ -109,7 +107,7 @@ int	*parse_map_line(int **row, int column_count, char *line_content)
 		if (z_and_color[1])
 			row[i][1] = ft_atoi_base(z_and_color[1]);
 		else
-			row[i][1] = -1; //default color, how?? what??
+			row[i][1] = -1; 
 		free_arr(z_and_color);
 		i++;
 	}
@@ -123,7 +121,7 @@ int	find_max_z(t_fdf *data)
 	int	i;
 	int	j;
 
-	max_z = data->data_map.input_map[0][0][0]; // Initialize with the first value
+	max_z = data->data_map.input_map[0][0][0]; 
 	i = 0;
 	while (i < data->data_map.height)
 	{
@@ -145,7 +143,7 @@ int	find_min_z(t_fdf *data)
 	int	i;
 	int	j;
 
-	min_z = data->data_map.input_map[0][0][0]; // Initialize with the first value
+	min_z = data->data_map.input_map[0][0][0]; 
 	i = 0;
 	while (i < data->data_map.height)
 	{

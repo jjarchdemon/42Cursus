@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:35:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/10 14:01:56 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ t_fdf	*create_fdf_data(void)
 	if (!data)
 		return (NULL);
 	data->side.iso = 0;
-	//data->window.offset_x = (WIDTH / 10);
-	//data->window.offset_y = (HEIGHT / 3);
-	//data->window.zoom = 0;
 	data->mlx = NULL;
 	data->wnd = NULL;
 	data->img = NULL;
@@ -41,15 +38,14 @@ int	clean_close(t_fdf *data)
 				mlx_destroy_window(data->mlx, data->wnd);
 			if (data->img)
 				mlx_destroy_image(data->mlx, data->img);
-			//if (data->mlx)	commented out for mac
-			//	mlx_destroy_display(data->mlx);
 			free(data->mlx);
 		}
-		free_map(data->data_map.input_map, data->data_map.height, data->data_map.width);
+		free_map(data->data_map.input_map, data->data_map.height,
+			data->data_map.width);
 		free(data);
 	}
 	exit(0);
-	return (0); //it doesnt reach here
+	return (0);
 }
 
 void	free_arr(char **str)
@@ -75,13 +71,11 @@ void	free_map(int ***arr, int height, int width)
 	i = 0;
 	if (!arr)
 		return ;
-	// Iterate over the height (rows)
 	while (i < height)
 	{
 		if (arr[i])
 		{
 			j = 0;
-			// Iterate over the width (columns)
 			while (j < width)
 			{
 				free(arr[i][j]);

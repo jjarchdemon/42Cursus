@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:33:39 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/25 18:09:04 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/10 14:00:09 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	negative_slope(int x1, int y1, t_fdf *data, int color1, int color2)
 
 	p = (2 * abs(data->side.dy)) - abs(data->side.dx);
 	i = -1;
-	// Calculate the color step for interpolation
 	color_step = (float)(color2 - color1) / abs(data->side.dx);
 	current_color = color1;
 	while (++i < abs(data->side.dx))
@@ -40,7 +39,6 @@ void	negative_slope(int x1, int y1, t_fdf *data, int color1, int color2)
 				y1--;
 			p = p + (2 * abs(data->side.dy)) - (2 * abs(data->side.dx));
 		}
-	// Draw the pixel with the interpolated color
 		draw_pixel(data, x1, y1, (int)current_color);
 		current_color += color_step;
 	}
@@ -48,14 +46,13 @@ void	negative_slope(int x1, int y1, t_fdf *data, int color1, int color2)
 
 void	positive_slope(int x1, int y1, t_fdf *data, int color1, int color2)
 {
-	int	i;
-	int	p;
+	int		i;
+	int		p;
 	float	color_step;
 	float	current_color;
 
 	p = (2 * abs(data->side.dy)) - abs(data->side.dx);
 	i = -1;
-	// Calculate the color step for interpolation
 	color_step = (float)(color2 - color1) / abs(data->side.dy);
 	current_color = color1;
 	while (++i < abs(data->side.dy))
@@ -74,7 +71,6 @@ void	positive_slope(int x1, int y1, t_fdf *data, int color1, int color2)
 				x1--;
 			p = p + (2 * abs(data->side.dx)) - (2 * abs(data->side.dy));
 		}
-	// Draw the pixel with the interpolated color
 		draw_pixel(data, x1, y1, (int)current_color);
 		current_color += color_step;
 	}

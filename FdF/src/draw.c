@@ -6,15 +6,16 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/09 18:12:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/10 13:42:34 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+//4 bytes per pixel
 void	set_pixels(t_fdf *data)
 {
-	ft_bzero(data->address_data, WIDTH * HEIGHT * 4);//4  bcoz 4 bytes per pixel
+	ft_bzero(data->address_data, WIDTH * HEIGHT * 4);
 	mlx_clear_window(data->mlx, data->wnd);
 	draw_map(data);
 	mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
@@ -46,22 +47,19 @@ void	line(int x2, int y2, t_fdf *data, t_line_points p)
 {
 	int	color1;
 	int	color2;
+
 	p.x2 = x2;
 	p.y2 = y2;
-	//extracting z and color values
 	data->side.z1 = data->data_map.input_map[p.y1][p.x1][0];
 	data->side.z2 = data->data_map.input_map[p.y2][p.x2][0];
 	color1 = data->data_map.input_map[p.y1][p.x1][1];
 	color2 = data->data_map.input_map[p.y2][p.x2][1];
-	//use default color if no color is provided
 	if (color1 == -1)
 		color1 = get_default_color(data->side.z1, data);
 	if (color2 == -1)
 		color2 = get_default_color(data->side.z2, data);
-	//scale and transform the points
 	reproduce_pixels(&p, data);
 	locate(&p, data);
-	//apply isometric transformation
 	isometric(&p.x1, &p.y1, data->side.z1);
 	isometric(&p.x2, &p.y2, data->side.z2);
 	if ((p.x1 < 0 && p.x2 < 0) || (p.x1 > WIDTH && p.x2 > WIDTH)
@@ -93,9 +91,6 @@ void	reproduce_pixels(t_line_points *p, t_fdf *data)
 		scaling.scale_factor = scaling.x_scale;
 	else
 		scaling.scale_factor = scaling.y_scale;
-	//data->scale_factor = scaling.scale_factor;
-	//if (scaling.scale_factor > 15)
-	//scaling.scale_factor = 15;
 	p->x1 *= scaling.scale_factor;
 	p->y1 *= scaling.scale_factor;
 	p->x2 *= scaling.scale_factor;
@@ -106,12 +101,6 @@ void	reproduce_pixels(t_line_points *p, t_fdf *data)
 
 void	locate(t_line_points *p, t_fdf *data)
 {
-	/*
-	p->x1 += (WIDTH / 2) - ((data->data_map.width * data->scale_factor) / 2);
-    p->y1 += (HEIGHT / 2) - ((data->data_map.height * data->scale_factor) / 2);
-    p->x2 += (WIDTH / 2) - ((data->data_map.width * data->scale_factor) / 2);
-    p->y2 += (HEIGHT / 2) - ((data->data_map.height * data->scale_factor) / 2);
-	*/
 	p->x1 += (WIDTH / 2) - (data->data_map.width / 2);
 	p->y1 += (HEIGHT / 10) - (data->data_map.height / 2);
 	p->x2 += (WIDTH / 2) - (data->data_map.width / 2);
