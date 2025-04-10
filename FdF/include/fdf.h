@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:31:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/09 18:13:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/10 11:55:26 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,37 +76,39 @@ typedef struct s_fdf
 }	t_fdf;
 
 //read_map_data
-t_fdf	*read_map_data(t_fdf *data, char *file);
-int		get_size(char *file, int *height, int *width);
-int		*parse_map_line(int **row, int column_count, char *line_content);
-int		find_max_z(t_fdf *data);
-int		find_min_z(t_fdf *data);
+t_fdf			*read_map_data(t_fdf *data, char *file);
+int				get_size(char *file, int *height, int *width);
+int				*parse_map_line(int **row, int column_count,
+	 char *line_content);
+int				find_max_z(t_fdf *data);
+int				find_min_z(t_fdf *data);
 //draw
-void	set_pixels(t_fdf *data);
-void	draw_map(t_fdf *data);
-void	line(int x2, int y2, t_fdf *data, t_line_points p);
-void	reproduce_pixels(t_line_points *p, t_fdf *data);
-void	locate(t_line_points *p, t_fdf *data);
+void			set_pixels(t_fdf *data);
+void			draw_map(t_fdf *data);
+void			line(int x2, int y2, t_fdf *data, t_line_points p);
+void			reproduce_pixels(t_line_points *p, t_fdf *data);
+void			locate(t_line_points *p, t_fdf *data);
 
 //algo
-void	negative_slope(int x1, int y1, t_fdf *data, int color1, int color2);
-void	positive_slope(int x1, int y1, t_fdf *data, int color1, int color2);
-void	isometric(int *x, int *y, int z);
+void			negative_slope(int x1, int y1, t_fdf *data, int color1, int color2);
+void			positive_slope(int x1, int y1, t_fdf *data, int color1, int color2);
+void			isometric(int *x, int *y, int z);
 
 //utils
-int		clean_close(t_fdf *data);
-t_fdf	*create_fdf_data(void);
-void	free_arr(char **str);
-void	free_map(int ***arr, int height, int width);
+int				clean_close(t_fdf *data);
+t_fdf			*create_fdf_data(void);
+void			free_arr(char **str);
+void			free_map(int ***arr, int height, int width);
 
-int		handle_keypress(int key, t_fdf *data);
-void	draw_pixel(t_fdf *data, int x, int y, int color);
+int				handle_keypress(int key, t_fdf *data);
+void			draw_pixel(t_fdf *data, int x, int y, int color);
 
 //color
+
 unsigned int	get_color(int z1, int z2);
 unsigned int	get_default_color(int z, t_fdf *data);
 
 //more utils?
-int		ft_atoi_base(const char *str);
-size_t	count_words(char const *s, char c);
+int				ft_atoi_base(const char *str);
+size_t			count_words(char const *s, char c);
 #endif
