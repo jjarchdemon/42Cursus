@@ -26,6 +26,7 @@
 
 # define ESCAPE 65307
 
+// represents a point in 2D space with an optional color
 typedef struct s_point
 {
     int	x;
@@ -33,16 +34,14 @@ typedef struct s_point
     int	color;
 }	t_point;
 
-//Represents the start and end points of a line to be drawn.
+//represents the start and end points of a line
+//- `start`: starting pt of line
+//- `end`: ending pt of line
 typedef struct s_line_points
 {
     t_point	start;
     t_point	end;
 }	t_line_points;
-/*
-- `start`: Coordinates of the starting point.
-- `end`: Coordinates of the ending point.
-*/
 
 // Stores data related to a line
 typedef struct s_line_data
@@ -101,8 +100,7 @@ typedef struct s_fdf
 //read_map_data
 t_fdf			*read_map_data(t_fdf *data, char *file);
 int				get_size(char *file, int *height, int *width);
-int				*parse_map_line(int **row, int column_count,
-					char *line_content);
+int				*parse_map_line(int **row, int column_count, char *line_content);
 int				find_max_z(t_fdf *data);
 int				find_min_z(t_fdf *data);
 //draw
@@ -115,8 +113,6 @@ void			locate(t_line_points *p, t_fdf *data);
 //algo
 void	negative_slope(t_point start, t_point end, t_fdf *data);
 void	positive_slope(t_point start, t_point end, t_fdf *data);
-//void			negative_slope(int x1, int y1, t_fdf *data, int color1, int color2);
-//void			positive_slope(int x1, int y1, t_fdf *data, int color1, int color2);
 void			isometric(int *x, int *y, int z);
 
 //utils

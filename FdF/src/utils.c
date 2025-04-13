@@ -19,7 +19,7 @@ t_fdf	*create_fdf_data(void)
 	data = (t_fdf *)malloc(sizeof(t_fdf));
 	if (!data)
 		return (NULL);
-	data->side.iso = 0;
+	data->is_iso = 0;
 	data->mlx = NULL;
 	data->wnd = NULL;
 	data->img = NULL;

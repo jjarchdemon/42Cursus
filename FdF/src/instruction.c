@@ -15,13 +15,13 @@
 //TODO change fn name to draw_pixel ?? , also order of params
 void	draw_pixel(t_fdf *data, int x, int y, int color)
 {
-	char	*dst;
-	int		pixel_offset;
+    char	*dst;
+    int		pixel_offset;
 
-	pixel_offset = y * data->size_line + x * (data->bpp / 8);
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-	{
-		dst = data->address_data + pixel_offset;
-		*(unsigned int *)dst = color;
-	}
+    if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+    {
+        pixel_offset = y * data->size_line + x * (data->bpp / 8);
+        dst = data->address_data + pixel_offset;
+        *(unsigned int *)dst = color;
+    }
 }

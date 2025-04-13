@@ -54,20 +54,28 @@ void	free_map(int ***arr, int height, int width)
 
 int	cleanup(t_fdf *data)
 {
-	if (data)
-	{
-		if (data->mlx)
-		{
-			if (data->wnd)
-				mlx_destroy_window(data->mlx, data->wnd);
-			if (data->img)
-				mlx_destroy_image(data->mlx, data->img);
-			free(data->mlx);
-		}
-		free_map(data->dmap.input_map, data->dmap.height,
-			data->dmap.width);
-		free(data);
-	}
-	exit(0);
-	return (0);
+    if (data)
+    {
+        if (data->mlx)
+        {
+            if (data->wnd)
+            {
+                mlx_destroy_window(data->mlx, data->wnd);
+                data->wnd = NULL;
+            }
+            if (data->img)
+            {
+                mlx_destroy_image(data->mlx, data->img);
+                data->img = NULL;
+            }
+            free(data->mlx);
+            data->mlx = NULL;
+        }
+        free_map(data->dmap.input_map, data->dmap.height, data->dmap.width);
+        data->dmap.input_map = NULL;
+        free(data);
+        data = NULL;
+    }
+    exit(0);
+    return (0);
 }
