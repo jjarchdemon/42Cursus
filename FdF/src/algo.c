@@ -12,68 +12,46 @@
 
 #include "../include/fdf.h"
 
-void	negative_slope(int x1, int y1, t_fdf *data, int color1, int color2)
+void	negative_slope(t_point start, t_point end, t_fdf *data)
 {
-	int		i;
-	int		p;
-	float	color_step;
-	float	current_color;
+    int		p = (2 * abs(data->side.dy)) - abs(data->side.dx);
+    float	color_step = (float)(end.color - start.color) / abs(data->side.dx);
+    float	current_color = start.color;
 
-	p = (2 * abs(data->side.dy)) - abs(data->side.dx);
-	i = -1;
-	color_step = (float)(color2 - color1) / abs(data->side.dx);
-	current_color = color1;
-	while (++i < abs(data->side.dx))
-	{
-		if (data->side.dx > 0)
-			x1++;
-		else
-			x1--;
-		if (p < 0)
-			p = p + (2 * abs(data->side.dy));
-		else
-		{
-			if (data->side.dy > 0)
-				y1++;
-			else
-				y1--;
-			p = p + (2 * abs(data->side.dy)) - (2 * abs(data->side.dx));
-		}
-		draw_pixel(data, x1, y1, (int)current_color);
-		current_color += color_step;
-	}
+    while (start.x != end.x)
+    {
+        start.x += (data->side.dx > 0) ? 1 : -1;
+        if (p >= 0)
+        {
+            start.y += (data->side.dy > 0) ? 1 : -1;
+            p += (2 * abs(data->side.dy)) - (2 * abs(data->side.dx));
+        }
+        else
+            p += 2 * abs(data->side.dy);
+        draw_pixel(data, start.x, start.y, (int)current_color);
+        current_color += color_step;
+    }
 }
 
-void	positive_slope(int x1, int y1, t_fdf *data, int color1, int color2)
+void	positive_slope(t_point start, t_point end, t_fdf *data)
 {
-	int		i;
-	int		p;
-	float	color_step;
-	float	current_color;
+    int		p = (2 * abs(data->side.dx)) - abs(data->side.dy);
+    float	color_step = (float)(end.color - start.color) / abs(data->side.dy);
+    float	current_color = start.color;
 
-	p = (2 * abs(data->side.dy)) - abs(data->side.dx);
-	i = -1;
-	color_step = (float)(color2 - color1) / abs(data->side.dy);
-	current_color = color1;
-	while (++i < abs(data->side.dy))
-	{
-		if (data->side.dy > 0)
-			y1++;
-		else
-			y1--;
-		if (p < 0)
-			p = p + (2 * abs(data->side.dx));
-		else
-		{
-			if (data->side.dx > 0)
-				x1++;
-			else
-				x1--;
-			p = p + (2 * abs(data->side.dx)) - (2 * abs(data->side.dy));
-		}
-		draw_pixel(data, x1, y1, (int)current_color);
-		current_color += color_step;
-	}
+    while (start.y != end.y)
+    {
+        start.y += (data->side.dy > 0) ? 1 : -1;
+        if (p >= 0)
+        {
+            start.x += (data->side.dx > 0) ? 1 : -1;
+            p += (2 * abs(data->side.dx)) - (2 * abs(data->side.dy));
+        }
+        else
+            p += 2 * abs(data->side.dx);
+        draw_pixel(data, start.x, start.y, (int)current_color);
+        current_color += color_step;
+    }
 }
 
 void	isometric(int *x, int *y, int z)

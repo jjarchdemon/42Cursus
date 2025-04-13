@@ -40,6 +40,13 @@ typedef struct s_map_scale
 - `x_scale` and `y_scale`: Scaling factors for the x and y axes.
 */
 
+typedef struct s_point
+{
+    int		x;
+    int		y;
+    int		color;
+}	t_point;
+
 //Represents the start and end points of a line to be drawn.
 typedef struct s_line_points
 {
@@ -120,8 +127,10 @@ void			reproduce_pixels(t_line_points *p, t_fdf *data);
 void			locate(t_line_points *p, t_fdf *data);
 
 //algo
-void			negative_slope(int x1, int y1, t_fdf *data, int color1, int color2);
-void			positive_slope(int x1, int y1, t_fdf *data, int color1, int color2);
+void	negative_slope(t_point start, t_point end, t_fdf *data);
+void	positive_slope(t_point start, t_point end, t_fdf *data);
+//void			negative_slope(int x1, int y1, t_fdf *data, int color1, int color2);
+//void			positive_slope(int x1, int y1, t_fdf *data, int color1, int color2);
 void			isometric(int *x, int *y, int z);
 
 //utils
