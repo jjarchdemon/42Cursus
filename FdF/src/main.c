@@ -21,14 +21,14 @@ int	my_mlx(t_fdf *data)
 				data->dmap.width), free(data), 1);
 	data->wnd = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
 	if (!data->wnd)
-		return (clean_close(data), 1);
+		return (cleanup(data), 1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
-		return (clean_close(data), 1);
+		return (cleanup(data), 1);
 	data->address_data = mlx_get_data_addr(data->img, &data->bpp,
 			&data->size_line, &data->endian);
 	if (!data->address_data)
-		return (clean_close(data), 1);
+		return (cleanup(data), 1);
 	mlx_put_image_to_window(data->mlx, data->wnd, data->img, 0, 0);
 	return (0);
 }
@@ -37,7 +37,7 @@ int	my_mlx(t_fdf *data)
 // 2 - handles keypress
 void	my_hook(t_fdf *data)
 {
-	mlx_hook(data->wnd, 17, 0, clean_close, data);
+	mlx_hook(data->wnd, 17, 0, cleanup, data);
 	mlx_hook(data->wnd, 2, 0, handle_keypress, data);
 }
 

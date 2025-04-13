@@ -16,7 +16,7 @@ int	handle_keypress(int key, t_fdf *data)
 {
 	if (key == ESCAPE)
 	{
-		clean_close(data);
+		cleanup(data);
 		exit(0);
 	}
 	return (0);

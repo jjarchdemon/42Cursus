@@ -26,38 +26,22 @@
 
 # define ESCAPE 65307
 
-//Used for scaling the map dimensions to fit within the rendering window.
-typedef struct s_map_scale
-{
-	int	scale_factor;
-	int	max_dimension;
-	int	x_scale;
-	int	y_scale;
-}	t_map_scale;
-/*
-- `scale_factor`: The factor by which the map is scaled.
-- `max_dimension`:largest dimension of the map (width, height, or z-range).
-- `x_scale` and `y_scale`: Scaling factors for the x and y axes.
-*/
-
 typedef struct s_point
 {
-    int		x;
-    int		y;
-    int		color;
+    int	x;
+    int	y;
+    int	color;
 }	t_point;
 
 //Represents the start and end points of a line to be drawn.
 typedef struct s_line_points
 {
-	int	x1;
-	int	x2;
-	int	y1;
-	int	y2;
+    t_point	start;
+    t_point	end;
 }	t_line_points;
 /*
-- `x1`, `y1`: Coordinates of the starting point.
-- `x2`, `y2`: Coordinates of the ending point.
+- `start`: Coordinates of the starting point.
+- `end`: Coordinates of the ending point.
 */
 
 // Stores data related to a line
@@ -67,12 +51,10 @@ typedef struct s_line_data
 	int	z2;
 	int	dx;
 	int	dy;
-	int	iso;
 }	t_line_data;
 /*
 - `z1`, `z2`: Heights (z-values) at the start and end points of the line.
 - `dx`, `dy`: Diff in x and y coordinates between the start and end pts.
-- `iso`: A flag or value for isometric projection adjustments.
 */
 
 //Represents the map data, including its dimensions and height values.
@@ -83,11 +65,15 @@ typedef struct s_map
 	int	max_z;
 	int	min_z;
 	int	***input_map;
+	int	scale_factor;
+	int	x_scale;
+	int	y_scale;
 }	t_map;
 /*
 - `height`, `width`: Dimensions of the map.
 - `max_z`, `min_z`: Maximum and minimum z-values (heights) in the map.
 - `input_map`: 3D array storing height & optional color values for each pt.
+- `scale_factor`, `x_scale`, `y_scale`: Scaling factors for the map.
 */
 
 // The main struct for the program for rendering and managing the map.
@@ -102,14 +88,14 @@ typedef struct s_fdf
 	char			*address_data;
 	t_line_data		side;
 	t_map			dmap;
-	float			scale_factor;
+	int				is_iso;
 }	t_fdf;
 /*
 - `mlx`, `img`, `wnd`: Pointers to the MiniLibX context, image, and window.
 - `address_data`: Pointer to the image data buffer.
 - `side`: A `t_line_data` struct for storing line-related data.
 - `dmap`: A `t_map` struct for storing the map data.
-- `scale_factor`: The scaling factor applied to the map.
+- `is_iso`: A flag for isometric projection adjustments.
 */
 
 //read_map_data
@@ -134,11 +120,10 @@ void	positive_slope(t_point start, t_point end, t_fdf *data);
 void			isometric(int *x, int *y, int z);
 
 //utils
-int				clean_close(t_fdf *data);
+int				cleanup(t_fdf *data);
 t_fdf			*create_fdf_data(void);
 void			free_arr(char **str);
 void			free_map(int ***arr, int height, int width);
-
 int				handle_keypress(int key, t_fdf *data);
 void			draw_pixel(t_fdf *data, int x, int y, int color);
 

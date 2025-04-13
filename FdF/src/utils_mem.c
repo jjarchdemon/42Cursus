@@ -52,7 +52,7 @@ void	free_map(int ***arr, int height, int width)
 	free(arr);
 }
 
-int	clean_close(t_fdf *data)
+int	cleanup(t_fdf *data)
 {
 	if (data)
 	{
