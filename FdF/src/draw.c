@@ -43,6 +43,36 @@ void	draw_map(t_fdf *data)
 	}
 }
 
+// Extracted logic for setting z and color values
+static void	set_z_and_colors(t_fdf *data, t_line_points *p, int *color1, int *color2)
+{
+	data->side.z1 = data->dmap.input_map[p->y1][p->x1][0];
+	data->side.z2 = data->dmap.input_map[p->y2][p->x2][0];
+	*color1 = data->dmap.input_map[p->y1][p->x1][1];
+	*color2 = data->dmap.input_map[p->y2][p->x2][1];
+	if (*color1 == -1)
+		*color1 = get_default_color(data->side.z1, data);
+	if (*color2 == -1)
+		*color2 = get_default_color(data->side.z2, data);
+}
+
+
+// Extracted logic for boundary check
+static int	is_out_of_bounds(int x1, int x2, int y1, int y2)
+{
+	return ((x1 < 0 && x2 < 0) || (x1 > WIDTH && x2 > WIDTH)
+		|| (y1 < 0 && y2 < 0) || (y1 > HEIGHT && y2 > HEIGHT));
+}
+
+// Extracted slope logic
+static void	draw_slope(t_line_points p, t_fdf *data, int color1, int color2)
+{
+	if (abs(data->side.dx) > abs(data->side.dy))
+		negative_slope(p.x1, p.y1, data, color1, color2);
+	else
+		positive_slope(p.x1, p.y1, data, color1, color2);
+}
+
 void	line(int x2, int y2, t_fdf *data, t_line_points p)
 {
 	int	color1;
@@ -50,28 +80,18 @@ void	line(int x2, int y2, t_fdf *data, t_line_points p)
 
 	p.x2 = x2;
 	p.y2 = y2;
-	data->side.z1 = data->dmap.input_map[p.y1][p.x1][0];
-	data->side.z2 = data->dmap.input_map[p.y2][p.x2][0];
-	color1 = data->dmap.input_map[p.y1][p.x1][1];
-	color2 = data->dmap.input_map[p.y2][p.x2][1];
-	if (color1 == -1)
-		color1 = get_default_color(data->side.z1, data);
-	if (color2 == -1)
-		color2 = get_default_color(data->side.z2, data);
+	set_z_and_colors(data, &p, &color1, &color2);
 	reproduce_pixels(&p, data);
 	locate(&p, data);
 	isometric(&p.x1, &p.y1, data->side.z1);
 	isometric(&p.x2, &p.y2, data->side.z2);
-	if ((p.x1 < 0 && p.x2 < 0) || (p.x1 > WIDTH && p.x2 > WIDTH)
-		|| (p.y1 < 0 && p.y2 < 0) || (p.y1 > HEIGHT && p.y2 > HEIGHT))
+	if (is_out_of_bounds(p.x1, p.x2, p.y1, p.y2))
 		return ;
 	data->side.dx = p.x2 - p.x1;
 	data->side.dy = p.y2 - p.y1;
-	if (abs(data->side.dx) > abs(data->side.dy))
-		negative_slope(p.x1, p.y1, data, color1, color2);
-	else
-		positive_slope(p.x1, p.y1, data, color1, color2);
+	draw_slope(p, data, color1, color2);
 }
+
 
 void	reproduce_pixels(t_line_points *p, t_fdf *data)
 {
