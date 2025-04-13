@@ -47,13 +47,15 @@ static int	allocate_map_memory(t_fdf *data)
 	{
 		data->dmap.input_map[i] = malloc(sizeof(int *) * data->dmap.width);
 		if (!data->dmap.input_map[i])
-			return (free_map(data->dmap.input_map, i, data->dmap.width), free(data), -1);
+			return (free_map(data->dmap.input_map, i, data->dmap.width),
+				free(data), -1);
 		j = 0;
 		while (j < data->dmap.width)
 		{
 			data->dmap.input_map[i][j] = malloc(sizeof(int) * 2);
 			if (!data->dmap.input_map[i][j])
-				return (free_map(data->dmap.input_map, i, data->dmap.width), free(data), -1);
+				return (free_map(data->dmap.input_map, i, data->dmap.width),
+					free(data), -1);
 			j++;
 		}
 		i++;
@@ -96,7 +98,7 @@ int	*parse_map_line(int **row, int column_count, char *line_content)
 		if (z_and_color[1])
 			row[i][1] = ft_atoi_base(z_and_color[1]);
 		else
-			row[i][1] = -1; 
+			row[i][1] = -1;
 		free_arr(z_and_color);
 		i++;
 	}

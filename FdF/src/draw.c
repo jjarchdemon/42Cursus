@@ -44,7 +44,8 @@ void	draw_map(t_fdf *data)
 }
 
 // Extracted logic for setting z and color values
-static void	set_z_and_colors(t_fdf *data, t_line_points *p, int *color1, int *color2)
+static void	set_z_and_colors(t_fdf *data, t_line_points *p,
+	int *color1, int *color2)
 {
 	data->side.z1 = data->dmap.input_map[p->y1][p->x1][0];
 	data->side.z2 = data->dmap.input_map[p->y2][p->x2][0];
@@ -55,7 +56,6 @@ static void	set_z_and_colors(t_fdf *data, t_line_points *p, int *color1, int *co
 	if (*color2 == -1)
 		*color2 = get_default_color(data->side.z2, data);
 }
-
 
 // Extracted logic for boundary check
 static int	is_out_of_bounds(int x1, int x2, int y1, int y2)
@@ -91,7 +91,6 @@ void	line(int x2, int y2, t_fdf *data, t_line_points p)
 	data->side.dy = p.y2 - p.y1;
 	draw_slope(p, data, color1, color2);
 }
-
 
 void	reproduce_pixels(t_line_points *p, t_fdf *data)
 {
