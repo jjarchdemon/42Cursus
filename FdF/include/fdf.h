@@ -26,6 +26,7 @@
 
 # define ESCAPE 65307
 
+//Used for scaling the map dimensions to fit within the rendering window.
 typedef struct s_map_scale
 {
 	int	scale_factor;
@@ -33,7 +34,13 @@ typedef struct s_map_scale
 	int	x_scale;
 	int	y_scale;
 }	t_map_scale;
+/*
+- `scale_factor`: The factor by which the map is scaled.
+- `max_dimension`:largest dimension of the map (width, height, or z-range).
+- `x_scale` and `y_scale`: Scaling factors for the x and y axes.
+*/
 
+//Represents the start and end points of a line to be drawn.
 typedef struct s_line_points
 {
 	int	x1;
@@ -41,7 +48,12 @@ typedef struct s_line_points
 	int	y1;
 	int	y2;
 }	t_line_points;
+/*
+- `x1`, `y1`: Coordinates of the starting point.
+- `x2`, `y2`: Coordinates of the ending point.
+*/
 
+// Stores data related to a line
 typedef struct s_line_data
 {
 	int	z1;
@@ -50,8 +62,13 @@ typedef struct s_line_data
 	int	dy;
 	int	iso;
 }	t_line_data;
+/*
+- `z1`, `z2`: Heights (z-values) at the start and end points of the line.
+- `dx`, `dy`: Diff in x and y coordinates between the start and end pts.
+- `iso`: A flag or value for isometric projection adjustments.
+*/
 
-//input_map : 3D array to store height & optional color
+//Represents the map data, including its dimensions and height values.
 typedef struct s_map
 {
 	int	height;
@@ -60,7 +77,13 @@ typedef struct s_map
 	int	min_z;
 	int	***input_map;
 }	t_map;
+/*
+- `height`, `width`: Dimensions of the map.
+- `max_z`, `min_z`: Maximum and minimum z-values (heights) in the map.
+- `input_map`: 3D array storing height & optional color values for each pt.
+*/
 
+// The main struct for the program for rendering and managing the map.
 typedef struct s_fdf
 {
 	void			*mlx;
@@ -74,12 +97,19 @@ typedef struct s_fdf
 	t_map			dmap;
 	float			scale_factor;
 }	t_fdf;
+/*
+- `mlx`, `img`, `wnd`: Pointers to the MiniLibX context, image, and window.
+- `address_data`: Pointer to the image data buffer.
+- `side`: A `t_line_data` struct for storing line-related data.
+- `dmap`: A `t_map` struct for storing the map data.
+- `scale_factor`: The scaling factor applied to the map.
+*/
 
 //read_map_data
 t_fdf			*read_map_data(t_fdf *data, char *file);
 int				get_size(char *file, int *height, int *width);
 int				*parse_map_line(int **row, int column_count,
-	 char *line_content);
+					char *line_content);
 int				find_max_z(t_fdf *data);
 int				find_min_z(t_fdf *data);
 //draw
