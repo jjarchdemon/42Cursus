@@ -76,7 +76,7 @@ static int	fill_map_data(t_fdf *data, int fd)
 		if (!parse_map_line(data->dmap.input_map[i], data->dmap.width, line))
 		{
 			free(line);
-			return (-1); 
+			return (-1);
 		}
 		free(line);
 		line = get_next_line(fd);

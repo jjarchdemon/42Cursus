@@ -29,9 +29,9 @@
 // represents a point in 2D space with an optional color
 typedef struct s_point
 {
-    int	x;
-    int	y;
-    int	color;
+	int	x;
+	int	y;
+	int	color;
 }	t_point;
 
 //represents the start and end points of a line
@@ -39,8 +39,8 @@ typedef struct s_point
 //- `end`: ending pt of line
 typedef struct s_line_points
 {
-    t_point	start;
-    t_point	end;
+	t_point	start;
+	t_point	end;
 }	t_line_points;
 
 // Stores data related to a line
@@ -100,7 +100,8 @@ typedef struct s_fdf
 //read_map_data
 t_fdf			*read_map_data(t_fdf *data, char *file);
 int				get_size(char *file, int *height, int *width);
-int				*parse_map_line(int **row, int column_count, char *line_content);
+int				*parse_map_line(int **row, int column_count,
+					char *line_content);
 int				find_max_z(t_fdf *data);
 int				find_min_z(t_fdf *data);
 //draw
@@ -111,8 +112,8 @@ void			reproduce_pixels(t_line_points *p, t_fdf *data);
 void			locate(t_line_points *p, t_fdf *data);
 
 //algo
-void	negative_slope(t_point start, t_point end, t_fdf *data);
-void	positive_slope(t_point start, t_point end, t_fdf *data);
+void			negative_slope(t_point start, t_point end, t_fdf *data);
+void			positive_slope(t_point start, t_point end, t_fdf *data);
 void			isometric(int *x, int *y, int z);
 
 //utils
