@@ -71,7 +71,7 @@ typedef struct s_fdf
 	int				endian;
 	char			*address_data;
 	t_line_data		side;
-	t_map			data_map;
+	t_map			dmap;
 	float			scale_factor;
 }	t_fdf;
 

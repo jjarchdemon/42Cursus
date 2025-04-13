@@ -64,8 +64,8 @@ int	clean_close(t_fdf *data)
 				mlx_destroy_image(data->mlx, data->img);
 			free(data->mlx);
 		}
-		free_map(data->data_map.input_map, data->data_map.height,
-			data->data_map.width);
+		free_map(data->dmap.input_map, data->dmap.height,
+			data->dmap.width);
 		free(data);
 	}
 	exit(0);

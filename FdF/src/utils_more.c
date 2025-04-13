@@ -6,15 +6,15 @@ int	find_max_z(t_fdf *data)
 	int	i;
 	int	j;
 
-	max_z = data->data_map.input_map[0][0][0]; 
+	max_z = data->dmap.input_map[0][0][0]; 
 	i = 0;
-	while (i < data->data_map.height)
+	while (i < data->dmap.height)
 	{
 		j = 0;
-		while (j < data->data_map.width)
+		while (j < data->dmap.width)
 		{
-			if (data->data_map.input_map[i][j][0] > max_z)
-				max_z = data->data_map.input_map[i][j][0];
+			if (data->dmap.input_map[i][j][0] > max_z)
+				max_z = data->dmap.input_map[i][j][0];
 			j++;
 		}
 		i++;
@@ -28,15 +28,15 @@ int	find_min_z(t_fdf *data)
 	int	i;
 	int	j;
 
-	min_z = data->data_map.input_map[0][0][0]; 
+	min_z = data->dmap.input_map[0][0][0]; 
 	i = 0;
-	while (i < data->data_map.height)
+	while (i < data->dmap.height)
 	{
 		j = 0;
-		while (j < data->data_map.width)
+		while (j < data->dmap.width)
 		{
-			if (data->data_map.input_map[i][j][0] < min_z)
-				min_z = data->data_map.input_map[i][j][0];
+			if (data->dmap.input_map[i][j][0] < min_z)
+				min_z = data->dmap.input_map[i][j][0];
 			j++;
 		}
 		i++;

@@ -22,14 +22,14 @@ t_fdf	*read_map_data(t_fdf *data, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (free(data), NULL);
-	if (get_size(file, &data->data_map.height, &data->data_map.width) == 1)
+	if (get_size(file, &data->dmap.height, &data->dmap.width) == 1)
 		return (free(data), NULL);
 	if (allocate_map_memory(data) == -1)
 		return (NULL);
 	if (fill_map_data(data, fd) == -1)
 		return (NULL);
-	data->data_map.max_z = find_max_z(data);
-	data->data_map.min_z = find_min_z(data);
+	data->dmap.max_z = find_max_z(data);
+	data->dmap.min_z = find_min_z(data);
 	close(fd);
 	return (data);
 }
@@ -39,21 +39,21 @@ static int	allocate_map_memory(t_fdf *data)
 	int	i;
 	int	j;
 
-	data->data_map.input_map = malloc(sizeof(int **) * (data->data_map.height + 1));
-	if (!data->data_map.input_map)
+	data->dmap.input_map = malloc(sizeof(int **) * (data->dmap.height + 1));
+	if (!data->dmap.input_map)
 		return (free(data), -1);
 	i = 0;
-	while (i < data->data_map.height)
+	while (i < data->dmap.height)
 	{
-		data->data_map.input_map[i] = malloc(sizeof(int *) * data->data_map.width);
-		if (!data->data_map.input_map[i])
-			return (free_map(data->data_map.input_map, i, data->data_map.width), free(data), -1);
+		data->dmap.input_map[i] = malloc(sizeof(int *) * data->dmap.width);
+		if (!data->dmap.input_map[i])
+			return (free_map(data->dmap.input_map, i, data->dmap.width), free(data), -1);
 		j = 0;
-		while (j < data->data_map.width)
+		while (j < data->dmap.width)
 		{
-			data->data_map.input_map[i][j] = malloc(sizeof(int) * 2);
-			if (!data->data_map.input_map[i][j])
-				return (free_map(data->data_map.input_map, i, data->data_map.width), free(data), -1);
+			data->dmap.input_map[i][j] = malloc(sizeof(int) * 2);
+			if (!data->dmap.input_map[i][j])
+				return (free_map(data->dmap.input_map, i, data->dmap.width), free(data), -1);
 			j++;
 		}
 		i++;
@@ -68,14 +68,14 @@ static int	fill_map_data(t_fdf *data, int fd)
 
 	i = 0;
 	line = get_next_line(fd);
-	while (i < data->data_map.height && line)
+	while (i < data->dmap.height && line)
 	{
-		parse_map_line(data->data_map.input_map[i], data->data_map.width, line);
+		parse_map_line(data->dmap.input_map[i], data->dmap.width, line);
 		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
-	data->data_map.input_map[data->data_map.height] = NULL;
+	data->dmap.input_map[data->dmap.height] = NULL;
 	if (line)
 		free(line);
 	return (0);

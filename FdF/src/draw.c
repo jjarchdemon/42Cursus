@@ -25,17 +25,17 @@ void	draw_map(t_fdf *data)
 {
 	t_line_points	p;
 
-	if (!data || !data->data_map.input_map)
+	if (!data || !data->dmap.input_map)
 		return ;
 	p.x1 = 0;
-	while (p.x1 < data->data_map.width)
+	while (p.x1 < data->dmap.width)
 	{
 		p.y1 = 0;
-		while (p.y1 < data->data_map.height)
+		while (p.y1 < data->dmap.height)
 		{
-			if (p.x1 < data->data_map.width - 1)
+			if (p.x1 < data->dmap.width - 1)
 				line(p.x1 + 1, p.y1, data, p);
-			if (p.y1 < data->data_map.height - 1)
+			if (p.y1 < data->dmap.height - 1)
 				line(p.x1, p.y1 + 1, data, p);
 			p.y1++;
 		}
@@ -50,10 +50,10 @@ void	line(int x2, int y2, t_fdf *data, t_line_points p)
 
 	p.x2 = x2;
 	p.y2 = y2;
-	data->side.z1 = data->data_map.input_map[p.y1][p.x1][0];
-	data->side.z2 = data->data_map.input_map[p.y2][p.x2][0];
-	color1 = data->data_map.input_map[p.y1][p.x1][1];
-	color2 = data->data_map.input_map[p.y2][p.x2][1];
+	data->side.z1 = data->dmap.input_map[p.y1][p.x1][0];
+	data->side.z2 = data->dmap.input_map[p.y2][p.x2][0];
+	color1 = data->dmap.input_map[p.y1][p.x1][1];
+	color2 = data->dmap.input_map[p.y2][p.x2][1];
 	if (color1 == -1)
 		color1 = get_default_color(data->side.z1, data);
 	if (color2 == -1)
@@ -78,11 +78,11 @@ void	reproduce_pixels(t_line_points *p, t_fdf *data)
 	t_map_scale	scaling;
 	int			z_range;
 
-	if (data->data_map.width > data->data_map.height)
-		scaling.max_dimension = data->data_map.width;
+	if (data->dmap.width > data->dmap.height)
+		scaling.max_dimension = data->dmap.width;
 	else
-		scaling.max_dimension = data->data_map.height;
-	z_range = data->data_map.max_z - data->data_map.min_z;
+		scaling.max_dimension = data->dmap.height;
+	z_range = data->dmap.max_z - data->dmap.min_z;
 	if (z_range > scaling.max_dimension)
 		scaling.max_dimension = z_range;
 	scaling.x_scale = (WIDTH * 0.7) / scaling.max_dimension;
@@ -101,8 +101,8 @@ void	reproduce_pixels(t_line_points *p, t_fdf *data)
 
 void	locate(t_line_points *p, t_fdf *data)
 {
-	p->x1 += (WIDTH / 2) - (data->data_map.width / 2);
-	p->y1 += (HEIGHT / 10) - (data->data_map.height / 2);
-	p->x2 += (WIDTH / 2) - (data->data_map.width / 2);
-	p->y2 += (HEIGHT / 10) - (data->data_map.height / 2);
+	p->x1 += (WIDTH / 2) - (data->dmap.width / 2);
+	p->y1 += (HEIGHT / 10) - (data->dmap.height / 2);
+	p->x2 += (WIDTH / 2) - (data->dmap.width / 2);
+	p->y2 += (HEIGHT / 10) - (data->dmap.height / 2);
 }

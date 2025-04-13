@@ -17,8 +17,8 @@ int	my_mlx(t_fdf *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (free_map(data->data_map.input_map, data->data_map.height,
-				data->data_map.width), free(data), 1);
+		return (free_map(data->dmap.input_map, data->dmap.height,
+				data->dmap.width), free(data), 1);
 	data->wnd = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
 	if (!data->wnd)
 		return (clean_close(data), 1);
@@ -46,7 +46,7 @@ int	main(int ac, char **av)
 	t_fdf	*data;
 
 	if (ac != 2)
-		return (ft_printf("./t_fdf [data_map]\n"), 1);
+		return (ft_printf("./t_fdf [dmap]\n"), 1);
 	data = create_fdf_data();
 	if (!data)
 		return (1);

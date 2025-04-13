@@ -55,8 +55,8 @@ unsigned int	get_default_color(int z, t_fdf *data)
 {
 	float	percentage;
 
-	percentage = (float)(z - data->data_map.min_z)
-		/ (data->data_map.max_z - data->data_map.min_z);
+	percentage = (float)(z - data->dmap.min_z)
+		/ (data->dmap.max_z - data->dmap.min_z);
 	if (percentage < 0.2)
 		return (0x0000FF);
 	else if (percentage < 0.4)

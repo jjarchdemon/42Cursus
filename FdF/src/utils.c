@@ -24,7 +24,7 @@ t_fdf	*create_fdf_data(void)
 	data->wnd = NULL;
 	data->img = NULL;
 	data->address_data = NULL;
-	data->data_map.input_map = NULL;
+	data->dmap.input_map = NULL;
 	return (data);
 }
 
