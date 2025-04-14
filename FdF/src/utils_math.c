@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_image.c                                      :+:      :+:    :+:   */
+/*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 14:41:30 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:41:40 by jambatt          ###   ########.fr       */
+/*   Created: 2025/04/14 14:45:30 by jambatt           #+#    #+#             */
+/*   Updated: 2025/04/14 14:45:32 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	clear_image(t_data *data)
+int	min(int a, int b)
 {
-	char	*pixel;
-	int		x;
-	int		y;
+	if (a <= b)
+		return (a);
+	return (b);
+}
 
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			pixel = data->image_addr + (y * data->line_length)
-				+ (x * ((data->bits_per_pixel) / 8));
-			*(unsigned int *)pixel = mlx_get_color_value(data->server, BLACK);
-			++x;
-		}
-		++y;
-	}
+double	deg_to_rad(int d)
+{
+	double	r;
+	int		sign;
+
+	sign = 1;
+	if (d < 0)
+		sign = -1;
+	d *= sign;
+	while (d >= 360)
+		d -= 360;
+	r = (double)((((double) d) / 360) * (2 * M_PI));
+	r *= sign;
+	return (r);
 }

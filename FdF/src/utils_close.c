@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_window.c                                     :+:      :+:    :+:   */
+/*   utils_close.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -38,4 +38,24 @@ int	close_window(void *param)
 		free_map(data->map);
 	free(data);
 	exit(0);
+}
+void	clear_image(t_data *data)
+{
+	char	*pixel;
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			pixel = data->image_addr + (y * data->line_length)
+				+ (x * ((data->bits_per_pixel) / 8));
+			*(unsigned int *)pixel = mlx_get_color_value(data->server, BLACK);
+			++x;
+		}
+		++y;
+	}
 }
