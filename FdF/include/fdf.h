@@ -20,134 +20,92 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <limits.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+//# include <mlx.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
-# define ESCAPE 65307
-
-//Used for scaling the map dimensions to fit within the rendering window.
-typedef struct s_map_scale
-{
-	int	scale_factor;
-	int	max_dimension;
-	int	x_scale;
-	int	y_scale;
-}	t_map_scale;
-/*
-- `scale_factor`: The factor by which the map is scaled.
-- `max_dimension`:largest dimension of the map (width, height, or z-range).
-- `x_scale` and `y_scale`: Scaling factors for the x and y axes.
-*/
-
+# define SIZE_X 1000
+# define SIZE_Y 800
+# define DEFAULT_COLOR 0xFFFFFF
+# define BLACK 0x000000
+# define ANGLE 35	
 typedef struct s_point
 {
-    int		x;
-    int		y;
-    int		color;
+	int				x;
+	int				y;
+	int				z;
+	int				x_projected;
+	int				y_projected;
+	int				z_current;
+	unsigned int	color;
 }	t_point;
 
-//Represents the start and end points of a line to be drawn.
-typedef struct s_line_points
+typedef struct s_data
 {
-	int	x1;
-	int	x2;
-	int	y1;
-	int	y2;
-}	t_line_points;
-/*
-- `x1`, `y1`: Coordinates of the starting point.
-- `x2`, `y2`: Coordinates of the ending point.
-*/
+	void	*server;
+	void	*window;
+	void	*image;
+	char	*image_addr;
+	t_point	***map;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		map_dim_x;
+	int		map_dim_y;
+	int		scale;
+	int		max_x;
+	int		min_x;
+	int		max_y;
+	int		min_y;
+	int		offset_x;
+	int		offset_y;
+}	t_data;
 
-// Stores data related to a line
-typedef struct s_line_data
+typedef struct s_line
 {
-	int	z1;
-	int	z2;
+	int	x0;
+	int	x1;
+	int	y0;
+	int	y1;
 	int	dx;
 	int	dy;
-	int	iso;
-}	t_line_data;
-/*
-- `z1`, `z2`: Heights (z-values) at the start and end points of the line.
-- `dx`, `dy`: Diff in x and y coordinates between the start and end pts.
-- `iso`: A flag or value for isometric projection adjustments.
-*/
+	int	color_start;
+	int	color_end;
+}	t_line;
 
-//Represents the map data, including its dimensions and height values.
-typedef struct s_map
-{
-	int	height;
-	int	width;
-	int	max_z;
-	int	min_z;
-	int	***input_map;
-}	t_map;
-/*
-- `height`, `width`: Dimensions of the map.
-- `max_z`, `min_z`: Maximum and minimum z-values (heights) in the map.
-- `input_map`: 3D array storing height & optional color values for each pt.
-*/
+void	clear_image(t_data *data);
+int		close_window(void *param);
+double	deg_to_rad(int d);
+void	draw_line(t_data *data, t_line l);
+void	draw_map(t_data *data);
+void	free_all(char *l, char **ss, t_point **p);
+void	free_all_points_content(t_point ***map, int index);
+void	free_map(t_point ***map);
+void	free_points_arr(t_point **points, int index);
+void	free_split_stuff(char **split_stuff);
+int		get_char_array_length(char **arr);
+int		get_point_array_length(t_point **arr);
+int		handle_key_events(int keycode, void *param);
+int		hex_atoi(char *str);
+t_data	*initialize_data(void);
+void	initialize_graphics(t_data *data);
+int		interpolate_color(int color_start, int color_end, double fraction);
+int		min(int a, int b);
+void	print_empty_map(t_data *data);
+void	print_file_error(t_data *data);
+void	print_memory_error(t_data *data);
+void	print_usage_message(void);
+t_point	**process_line(char *line, int line_index, t_data *data);
+void	process_map(char *filename, t_data *data);
+t_point	*process_word(char *word, int row_index, int col_index);
+void	swap_line_values(t_line *line);
+void	transform_map(t_data *data);
+void	update_horizontal_values(t_line *l, int *p, int *coordinate, int dir);
+void	update_vertical_values(t_line *l, int *p, int *coordinate, int dir);
 
-// The main struct for the program for rendering and managing the map.
-typedef struct s_fdf
-{
-	void			*mlx;
-	void			*img;
-	void			*wnd;
-	int				bpp;
-	int				size_line;
-	int				endian;
-	char			*address_data;
-	t_line_data		side;
-	t_map			dmap;
-	float			scale_factor;
-}	t_fdf;
-/*
-- `mlx`, `img`, `wnd`: Pointers to the MiniLibX context, image, and window.
-- `address_data`: Pointer to the image data buffer.
-- `side`: A `t_line_data` struct for storing line-related data.
-- `dmap`: A `t_map` struct for storing the map data.
-- `scale_factor`: The scaling factor applied to the map.
-*/
 
-//read_map_data
-t_fdf			*read_map_data(t_fdf *data, char *file);
-int				get_size(char *file, int *height, int *width);
-int				*parse_map_line(int **row, int column_count,
-					char *line_content);
-int				find_max_z(t_fdf *data);
-int				find_min_z(t_fdf *data);
-//draw
-void			set_pixels(t_fdf *data);
-void			draw_map(t_fdf *data);
-void			line(int x2, int y2, t_fdf *data, t_line_points p);
-void			reproduce_pixels(t_line_points *p, t_fdf *data);
-void			locate(t_line_points *p, t_fdf *data);
 
-//algo
-void	negative_slope(t_point start, t_point end, t_fdf *data);
-void	positive_slope(t_point start, t_point end, t_fdf *data);
-//void			negative_slope(int x1, int y1, t_fdf *data, int color1, int color2);
-//void			positive_slope(int x1, int y1, t_fdf *data, int color1, int color2);
-void			isometric(int *x, int *y, int z);
 
-//utils
-int				clean_close(t_fdf *data);
-t_fdf			*create_fdf_data(void);
-void			free_arr(char **str);
-void			free_map(int ***arr, int height, int width);
-
-int				handle_keypress(int key, t_fdf *data);
-void			draw_pixel(t_fdf *data, int x, int y, int color);
-
-//color
-
-unsigned int	get_color(int z1, int z2);
-unsigned int	get_default_color(int z, t_fdf *data);
-
-//more utils?
-int				ft_atoi_base(const char *str);
-size_t			count_words(char const *s, char c);
 #endif

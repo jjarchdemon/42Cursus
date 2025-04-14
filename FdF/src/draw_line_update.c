@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   draw_line_update.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 10:34:47 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 15:23:38 by jambatt          ###   ########.fr       */
+/*   Created: 2025/04/14 14:42:29 by jambatt           #+#    #+#             */
+/*   Updated: 2025/04/14 14:42:33 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-int	handle_keypress(int key, t_fdf *data)
+void	update_horizontal_values(t_line *l, int *p, int *coordinate, int dir)
 {
-	if (key == ESCAPE)
+	if (*p >= 0)
 	{
-		clean_close(data);
-		exit(0);
+		*coordinate = *coordinate + dir;
+		*p = *p - (2 * l->dx);
 	}
-	return (0);
+	*p = *p + (2 * l->dy);
+}
+
+void	update_vertical_values(t_line *l, int *p, int *coordinate, int dir)
+{
+	if (*p >= 0)
+	{
+		*coordinate = *coordinate + dir;
+		*p = *p - (2 * l->dy);
+	}
+	*p = *p + (2 * l->dx);
 }

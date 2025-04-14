@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruction.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 10:34:38 by jambatt           #+#    #+#             */
-/*   Updated: 2025/03/18 14:58:01 by jambatt          ###   ########.fr       */
+/*   Created: 2025/04/14 14:45:16 by jambatt           #+#    #+#             */
+/*   Updated: 2025/04/14 14:45:18 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
-//TODO change fn name to draw_pixel ?? , also order of params
-void	draw_pixel(t_fdf *data, int x, int y, int color)
+int	main(int argc, char **argv)
 {
-	char	*dst;
-	int		pixel_offset;
+	t_data	*data;
 
-	pixel_offset = y * data->size_line + x * (data->bpp / 8);
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-	{
-		dst = data->address_data + pixel_offset;
-		*(unsigned int *)dst = color;
-	}
+	if (argc != 2)
+		print_usage_message();
+	data = initialize_data();
+	process_map(argv[1], data);
+	transform_map(data);
+	initialize_graphics(data);
+	draw_map(data);
+	mlx_key_hook(data->window, handle_key_events, data);
+	mlx_hook(data->window, DestroyNotify, 0, close_window, data);
+	mlx_loop(data->server);
 }
