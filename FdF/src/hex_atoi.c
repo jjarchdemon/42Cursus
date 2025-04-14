@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+/*
 static int	ft_ishex(char c);
 static int	ft_isspace(char c);
 static int	get_hex_val(char c);
@@ -81,4 +81,35 @@ static void	skip_hex_prefix_if_present(char **str)
 		&& ((*(++ptr)) && ((*ptr == 'x') || (*ptr == 'X'))))
 		*str += 2;
 	return ;
+}
+*/
+int hex_atoi(char *str)
+{
+    int result = 0;
+    char c;
+	int sign = 1;
+	if (!str)
+		return 0;
+    // Skip optional "0x" or "0X" prefix
+    if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
+        str += 2;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+    while ((c = *str++))
+    {
+        result *= 16;
+        if (c >= '0' && c <= '9')
+            result += c - '0';
+        else if (c >= 'a' && c <= 'f')
+            result += c - 'a' + 10;
+        else if (c >= 'A' && c <= 'F')
+            result += c - 'A' + 10;
+        else
+            break; // Stop on invalid character
+    }
+
+    return result * sign;
 }

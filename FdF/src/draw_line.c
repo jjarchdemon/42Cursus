@@ -54,7 +54,7 @@ static void	draw_horizontal_line(t_data *data, t_line l)
 	while (index < (l.dx + 1))
 	{
 		put_pixel_in_image(data, l.x0 + index, y,
-			interpolate_color(l.color_start, l.color_end,
+			blend_color(l.color_start, l.color_end,
 				((double)index) / l.dx));
 		update_horizontal_values(&l, &p, &y, dir);
 		++index;
@@ -80,7 +80,7 @@ static void	draw_vertical_line(t_data *data, t_line l)
 	while (index < (l.dy + 1))
 	{
 		put_pixel_in_image(data, x, l.y0 + index,
-			interpolate_color(l.color_start, l.color_end,
+			blend_color(l.color_start, l.color_end,
 				((double)index) / l.dy));
 		update_vertical_values(&l, &p, &x, dir);
 		++index;

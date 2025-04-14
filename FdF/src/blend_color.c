@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interpolate_color.c                                :+:      :+:    :+:   */
+/*   blend_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -17,7 +17,7 @@ static int	get_green(int color);
 static int	get_red(int color);
 static int	interpolate_channel(int start, int end, double fraction);
 
-int	interpolate_color(int color_start, int color_end, double fraction)
+int	blend_color(int color_start, int color_end, double fraction)
 {
 	int	blue;
 	int	green;

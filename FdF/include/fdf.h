@@ -91,7 +91,7 @@ int		handle_key_events(int keycode, void *param);
 int		hex_atoi(char *str);
 t_data	*initialize_data(void);
 void	initialize_graphics(t_data *data);
-int		interpolate_color(int color_start, int color_end, double fraction);
+int		blend_color(int color_start, int color_end, double fraction);
 int		min(int a, int b);
 void	empty_map_error(t_data *data);
 void	file_error(t_data *data);
