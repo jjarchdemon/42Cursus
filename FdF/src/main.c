@@ -24,6 +24,6 @@ int	main(int argc, char **argv)
 	initialize_graphics(data);
 	draw_map(data);
 	mlx_key_hook(data->window, handle_key_events, data);
-	mlx_hook(data->window, DestroyNotify, 0, close_window, data);
+	//mlx_hook(data->window, DestroyNotify, 0, close_window, data); uncomment for linux
 	mlx_loop(data->server);
 }

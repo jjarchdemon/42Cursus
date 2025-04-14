@@ -36,6 +36,7 @@ void	print_memory_error(t_data *data)
 	exit(1);
 }
 
+//perror to be used
 void	print_usage_message(void)
 {
 	ft_putstr_fd("Usage: ./fdf <filename>\n", 2);

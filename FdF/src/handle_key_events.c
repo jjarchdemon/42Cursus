@@ -14,7 +14,9 @@
 
 int	handle_key_events(int keycode, void *param)
 {
-	if (keycode == XK_Escape)
-		close_window(param);
+	(void) keycode;//delete this
+	(void) param;//delete this
+	//if (keycode == XK_Escape) uncomment for linux
+	//	close_window(param); uncomment for linux
 	return (0);
 }

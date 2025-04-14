@@ -23,8 +23,8 @@
 # include <limits.h>
 
 //# include <mlx.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
+//# include <X11/keysym.h>
+//# include <X11/X.h>
 
 # define SIZE_X 1000
 # define SIZE_Y 800
@@ -104,8 +104,5 @@ void	swap_line_values(t_line *line);
 void	transform_map(t_data *data);
 void	update_horizontal_values(t_line *l, int *p, int *coordinate, int dir);
 void	update_vertical_values(t_line *l, int *p, int *coordinate, int dir);
-
-
-
 
 #endif
