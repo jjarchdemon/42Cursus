@@ -51,7 +51,7 @@ static int	fill_with_values(t_point *point, char **values,
 	point->z_current = point->z;
 	++values;
 	if (*values)
-		point->color = hex_atoi(*values);
+		point->color = htoi(*values);
 	else
 		point->color = (unsigned int) DEFAULT_COLOR;
 	return (0);

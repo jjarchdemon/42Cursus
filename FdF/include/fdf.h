@@ -88,7 +88,7 @@ void	free_split_array(char **split_stuff);
 int		get_char_array_length(char **arr);
 int		get_point_array_length(t_point **arr);
 int		handle_key_events(int keycode, void *param);
-int		hex_atoi(char *str);
+int		htoi(char *str);
 t_data	*initialize_data(void);
 void	initialize_graphics(t_data *data);
 int		blend_color(int color_start, int color_end, double fraction);
