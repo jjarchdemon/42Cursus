@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:34:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 11:34:49 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/14 12:13:41 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	reproduce_pixels(t_line_points *p, t_fdf *data)
 	p->start.y *= data->dmap.scale_factor;
 	p->end.x *= data->dmap.scale_factor;
 	p->end.y *= data->dmap.scale_factor;
-	data->side.z1 *= (data->dmap.scale_factor * 0.1) + data->is_iso;
-	data->side.z2 *= (data->dmap.scale_factor * 0.1) + data->is_iso;
+	data->side.z1 *= (data->dmap.scale_factor * 0.3) + data->is_iso;
+	data->side.z2 *= (data->dmap.scale_factor * 0.3) + data->is_iso;
 }
 
 void	locate(t_line_points *p, t_fdf *data)
