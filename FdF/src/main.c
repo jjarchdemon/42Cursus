@@ -12,14 +12,14 @@
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	t_data	*data;
 
-	if (argc != 2)
-		print_usage_message();
+	if (ac != 2)
+		argument_error();
 	data = initialize_data();
-	process_map(argv[1], data);
+	process_map(av[1], data);
 	transform_map(data);
 	initialize_graphics(data);
 	draw_map(data);

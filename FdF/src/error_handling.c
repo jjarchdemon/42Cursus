@@ -12,33 +12,32 @@
 
 #include "fdf.h"
 
-void	print_empty_map(t_data *data)
+void	empty_map_error(t_data *data)
 {
-	ft_putstr_fd("Map error: map is empty\n", 2);
+	perror("Empty map error");
 	free_map(data->map);
 	free(data);
 	exit(1);
 }
 
-void	print_file_error(t_data *data)
+void	file_error(t_data *data)
 {
-	ft_putstr_fd("File error: could not open / read file\n", 2);
+	perror("Problem with opening file");
 	free_map(data->map);
 	free(data);
 	exit(1);
 }
 
-void	print_memory_error(t_data *data)
+void	allocation_error(t_data *data)
 {
-	ft_putstr_fd("Memory error: could not allocate sufficent memory\n", 2);
+	perror("Memory allocation error");
 	free_map(data->map);
 	free(data);
 	exit(1);
 }
 
-//perror to be used
-void	print_usage_message(void)
+void	argument_error(void)
 {
-	ft_putstr_fd("Usage: ./fdf <filename>\n", 2);
+	perror("please add map path as argument");
 	exit(1);
 }

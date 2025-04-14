@@ -24,18 +24,18 @@ void	process_map(char *filename, t_data *data)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		print_file_error(data);
+		file_error(data);
 	line_count = count_lines(fd);
 	close(fd);
 	if (line_count == 0)
-		print_empty_map(data);
+		empty_map_error(data);
 	map = malloc(sizeof (t_point **) * (line_count + 1));
 	if (!map)
-		print_memory_error(data);
+		allocation_error(data);
 	data->map = map;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		print_file_error(data);
+		file_error(data);
 	process_file(fd, data);
 	close(fd);
 	data->map_dim_y = line_count;
@@ -61,7 +61,7 @@ static void	process_file(int fd, t_data *data)
 			free(map);
 			data->map = NULL;
 			free(line);
-			print_memory_error(data);
+			allocation_error(data);
 		}
 		free(line);
 		line = get_next_line(fd);

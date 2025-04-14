@@ -18,7 +18,7 @@ t_data	*initialize_data(void)
 
 	data = malloc(sizeof (t_data));
 	if (!data)
-		print_memory_error(data);
+		allocation_error(data);
 	data->server = NULL;
 	data->window = NULL;
 	data->image = NULL;
