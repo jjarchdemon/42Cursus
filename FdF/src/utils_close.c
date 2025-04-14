@@ -39,6 +39,7 @@ int	close_window(void *param)
 	free(data);
 	exit(0);
 }
+
 void	clear_image(t_data *data)
 {
 	char	*pixel;

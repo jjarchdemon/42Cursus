@@ -19,11 +19,12 @@ int	htoi(char *str)
 
 	result = 0;
 	if (!str)
-		return 0;
+		return (0);
 	if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
 		str += 2;
-	while ((c = *str++))
+	while (*str)
 	{
+		c = *str++;
 		result *= 16;
 		if (c >= '0' && c <= '9')
 			result += c - '0';
@@ -32,7 +33,7 @@ int	htoi(char *str)
 		else if (c >= 'A' && c <= 'F')
 			result += c - 'A' + 10;
 		else
-			break;
+			break ;
 	}
-	return result;
+	return (result);
 }

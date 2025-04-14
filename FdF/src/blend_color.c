@@ -14,15 +14,15 @@
 
 int	blend_color(int color_start, int color_end, double fraction)
 {
-    int	red;
-    int	green;
-    int	blue;
+	int	red;
+	int	green;
+	int	blue;
 
-    red = (int)(((color_start >> 16) & 0xFF) * (1 - fraction) +
-                ((color_end >> 16) & 0xFF) * fraction);
-    green = (int)(((color_start >> 8) & 0xFF) * (1 - fraction) +
-                  ((color_end >> 8) & 0xFF) * fraction);
-    blue = (int)((color_start & 0xFF) * (1 - fraction) +
-                 (color_end & 0xFF) * fraction);
-    return ((red << 16) | (green << 8) | blue);
+	red = (int)(((color_start >> 16) & 0xFF) * (1 - fraction)
+			+ ((color_end >> 16) & 0xFF) * fraction);
+	green = (int)(((color_start >> 8) & 0xFF) * (1 - fraction)
+			+ ((color_end >> 8) & 0xFF) * fraction);
+	blue = (int)((color_start & 0xFF) * (1 - fraction)
+			+ (color_end & 0xFF) * fraction);
+	return ((red << 16) | (green << 8) | blue);
 }

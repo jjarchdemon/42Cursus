@@ -17,8 +17,7 @@ void	initialize_graphics(t_data *data)
 	data->server = mlx_init();
 	if (!data->server)
 		close_window(data);
-	data->window = mlx_new_window(data->server, WIDTH, HEIGHT,
-			"FDF Wireframe model");
+	data->window = mlx_new_window(data->server, WIDTH, HEIGHT, "FDF");
 	if (!data->window)
 		close_window(data);
 	data->image = mlx_new_image(data->server, WIDTH, HEIGHT);
