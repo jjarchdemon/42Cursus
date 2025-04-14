@@ -84,7 +84,7 @@ void	free_all(char *l, char **ss, t_point **p);
 void	free_all_points_content(t_point ***map, int index);
 void	free_map(t_point ***map);
 void	free_points_arr(t_point **points, int index);
-void	free_split_stuff(char **split_stuff);
+void	free_split_array(char **split_stuff);
 int		get_char_array_length(char **arr);
 int		get_point_array_length(t_point **arr);
 int		handle_key_events(int keycode, void *param);

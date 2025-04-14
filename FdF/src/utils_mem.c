@@ -17,7 +17,7 @@ void	free_points_arr(t_point **points, int index);
 void	free_all(char *l, char **ss, t_point **p)
 {
 	free(l);
-	free_split_stuff(ss);
+	free_split_array(ss);
 	free(p);
 	return ;
 }
@@ -68,17 +68,17 @@ void	free_points_arr(t_point **points, int index)
 	return ;
 }
 
-void	free_split_stuff(char **split_stuff)
+void	free_split_array(char **split_stuff)
 {
-	char	**copy;
+	char	**current_str;
 
 	if (!split_stuff)
 		return ;
-	copy = split_stuff;
-	while (*copy)
+	current_str = split_stuff;
+	while (*current_str)
 	{
-		free(*copy);
-		++copy;
+		free(*current_str);
+		++current_str;
 	}
 	free(split_stuff);
 	return ;

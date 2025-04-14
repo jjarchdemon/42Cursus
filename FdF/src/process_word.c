@@ -36,7 +36,7 @@ t_point	*process_word(char *word, int row_index, int col_index)
 		free(p);
 		p = NULL;
 	}
-	free_split_stuff(split);
+	free_split_array(split);
 	return (p);
 }
 
