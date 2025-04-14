@@ -30,7 +30,8 @@
 # define HEIGHT 800
 # define DEFAULT_COLOR 0xFFFFFF
 # define BLACK 0x000000
-# define ANGLE 35	
+# define ANGLE 0.610865	// 35
+//# define ANGLE 0.523599	// 30
 typedef struct s_point
 {
 	int				x;
@@ -77,7 +78,6 @@ typedef struct s_line
 
 void	clear_image(t_data *data);
 int		close_window(void *param);
-double	deg_to_rad(int d);
 void	draw_line(t_data *data, t_line l);
 void	draw_map(t_data *data);
 void	free_all(char *l, char **ss, t_point **p);

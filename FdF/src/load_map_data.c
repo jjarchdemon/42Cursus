@@ -100,7 +100,10 @@ static void	set_scale(t_data *data)
 	scale_y = HEIGHT / 2;
 	if ((data->map_dim_y - 1) > 0)
 		scale_y /= (data->map_dim_y);
-	scale = min(scale_x, scale_y);
+	if (scale_x <= scale_y)
+		scale = scale_x;
+	else
+		scale = scale_y;
 	if (scale > 0)
 		data->scale = scale;
 	return ;
