@@ -26,8 +26,8 @@
 //# include <X11/keysym.h>
 //# include <X11/X.h>
 
-# define SIZE_X 1000
-# define SIZE_Y 800
+# define WIDTH 1000
+# define HEIGHT 800
 # define DEFAULT_COLOR 0xFFFFFF
 # define BLACK 0x000000
 # define ANGLE 35	
@@ -98,7 +98,7 @@ void	file_error(t_data *data);
 void	allocation_error(t_data *data);
 void	argument_error(void);
 t_point	**process_line(char *line, int line_index, t_data *data);
-void	process_map(char *filename, t_data *data);
+void	load_map_data(char *filename, t_data *data);
 t_point	*process_word(char *word, int row_index, int col_index);
 void	swap_line_values(t_line *line);
 void	transform_map(t_data *data);

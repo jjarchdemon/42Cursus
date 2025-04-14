@@ -91,7 +91,7 @@ static void	put_pixel_in_image(t_data *data, int x, int y, int color)
 {
 	char	*pixel;
 
-	if (x >= 0 && x < SIZE_X && y >= 0 && y < SIZE_Y)
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		pixel = data->image_addr + (y * data->line_length)
 			+ (x * ((data->bits_per_pixel) / 8));

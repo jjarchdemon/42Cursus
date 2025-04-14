@@ -38,6 +38,6 @@ void	allocation_error(t_data *data)
 
 void	argument_error(void)
 {
-	perror("please add map path as argument");
+	perror("Please add map path as argument");
 	exit(1);
 }

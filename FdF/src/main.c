@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		argument_error();
 	data = initialize_data();
-	process_map(av[1], data);
+	load_map_data(av[1], data);
 	transform_map(data);
 	initialize_graphics(data);
 	draw_map(data);

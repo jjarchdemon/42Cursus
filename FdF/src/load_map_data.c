@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_map.c                                      :+:      :+:    :+:   */
+/*   load_map_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "fdf.h"
 
-static int	count_lines(int fd);
+static int	get_line_count(int fd);
 static void	process_file(int fd, t_data *data);
 static void	set_scale(t_data *data);
 
-void	process_map(char *filename, t_data *data)
+void	load_map_data(char *filename, t_data *data)
 {
 	t_point	***map;
 	int		fd;
@@ -25,7 +25,7 @@ void	process_map(char *filename, t_data *data)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		file_error(data);
-	line_count = count_lines(fd);
+	line_count = get_line_count(fd);
 	close(fd);
 	if (line_count == 0)
 		empty_map_error(data);
@@ -71,7 +71,7 @@ static void	process_file(int fd, t_data *data)
 	return ;
 }
 
-static int	count_lines(int fd)
+static int	get_line_count(int fd)
 {
 	char	*line;
 	int		line_count;
@@ -94,10 +94,10 @@ static void	set_scale(t_data *data)
 	int	scale_y;
 
 	scale = 1;
-	scale_x = SIZE_X / 2;
+	scale_x = WIDTH / 2;
 	if ((data->map_dim_x - 1) > 0)
 		scale_x /= (data->map_dim_x);
-	scale_y = SIZE_Y / 2;
+	scale_y = HEIGHT / 2;
 	if ((data->map_dim_y - 1) > 0)
 		scale_y /= (data->map_dim_y);
 	scale = min(scale_x, scale_y);

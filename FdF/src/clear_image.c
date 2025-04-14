@@ -19,10 +19,10 @@ void	clear_image(t_data *data)
 	int		y;
 
 	y = 0;
-	while (y < SIZE_Y)
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while (x < SIZE_X)
+		while (x < WIDTH)
 		{
 			pixel = data->image_addr + (y * data->line_length)
 				+ (x * ((data->bits_per_pixel) / 8));

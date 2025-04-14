@@ -37,8 +37,8 @@ void	transform_map(t_data *data)
 		}
 		++map;
 	}
-	data->offset_x = (SIZE_X / 2) - ((data->min_x + data->max_x) / 2);
-	data->offset_y = (SIZE_Y / 2) - ((data->min_y + data->max_y) / 2);
+	data->offset_x = (WIDTH / 2) - ((data->min_x + data->max_x) / 2);
+	data->offset_y = (HEIGHT / 2) - ((data->min_y + data->max_y) / 2);
 	center_map(data);
 }
 

@@ -17,11 +17,11 @@ void	initialize_graphics(t_data *data)
 	data->server = mlx_init();
 	if (!data->server)
 		close_window(data);
-	data->window = mlx_new_window(data->server, SIZE_X, SIZE_Y,
+	data->window = mlx_new_window(data->server, WIDTH, HEIGHT,
 			"FDF Wireframe model");
 	if (!data->window)
 		close_window(data);
-	data->image = mlx_new_image(data->server, SIZE_X, SIZE_Y);
+	data->image = mlx_new_image(data->server, WIDTH, HEIGHT);
 	if (!data->image)
 		close_window(data);
 	data->image_addr = mlx_get_data_addr(data->image, &(data->bits_per_pixel),
