@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:45:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 12:25:20 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:43:08 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_point	**process_line(char *line, int line_index, t_data *data)
 	if (!line)
 		return (NULL);
 	split = ft_split(line, ' ');
-	line_length = get_char_array_length(split);
+	line_length = get_array_length((void **)split);
 	points = malloc((sizeof(t_point *)) *(line_length + 1));
 	if (!split || !points)
 	{

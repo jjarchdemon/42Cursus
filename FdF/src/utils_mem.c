@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:43:14 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 12:25:25 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:40:13 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_all_points_content(t_point ***map, int index)
 {
 	while (map && (index >= 0))
 	{
-		free_points_arr(map[index], get_array_length(*map));
+		free_points_arr(map[index], get_array_length((void **)*map));
 		index--;
 	}
 	return ;

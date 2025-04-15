@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:31:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 12:11:45 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:35:02 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	free_map(t_point ***map);
 void	free_points_arr(t_point **points, int index);
 void	free_split_array(char **split_stuff);
 int		get_char_array_length(char **arr);
-int		get_array_length(t_point **arr);
+int		get_array_length(void **arr);
 int		handle_key_events(int keycode, void *param);
 int		htoi(char *str);
 t_data	*initialize_data(void);

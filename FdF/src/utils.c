@@ -12,22 +12,27 @@
 
 #include "fdf.h"
 
-int	get_char_array_length(char **arr)
-{
-	int	len;
+static void	swap(int *a, int *b);
 
-	len = 0;
-	if (!arr || *arr == NULL)
-		return (0);
-	while (*arr)
-	{
-		++len;
-		++arr;
-	}
-	return (len);
+void	swap_line_values(t_line *line)
+{
+	swap(&(line->x0), &(line->x1));
+	swap(&(line->y0), &(line->y1));
+	swap(&(line->color_start), &(line->color_end));
+	return ;
 }
 
-int	get_array_length(t_point **arr)
+static void	swap(int *a, int *b)
+{
+	int	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+	return ;
+}
+
+int	get_array_length(void **arr)
 {
 	int	len;
 
@@ -38,18 +43,3 @@ int	get_array_length(t_point **arr)
 		len++;
 	return (len);
 }
-
-// combine them both with void
-/*
-int	get_array_length(void **arr)
-{
-    int	len;
-
-    if (!arr || !*arr)
-        return (0);
-    len = 0;
-    while (arr[len])
-        len++;
-    return (len);
-}
-*/
