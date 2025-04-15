@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:46:37 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:46:39 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:25:16 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	transform_map(t_data *data)
 			scale_map(data, point);
 			project_point(point);
 			set_max_min_values(data, point);
-			line++;//was ++line
+			line++;
 		}
-		map++;//was ++map
+		map++;
 	}
 	data->offset_x = (WIDTH / 2) - ((data->min_x + data->max_x) / 2);
 	data->offset_y = (HEIGHT / 2) - ((data->min_y + data->max_y) / 2);
@@ -57,9 +57,9 @@ static void	center_map(t_data *data)
 			point = *line;
 			point->x_projected += data->offset_x;
 			point->y_projected += data->offset_y;
-			line++;//was ++line
+			line++;
 		}
-		map++;//was ++map
+		map++;
 	}
 }
 

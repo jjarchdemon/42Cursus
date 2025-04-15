@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_array_length.c                                 :+:      :+:    :+:   */
+/*   utils.c 			                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:43:32 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 12:11:45 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:18:18 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,18 @@ int	get_array_length(t_point **arr)
 		len++;
 	return (len);
 }
+
+// combine them both with void
+/*
+int	get_array_length(void **arr)
+{
+    int	len;
+
+    if (!arr || !*arr)
+        return (0);
+    len = 0;
+    while (arr[len])
+        len++;
+    return (len);
+}
+*/
