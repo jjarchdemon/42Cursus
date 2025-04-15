@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:42:44 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:42:48 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:11:45 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	loop_through_row(t_data *data, t_point ***map)
 			fill_second_point(&line, *(row + 1));
 			draw_line(data, line);
 		}
-		if (*(map + 1) && get_point_array_length(*(map + 1)) > col_index)
+		if (*(map + 1) && get_array_length(*(map + 1)) > col_index)
 		{
 			fill_second_point(&line, (*(map + 1))[col_index]);
 			draw_line(data, line);

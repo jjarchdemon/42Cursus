@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:42:16 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:42:19 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:04:52 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	draw_horizontal_line(t_data *data, t_line l)
 			blend_color(l.color_start, l.color_end,
 				((double)index) / l.dx));
 		update_horizontal_values(&l, &p, &y, dir);
-		++index;
+		index++;
 	}
 }
 
@@ -83,7 +83,7 @@ static void	draw_vertical_line(t_data *data, t_line l)
 			blend_color(l.color_start, l.color_end,
 				((double)index) / l.dy));
 		update_vertical_values(&l, &p, &x, dir);
-		++index;
+		index++;
 	}
 }
 

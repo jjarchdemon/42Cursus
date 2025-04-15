@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_close.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:41:54 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:41:58 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 11:52:50 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	close_window(void *param)
 	data = (t_data *)param;
 	if (data->image)
 	{
-		//mlx_destroy_image(data->server, data->image); uncomment for linux
+		mlx_destroy_image(data->server, data->image); //uncomment for linux
 		data->image = NULL;
 	}
 	if (data->window)
@@ -29,8 +29,8 @@ int	close_window(void *param)
 	}
 	if (data->server)
 	{
-		//mlx_loop_end(data->server); uncomment for linux
-		//mlx_destroy_display(data->server); uncomment for linux
+		mlx_loop_end(data->server); //uncomment for linux
+		mlx_destroy_display(data->server); //uncomment for linux
 		free(data->server);
 		data->server = NULL;
 	}
@@ -55,8 +55,8 @@ void	clear_image(t_data *data)
 			pixel = data->image_addr + (y * data->line_length)
 				+ (x * ((data->bits_per_pixel) / 8));
 			*(unsigned int *)pixel = mlx_get_color_value(data->server, BLACK);
-			++x;
+			x++;//was ++x
 		}
-		++y;
+		y++;//was ++y
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_mem.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:43:14 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:43:18 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:11:45 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	free_all_points_content(t_point ***map, int index)
 {
 	while (map && (index >= 0))
 	{
-		free_points_arr(map[index], get_point_array_length(*map));
-		--index;
+		free_points_arr(map[index], get_array_length(*map));
+		index--;//was --index
 	}
 	return ;
 }
@@ -48,10 +48,10 @@ void	free_map(t_point ***map)
 		while (line[line_index])
 		{
 			free(line[line_index]);
-			++line_index;
+			line_index++;//was ++line_index
 		}
 		free(line);
-		++map_index;
+		map_index++;//was ++map_index
 	}
 	free(map);
 	return ;
@@ -62,7 +62,7 @@ void	free_points_arr(t_point **points, int index)
 	while (points && (index >= 0))
 	{
 		free(points[index]);
-		--index;
+		index--;//was --index
 	}
 	free(points);
 	return ;
@@ -78,7 +78,7 @@ void	free_split_array(char **split_stuff)
 	while (*current_str)
 	{
 		free(*current_str);
-		++current_str;
+		current_str++;//was ++current_str
 	}
 	free(split_stuff);
 	return ;

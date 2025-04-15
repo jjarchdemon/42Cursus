@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   process_word.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:46:14 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:46:16 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 11:55:05 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	fill_with_values(t_point *point, char **values,
-				int row_index, int col_index);
+static int	fill_with_values(t_point *point, char **values, int row_index,
+		int col_index);
 
 t_point	*process_word(char *word, int row_index, int col_index)
 {

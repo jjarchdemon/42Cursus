@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:45:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:45:47 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 11:56:07 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	fill_points_array(t_point ***points, char **split, int line_index,
 			return ;
 		}
 		(*points)[index] = pt;
-		++index;
+		index++;//was ++index
 	}
 	(*points)[index] = NULL;
 	return ;

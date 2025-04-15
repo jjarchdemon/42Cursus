@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:45:59 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/14 14:46:01 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/15 12:00:29 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	process_file(int fd, t_data *data)
 		map[line_index] = process_line(line, line_index, data);
 		if (!(map[line_index]))
 		{
-			free_all_points_content(map, --line_index);
+			free_all_points_content(map, line_index--);
 			free(map);
 			data->map = NULL;
 			free(line);
@@ -65,7 +65,7 @@ static void	process_file(int fd, t_data *data)
 		}
 		free(line);
 		line = get_next_line(fd);
-		++line_index;
+		line_index++;
 	}
 	map[line_index] = NULL;
 	return ;
@@ -80,7 +80,7 @@ static int	get_line_count(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		++line_count;
+		line_count++;
 		free(line);
 		line = get_next_line(fd);
 	}
