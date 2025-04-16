@@ -12,38 +12,24 @@
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-OS = $(shell uname)
 
 SRC_DIR = src
 INCLUDE = include
 
 LIBFT = $(INCLUDE)/my_libft
-
 LIBFT_A = $(LIBFT)/libft.a
 
 NAME = fdf
-
 
 #sources from object files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 SRCS := $(filter-out  $(SRC_DIR)/alt/%, $(SRCS))  # Exclude the folder
 OBJS = $(SRCS:.c=.o)
 
-###################################################################
-# Platform-dependent compilation
-ifeq ($(OS), Linux)
-        LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
-        MLX = include/minilibx-linux
-        MLX_A = include/minilibx-linux/libmlx.a
-        INC_FLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux
-else
-        LINUX_FLAGS =  -L/usr/X11/lib -lXext -lX11 \
-		       -framework OpenGl -framework Appkit
-        MLX = include/mlx_macos
-        MLX_A = include/mlx_macos/libmlx.a	
-        INC_FLAGS = -I $(INCLUDE) -I$(INCLUDE)/mlx_macos
-endif
-#####################################################################
+LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
+MLX = include/minilibx-linux
+MLX_A = include/minilibx-linux/libmlx.a
+INC_FLAGS = -I $(INCLUDE) -I$(INCLUDE)/minilibx-linux
 
 all: $(NAME)
 
