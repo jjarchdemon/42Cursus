@@ -13,7 +13,7 @@
 #include "fdf.h"
 
 static int	set_t_point_values(t_point *point, char **values, int row_index,
-		int col_index);
+				int col_index);
 
 /*
  * - process_word: Parses a word from the input map, splits it into components

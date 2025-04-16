@@ -23,10 +23,9 @@ static void	set_differences(t_line *line);
  * on the screen. It includes functions for handling both horizontal and
  * vertical lines, blending colors along the line, and placing pixels in the
  * image buffer.
- */
- 
- // - draw_line: Determines whether the line is horizontal or vertical and
- //   delegates the drawing to the appropriate function.
+*/
+// - draw_line: Determines whether the line is horizontal or vertical and
+//   delegates the drawing to the appropriate function.
 void	draw_line(t_data *data, t_line l)
 {
 	if (abs(l.x1 - l.x0) > abs(l.y1 - l.y0))

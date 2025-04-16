@@ -23,7 +23,7 @@
  * - update_horizontal_values: Updates the horizontal coordinate and decision
  *   parameter when drawing a line with a shallow slope.
  */
- void	update_horizontal_values(t_line *l, int *p, int *coordinate, int dir)
+void	update_horizontal_values(t_line *l, int *p, int *coordinate, int dir)
 {
 	if (*p >= 0)
 	{
