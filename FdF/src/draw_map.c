@@ -6,16 +6,18 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:42:44 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 12:36:28 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/16 15:27:07 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	fill_first_point(t_line *line, t_point *point);
-static void	fill_second_point(t_line *line, t_point *point);
+static void	set_first_point(t_line *line, t_point *point);
+static void	set_second_point(t_line *line, t_point *point);
 static void	loop_through_row(t_data *data, t_point ***map);
 
+// Function to draw the map by iterating through all rows and columns of map.
+// Clears the image, draws the map, and updates the window with the new image.
 void	draw_map(t_data *data)
 {
 	t_point	***map;
@@ -31,6 +33,8 @@ void	draw_map(t_data *data)
 	mlx_put_image_to_window(data->server, data->window, data->image, 0, 0);
 }
 
+// Loops through a single row of map and draws lines between points in row
+// and between the current row and the next row if applicable.
 static void	loop_through_row(t_data *data, t_point ***map)
 {
 	int		col_index;
@@ -41,15 +45,15 @@ static void	loop_through_row(t_data *data, t_point ***map)
 	row = *map;
 	while (*row)
 	{
-		fill_first_point(&line, *row);
+		set_first_point(&line, *row);
 		if (*(row + 1))
 		{
-			fill_second_point(&line, *(row + 1));
+			set_second_point(&line, *(row + 1));
 			draw_line(data, line);
 		}
 		if (*(map + 1) && get_array_length((void **)*(map + 1)) > col_index)
 		{
-			fill_second_point(&line, (*(map + 1))[col_index]);
+			set_second_point(&line, (*(map + 1))[col_index]);
 			draw_line(data, line);
 		}
 		++row;
@@ -57,7 +61,9 @@ static void	loop_through_row(t_data *data, t_point ***map)
 	}
 }
 
-static void	fill_first_point(t_line *line, t_point *point)
+// Sets the starting point of a line using the projected coordinates
+// and color of the given point.
+static void	set_first_point(t_line *line, t_point *point)
 {
 	line->x0 = point->x_projected;
 	line->y0 = point->y_projected;
@@ -65,7 +71,9 @@ static void	fill_first_point(t_line *line, t_point *point)
 	return ;
 }
 
-static void	fill_second_point(t_line *line, t_point *point)
+// Sets the starting point of a line using the projected coordinates
+// and color of the given point.
+static void	set_second_point(t_line *line, t_point *point)
 {
 	line->x1 = point->x_projected;
 	line->y1 = point->y_projected;

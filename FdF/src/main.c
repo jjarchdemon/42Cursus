@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:45:16 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/16 12:11:36 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/16 15:28:08 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
 	transform_map(data);
 	setup_graphics(data);
 	draw_map(data);
-	mlx_key_hook(data->window, handle_key_events, data);
+	mlx_key_hook(data->window, handle_esc_key, data);
 	mlx_hook(data->window, DestroyNotify, 0, close_window, data);// uncomment for linux
 	mlx_loop(data->server);
 }

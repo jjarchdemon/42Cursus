@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_key_events.c                                :+:      :+:    :+:   */
+/*   handle_esc_key.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int	handle_key_events(int keycode, void *param)
+int	handle_esc_key(int keycode, void *param)
 {
 	//(void) keycode;//delete this
 	//(void) param;//delete this
