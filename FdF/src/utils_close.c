@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:41:54 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 12:25:12 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/16 15:34:34 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	close_window(void *param)
 	free(data);
 	exit(0);
 }
-
+/*
 void	clear_image(t_data *data)
 {
 	char	*pixel;
@@ -58,5 +58,21 @@ void	clear_image(t_data *data)
 			x++;
 		}
 		y++;
+	}
+}
+*/
+void	clear_image(t_data *data)
+{
+	char	*pixel;
+	int		total_pixels;
+	int		i;
+
+	total_pixels = WIDTH * HEIGHT;
+	i = 0;
+	while (i < total_pixels)
+	{
+		pixel = data->image_addr + (i * ((data->bits_per_pixel) / 8));
+		*(unsigned int *)pixel = mlx_get_color_value(data->server, BLACK);
+		i++;
 	}
 }
