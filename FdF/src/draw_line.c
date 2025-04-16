@@ -24,31 +24,9 @@ static void	set_differences(t_line *line);
  * vertical lines, blending colors along the line, and placing pixels in the
  * image buffer.
  */
-/*
- * Function Prototypes:
- * - draw_horizontal_line: Draws a line with a shallow slope (horizontal).
- * - draw_vertical_line: Draws a line with a steep slope (vertical).
- * - put_pixel_in_image: Places a pixel in the image buffer at a given position.
- * - set_differences: Calculates the differences (dx, dy) between line endpoints.
- */
-
-/*
- * Function Definitions:
- * - draw_line: Determines whether the line is horizontal or vertical and
- *   delegates the drawing to the appropriate function.
- *
- * - draw_horizontal_line: Handles the drawing of lines with a shallow slope
- *   using the Bresenham algorithm.
- *
- * - draw_vertical_line: Handles the drawing of lines with a steep slope
- *   using the Bresenham algorithm.
- *
- * - put_pixel_in_image: Writes a pixel to the image buffer, ensuring it is
- *   within the screen boundaries.
- *
- * - set_differences: Computes the differences in x and y coordinates for
- *   the line, which are used in the Bresenham algorithm.
- */
+ 
+ // - draw_line: Determines whether the line is horizontal or vertical and
+ //   delegates the drawing to the appropriate function.
 void	draw_line(t_data *data, t_line l)
 {
 	if (abs(l.x1 - l.x0) > abs(l.y1 - l.y0))
@@ -67,6 +45,8 @@ void	draw_line(t_data *data, t_line l)
 	}
 }
 
+// - draw_horizontal_line: Handles the drawing of lines with a shallow slope
+//   using the Bresenham algorithm.
 static void	draw_horizontal_line(t_data *data, t_line l)
 {
 	int	dir;
@@ -93,6 +73,8 @@ static void	draw_horizontal_line(t_data *data, t_line l)
 	}
 }
 
+// - draw_vertical_line: Handles the drawing of lines with a steep slope
+//   using the Bresenham algorithm.
 static void	draw_vertical_line(t_data *data, t_line l)
 {
 	int	dir;
@@ -119,6 +101,8 @@ static void	draw_vertical_line(t_data *data, t_line l)
 	}
 }
 
+// - put_pixel_in_image: Writes a pixel to the image buffer, ensuring it is
+//   within the screen boundaries.
 static void	put_pixel_in_image(t_data *data, int x, int y, int color)
 {
 	char	*pixel;
@@ -132,6 +116,8 @@ static void	put_pixel_in_image(t_data *data, int x, int y, int color)
 	return ;
 }
 
+// - set_differences: Computes the differences in x and y coordinates for
+//   the line, which are used in the Bresenham algorithm.
 static void	set_differences(t_line *line)
 {
 	line->dx = line->x1 - line->x0;
