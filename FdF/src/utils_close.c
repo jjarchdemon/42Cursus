@@ -6,12 +6,15 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:41:54 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/16 15:34:34 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/16 15:40:16 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// Closes the application window and frees all allocated resources.
+// This includes destroying the image, window, and server, as well as 
+// freeing the map and data structure.
 int	close_window(void *param)
 {
 	t_data	*data;
@@ -61,6 +64,9 @@ void	clear_image(t_data *data)
 	}
 }
 */
+
+// Clears the image by setting all pixels to a specified color (BLACK).
+// This is used to reset the image buffer before redrawing.
 void	clear_image(t_data *data)
 {
 	char	*pixel;

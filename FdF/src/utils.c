@@ -43,3 +43,29 @@ int	get_array_length(void **arr)
 		len++;
 	return (len);
 }
+
+int	htoi(char *str)
+{
+	int		result;
+	char	c;
+
+	result = 0;
+	if (!str)
+		return (0);
+	if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
+		str += 2;
+	while (*str)
+	{
+		c = *str++;
+		result *= 16;
+		if (c >= '0' && c <= '9')
+			result += c - '0';
+		else if (c >= 'a' && c <= 'f')
+			result += c - 'a' + 10;
+		else if (c >= 'A' && c <= 'F')
+			result += c - 'A' + 10;
+		else
+			break ;
+	}
+	return (result);
+}
