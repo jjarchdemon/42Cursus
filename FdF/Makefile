@@ -23,7 +23,6 @@ NAME = fdf
 
 #sources from object files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
-SRCS := $(filter-out  $(SRC_DIR)/alt/%, $(SRCS))  # Exclude the folder
 OBJS = $(SRCS:.c=.o)
 
 LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext

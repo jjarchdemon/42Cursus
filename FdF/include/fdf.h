@@ -32,6 +32,7 @@
 # define BLACK 0x000000
 # define ANGLE 0.610865	// 35
 //# define ANGLE 0.523599	// 30
+
 typedef struct s_point
 {
 	int				x;
@@ -45,12 +46,12 @@ typedef struct s_point
 
 typedef struct s_data
 {
-	void	*server;
+	void	*mlx_server;
 	void	*window;
-	void	*image;
-	char	*image_addr;
+	void	*img;
+	char	*img_addr;
 	t_point	***map;
-	int		bits_per_pixel;
+	int		bpp;
 	int		line_length;
 	int		endian;
 	int		map_dim_x;

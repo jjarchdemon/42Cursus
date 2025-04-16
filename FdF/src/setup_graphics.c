@@ -14,15 +14,15 @@
 
 void	setup_graphics(t_data *data)
 {
-	data->server = mlx_init();
-	if (!data->server)
+	data->mlx_server = mlx_init();
+	if (!data->mlx_server)
 		close_window(data);
-	data->window = mlx_new_window(data->server, WIDTH, HEIGHT, "FDF");
+	data->window = mlx_new_window(data->mlx_server, WIDTH, HEIGHT, "FDF");
 	if (!data->window)
 		close_window(data);
-	data->image = mlx_new_image(data->server, WIDTH, HEIGHT);
-	if (!data->image)
+	data->img = mlx_new_image(data->mlx_server, WIDTH, HEIGHT);
+	if (!data->img)
 		close_window(data);
-	data->image_addr = mlx_get_data_addr(data->image, &(data->bits_per_pixel),
+	data->img_addr = mlx_get_data_addr(data->img, &(data->bpp),
 			&(data->line_length), &(data->endian));
 }

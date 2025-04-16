@@ -29,8 +29,8 @@ void	draw_map(t_data *data)
 		loop_through_row(data, map);
 		++map;
 	}
-	mlx_clear_window(data->server, data->window);
-	mlx_put_image_to_window(data->server, data->window, data->image, 0, 0);
+	mlx_clear_window(data->mlx_server, data->window);
+	mlx_put_image_to_window(data->mlx_server, data->window, data->img, 0, 0);
 }
 
 // Loops through a single row of map and draws lines between points in row

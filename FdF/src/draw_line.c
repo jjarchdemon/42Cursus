@@ -108,9 +108,9 @@ static void	put_pixel_in_image(t_data *data, int x, int y, int color)
 
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
-		pixel = data->image_addr + (y * data->line_length)
-			+ (x * ((data->bits_per_pixel) / 8));
-		*(unsigned int *)pixel = mlx_get_color_value(data->server, color);
+		pixel = data->img_addr + (y * data->line_length)
+			+ (x * ((data->bpp) / 8));
+		*(unsigned int *)pixel = mlx_get_color_value(data->mlx_server, color);
 	}
 	return ;
 }

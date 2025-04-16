@@ -25,5 +25,5 @@ int	main(int ac, char **av)
 	draw_map(data);
 	mlx_key_hook(data->window, handle_esc_key, data);
 	mlx_hook(data->window, DestroyNotify, 0, close_window, data);
-	mlx_loop(data->server);
+	mlx_loop(data->mlx_server);
 }

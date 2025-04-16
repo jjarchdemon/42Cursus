@@ -13,29 +13,29 @@
 #include "fdf.h"
 
 // Closes the application window and frees all allocated resources.
-// This includes destroying the image, window, and server, as well as 
+// This includes destroying the image, window, and mlx_server, as well as 
 // freeing the map and data structure.
 int	close_window(void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
-	if (data->image)
+	if (data->img)
 	{
-		mlx_destroy_image(data->server, data->image);
-		data->image = NULL;
+		mlx_destroy_image(data->mlx_server, data->img);
+		data->img = NULL;
 	}
 	if (data->window)
 	{
-		mlx_destroy_window(data->server, data->window);
+		mlx_destroy_window(data->mlx_server, data->window);
 		data->window = NULL;
 	}
-	if (data->server)
+	if (data->mlx_server)
 	{
-		mlx_loop_end(data->server);
-		mlx_destroy_display(data->server);
-		free(data->server);
-		data->server = NULL;
+		mlx_loop_end(data->mlx_server);
+		mlx_destroy_display(data->mlx_server);
+		free(data->mlx_server);
+		data->mlx_server = NULL;
 	}
 	if (data->map)
 		free_map(data->map);
@@ -55,8 +55,8 @@ void	clear_image(t_data *data)
 	i = 0;
 	while (i < total_pixels)
 	{
-		pixel = data->image_addr + (i * ((data->bits_per_pixel) / 8));
-		*(unsigned int *)pixel = mlx_get_color_value(data->server, BLACK);
+		pixel = data->img_addr + (i * ((data->bpp) / 8));
+		*(unsigned int *)pixel = mlx_get_color_value(data->mlx_server, BLACK);
 		i++;
 	}
 }

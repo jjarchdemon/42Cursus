@@ -25,12 +25,12 @@ t_data	*create_data_struct(void)
 	data = malloc(sizeof (t_data));
 	if (!data)
 		allocation_error(data);
-	data->server = NULL;
+	data->mlx_server = NULL;
 	data->window = NULL;
-	data->image = NULL;
-	data->image_addr = NULL;
+	data->img = NULL;
+	data->img_addr = NULL;
 	data->map = NULL;
-	data->bits_per_pixel = 0;
+	data->bpp = 0;
 	data->line_length = 0;
 	data->endian = 0;
 	data->map_dim_x = 0;
