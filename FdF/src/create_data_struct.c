@@ -6,12 +6,18 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:44:22 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/16 12:12:08 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/16 12:35:05 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/*
+ * - create_data_struct: Allocates memory for a `t_data` structure and
+ *   initializes its fields to default values. This structure holds
+ *   information about the rendering environment, map dimensions, and
+ *   transformation parameters.
+ */
 t_data	*create_data_struct(void)
 {
 	t_data	*data;

@@ -6,15 +6,19 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 14:46:14 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 11:55:05 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/16 12:34:09 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	fill_with_values(t_point *point, char **values, int row_index,
+static int	set_t_point_values(t_point *point, char **values, int row_index,
 		int col_index);
 
+/*
+ * - process_word: Parses a word from the input map, splits it into components
+ *   (coordinates and optional color), and initializes a `t_point` structure.
+ */
 t_point	*process_word(char *word, int row_index, int col_index)
 {
 	int		flag;
@@ -30,7 +34,7 @@ t_point	*process_word(char *word, int row_index, int col_index)
 		free(split);
 		return (NULL);
 	}
-	flag = fill_with_values(p, split, row_index, col_index);
+	flag = set_t_point_values(p, split, row_index, col_index);
 	if (flag)
 	{
 		free(p);
@@ -40,7 +44,7 @@ t_point	*process_word(char *word, int row_index, int col_index)
 	return (p);
 }
 
-static int	fill_with_values(t_point *point, char **values,
+static int	set_t_point_values(t_point *point, char **values,
 	int row_index, int col_index)
 {
 	if (!point || !values || !(*values))
