@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_graphics.c                              :+:      :+:    :+:   */
+/*   setup_graphics.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	initialize_graphics(t_data *data)
+void	setup_graphics(t_data *data)
 {
 	data->server = mlx_init();
 	if (!data->server)

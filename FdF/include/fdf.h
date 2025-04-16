@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:31:45 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/15 12:35:02 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/16 12:11:36 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int		get_char_array_length(char **arr);
 int		get_array_length(void **arr);
 int		handle_key_events(int keycode, void *param);
 int		htoi(char *str);
-t_data	*initialize_data(void);
-void	initialize_graphics(t_data *data);
+t_data	*create_data_struct(void);
+void	setup_graphics(t_data *data);
 int		blend_color(int color_start, int color_end, double fraction);
 int		min(int a, int b);
 void	empty_map_error(t_data *data);
