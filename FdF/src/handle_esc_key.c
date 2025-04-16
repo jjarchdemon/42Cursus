@@ -14,9 +14,7 @@
 
 int	handle_esc_key(int keycode, void *param)
 {
-	//(void) keycode;//delete this
-	//(void) param;//delete this
-	if (keycode == XK_Escape)// uncomment for linux
-		close_window(param); // uncomment for linux
+	if (keycode == XK_Escape)
+		close_window(param);
 	return (0);
 }

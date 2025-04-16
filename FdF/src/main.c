@@ -24,6 +24,6 @@ int	main(int ac, char **av)
 	setup_graphics(data);
 	draw_map(data);
 	mlx_key_hook(data->window, handle_esc_key, data);
-	mlx_hook(data->window, DestroyNotify, 0, close_window, data);// uncomment for linux
+	mlx_hook(data->window, DestroyNotify, 0, close_window, data);
 	mlx_loop(data->server);
 }

@@ -22,7 +22,7 @@ int	close_window(void *param)
 	data = (t_data *)param;
 	if (data->image)
 	{
-		mlx_destroy_image(data->server, data->image); //uncomment for linux
+		mlx_destroy_image(data->server, data->image);
 		data->image = NULL;
 	}
 	if (data->window)
@@ -32,8 +32,8 @@ int	close_window(void *param)
 	}
 	if (data->server)
 	{
-		mlx_loop_end(data->server); //uncomment for linux
-		mlx_destroy_display(data->server); //uncomment for linux
+		mlx_loop_end(data->server);
+		mlx_destroy_display(data->server);
 		free(data->server);
 		data->server = NULL;
 	}
