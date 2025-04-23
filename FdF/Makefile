@@ -6,7 +6,7 @@
 #    By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/18 10:35:43 by jambatt           #+#    #+#              #
-#    Updated: 2025/04/09 16:50:54 by jambatt          ###   ########.fr        #
+#    Updated: 2025/04/23 11:31:05 by jambatt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,22 @@ LIBFT_A = $(LIBFT)/libft.a
 NAME = fdf
 
 #sources from object files
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS =	$(SRC_DIR)/blend_color.c \
+	$(SRC_DIR)/create_data_struct.c \
+	$(SRC_DIR)/draw_line.c \
+	$(SRC_DIR)/draw_line_update.c \
+	$(SRC_DIR)/draw_map.c \
+	$(SRC_DIR)/handle_esc_key.c \
+	$(SRC_DIR)/load_map_data.c \
+	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/process_line.c \
+	$(SRC_DIR)/process_word.c \
+	$(SRC_DIR)/setup_graphics.c \
+	$(SRC_DIR)/transform_map.c \
+	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/utils_close.c \
+	$(SRC_DIR)/utils_error.c \
+	$(SRC_DIR)/utils_mem.c
 OBJS = $(SRCS:.c=.o)
 
 LINUX_FLAGS = -L/usr/lib -lGL -lGLU -lX11 -lXext
