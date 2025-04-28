@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/28 13:58:56 by jambatt           #+#    #+#             */
+/*   Updated: 2025/04/28 13:58:58 by jambatt          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 /*
@@ -21,6 +33,7 @@ static int ft_atoi(const char *str);
 //1. < INT_MAX
 //2. >= 0
 //3. is a digit
+//no of philosoophers > 0
 void	parse_input(t_table *table, char **av)
 {
 	table->num_of_philos = ft_atoi(av[1]);

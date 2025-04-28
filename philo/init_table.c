@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_table.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/28 13:57:38 by jambatt           #+#    #+#             */
+/*   Updated: 2025/04/28 13:57:59 by jambatt          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 /*
@@ -69,8 +81,8 @@ static void init_philos(t_table *table)
         table->philos_array[i].meals_eaten = 0;
         table->philos_array[i].is_full = false;
         table->philos_array[i].time_since_meal = 0;
-        table->philos_array[i].l_fork = &(table->forks_array[i]);
-        table->philos_array[i].r_fork = &table->forks_array[(i + 1) % table->num_of_philos];
+        table->philos_array[i].r_fork = &(table->forks_array[i]);
+        table->philos_array[i].l_fork = &table->forks_array[(i + 1) % table->num_of_philos];
         // check logic for the right fork?
         table->philos_array[i].thread_id = 0;   //correct to init pthread_t?
         table->philos_array[i].table = table;

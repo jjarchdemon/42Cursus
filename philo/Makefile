@@ -21,7 +21,7 @@ $(NAME): $(OBJS)
 	@echo "\033[0;32mphilo compiled successfully!\033[0m"
 
 #Compile object files
-%.o: %.c
+%.o: %.c philo.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "\033[0;32mObject files created!\033[0m"
 
