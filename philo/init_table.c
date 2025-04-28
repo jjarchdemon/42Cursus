@@ -71,7 +71,7 @@ static void init_philos(t_table *table)
         table->philos_array[i].time_since_meal = 0;
         table->philos_array[i].l_fork = &(table->forks_array[i]);
         table->philos_array[i].r_fork = &table->forks_array[(i + 1) % table->num_of_philos];
-        // what is the logic for the right fork?
+        // check logic for the right fork?
         table->philos_array[i].thread_id = 0;   //correct to init pthread_t?
         table->philos_array[i].table = table;
         i++;
