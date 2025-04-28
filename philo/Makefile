@@ -5,8 +5,9 @@ CFLAGS = -Wall -Wextra -Werror -pthread
 SRCS =	debug.c \
 		error_handling.c \
 		init_table.c \
+		main.c \
 		parse_input.c \
-		main.c
+		utils.c
 OBJS = $(SRCS:.c=.o)
 ###############################################################
 DEPS = $(SRCS:.c=.d) #dependencies

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 13:58:15 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/28 14:42:39 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	size_t			id;			// philosopher id
+	size_t		id;				// philosopher id
 	size_t		meals_eaten;	// no. of meals eaten
 	bool		is_full;		// is philosopher full
 	size_t		time_since_meal;// time since last meal
