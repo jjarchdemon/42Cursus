@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 14:42:39 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:26:43 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,28 @@
  * ./philo 5 800 200 200 [5]
  */
 
+# define PHILO_MAX 200
+
 typedef struct s_table t_table;
 
 typedef pthread_mutex_t t_mtx;
 
-typedef struct s_fork
-{
-	size_t	fork_id;
-	t_mtx	fork;
-}	t_fork;
-
 typedef struct s_philo
 {
-	size_t		id;				// philosopher id
-	size_t		meals_eaten;	// no. of meals eaten
-	bool		is_full;		// is philosopher full
-	size_t		time_since_meal;// time since last meal
-	t_fork		*l_fork;		// pointer to left fork
-	t_fork		*r_fork;		// pointer to right fork
-	pthread_t	thread_id;
-	t_table		*table;			// pointer to table state
+	pthread_t	thread;
+	int			id;				// philosopher id
+	int			eating;
+	int			meals_eaten;	// no. of meals eaten
+	size_t		time_since_meal;// time since last meal | last_meal
+	
+	t_table		*table;			// pointer to table state, for the arguments
+	bool 		is_dead;		// is philosopher dead | int *dead
+	
+	t_mtx		*l_fork;		// pointer to left fork
+	t_mtx		*r_fork;		// pointer to right fork
+	t_mtx		*write_lock;
+	t_mtx		*dead_lock;
+	t_mtx		*meal_lock;
 }	t_philo;
 
 typedef struct s_table
@@ -64,17 +66,16 @@ typedef struct s_table
 	size_t	time_to_eat;	// time to eat
 	size_t	time_to_sleep;	// time to sleep
 	size_t	num_of_meals;	// number of times to eat
+
+	int		dead_flag; 
+	t_mtx	dead_lock;
+	t_mtx	write_lock;
+	t_mtx	meal_lock;
 	t_philo	*philos_array;	// array of philosophers
-	t_fork	*forks_array;	// array of forks
-	size_t	start_simulation;//when simulation starts
-	bool	end_simulation;	// triggered when a philo dies or
-							// all philos are full
 }	t_table;
 
+int		is_invalid_input(const char **av);
 
-
-
-void	parse_input(t_table *table, char **av);
 void	init_table(t_table *table);
 
 void	print_table_state(t_table *table);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:56 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 13:58:58 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:32:15 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,35 @@
 
 
 static int ft_atoi(const char *str);
+static int is_not_number(const char *str);
 
-//still need to take care that input is
-//1. < INT_MAX
-//2. >= 0
-//3. is a digit
-//no of philosoophers > 0
-void	parse_input(t_table *table, char **av)
+int	is_invalid_input(const char **av)
 {
-	table->num_of_philos = ft_atoi(av[1]);
-	table->time_to_die = ft_atoi(av[2]) * 1000;
-	table->time_to_eat = ft_atoi(av[3]) * 1000;
-	table->time_to_sleep = ft_atoi(av[4]) * 1000;
-	//i also need to ensure all the above 3 values are > 60ms, why?
-	if (av[5])
-		table->num_of_meals = ft_atoi(av[5]);
-	// can i have 0 meals?
-	else
-		table->num_of_meals = -1;//this is a flag, how?
+	if (ft_atoi(av[1]) > PHILO_MAX)	//this is for hardcoded no. of philos 
+		return (write(2,"Error: Too many philosophers\n", 29) ,1);
+	if (ft_atoi(av[1]) <= 0 || is_not_number(av[1]))
+		return (write(2,"Error: Wrong number of philosophers\n", 36) ,1);
+	if (ft_atoi(av[2]) <= 0 || is_not_number(av[2]))
+		return (write(2,"Error: Wrong time to die\n", 26), 1);
+	if (ft_atoi(av[3]) <= 0 || is_not_number(av[3]))
+		return (write(2,"Error: Wrong time to eat\n", 26), 1);
+	if (ft_atoi(av[4]) <= 0 || is_not_number(av[4]))
+		return (write(2,"Error: Wrong time to sleep\n", 28), 1);
+	if (av[5] && (ft_atoi(av[5]) <= 0 || is_not_number(av[5])))
+		return (write(2,"Error: Wrong number of meals\n", 30), 1);
+	return (0);
 }
 
-/*
-static int parse_positive_int(const char *str)
+static int is_not_number(const char *str)
 {
-	int num;
-	num = ft_atoi(str);
-	if (num < 0)
+	while (*str)
 	{
-		printf("Error: %s must be > 0\n", str);
-		return (1);
+		if (*str < '0' || *str > '9')
+			return (1);
+		str++;
 	}
+	return (0);
 }
-*/
 
 static int ft_atoi(const char *str)
 {

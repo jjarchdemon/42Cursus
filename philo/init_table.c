@@ -3,31 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_table.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:57:38 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 13:57:59 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:29:25 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 /*
-typedef struct s_table
-{
-	size_t	num_of_philos;	// done by parse_input
-	size_t	time_to_die;	// done by parse_input
-    size_t	time_to_eat;	// done by parse_input
-	size_t	time_to_sleep;	// done by parse_input
-	size_t	num_of_meals;	// done by parse_input
-
-	t_philo	*philos_array;		//malloc done 
-	t_fork	*forks_array;		//malloc done 
-	size_t	start_simulation;   //------>still to do
-	bool	end_simulation;	    // set to false
-}	t_table;
-*/
-
 static void init_forks(t_table *table);
 static void init_philos(t_table *table);
 
@@ -89,5 +74,4 @@ static void init_philos(t_table *table)
         i++;
     }
 }
-
-//write a debug function to print the table state
+*/

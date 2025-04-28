@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:57:20 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 13:57:25 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:27:50 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 //debug function for printing the table state
-
+/*
 void print_table_state(t_table *table)
 {
     size_t i;
@@ -42,3 +42,4 @@ void print_table_state(t_table *table)
         i++;
     }
 }
+*/

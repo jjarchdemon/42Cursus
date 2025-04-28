@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:32 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 13:58:45 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/28 17:31:27 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,17 @@
  * ./philo 5 800 200 200 [5]
  */
 
-int	main(int ac, char **av)
+int	main(int ac, const char **av)
 {
-	t_table	table;
-
-	if (ac == 5 || ac == 6)
-	{
-		parse_input(&table, av);//yet to implement error handling
-		//2) init the table state
-		init_table(&table);//TODO
-		print_table_state(&table);//delete this later
-		//3) start simulation
-		//start_dinner(&table);//TODO
-		//4) end simulation cleanly
-		//clean(&table);//TODO
-	}
-	else
-	{
-		printf("Please input correct arguments\n");
-		return (1);
-	}
+	//t_table	table;
+	//t_philo	stack_philos_array[PHILO_MAX];	//hardocoded max. no of philosophers
+	//t_mtx	stack_forks_array[PHILO_MAX];	//same for forks
+	if (ac != 5 && ac != 6)
+		return (write(2,"Error: Wrong number of arguments\n", 33), 1);
+	if (is_invalid_input(av))
+		return (write(2,"Error: Invalid input\n", 22), 1);
+	//1)init the table
+	//2)create the threads
+	//3)destroy the threads
 	return (0);
 }
