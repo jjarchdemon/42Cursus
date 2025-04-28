@@ -26,8 +26,6 @@
  * ./philo 5 800 200 200 [5]
  */
 
-
-static int ft_atoi(const char *str);
 static int is_not_number(const char *str);
 
 int	is_invalid_input(const char **av)
@@ -56,27 +54,4 @@ static int is_not_number(const char *str)
 		str++;
 	}
 	return (0);
-}
-
-static int ft_atoi(const char *str)
-{
-	int		sign;
-	size_t	num;
-
-	sign = 1;
-	num = 0;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		num = num * 10 + (*str - '0');
-		str++;
-	}
-	return (sign * num);
 }

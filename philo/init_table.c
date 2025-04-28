@@ -12,66 +12,55 @@
 
 #include "philo.h"
 
-/*
-static void init_forks(t_table *table);
-static void init_philos(t_table *table);
-
-void init_table(t_table *table)
+void init_table(t_table *table, const char **av, t_philo *fixed_philos_array)
 {
-    table->end_simulation = false;
-    table->philos_array = malloc(sizeof(t_philo) * table->num_of_philos);
-    if (!table->philos_array)
-    {
-        printf("Error: Memory allocation failed\n");
-        return;
-    }
-        table->forks_array = malloc(sizeof(t_fork) * table->num_of_philos);
-    if (!table->forks_array)
-    {
-        free(table->philos_array);//free the philos in the array as well?
-        printf("Error: Memory allocation failed\n");
-        return;
-    }
-    init_forks(table);
-    init_philos(table);
-    table->start_simulation = 0;//not sure
+    table->num_of_philos = ft_atoi(av[1]);
+    table->time_to_die = ft_atoi(av[2]);
+    table->time_to_eat = ft_atoi(av[3]);
+    table->time_to_sleep = ft_atoi(av[4]);
+    if (av[5])
+        table->num_of_meals = (size_t)ft_atoi(av[5]);
+    else
+        table->num_of_meals = INT_MAX; // No limit on meals
+
+    table->dead_flag = false;
+    pthread_mutex_init(&table->dead_lock, NULL);    //init dead_lock
+    pthread_mutex_init(&table->write_lock, NULL);   //init write_lock
+    pthread_mutex_init(&table->meal_lock, NULL);    //init meal_lock
+    table->philos_array = fixed_philos_array;       //init philos_array    
 }
 
-static void init_forks(t_table *table)
+void init_philos(t_table *table, const char **av, t_mtx *fixed_forks_array)
 {
-    size_t i;
+    int     i;
 
     i = 0;
-    while (i < table->num_of_philos)
+    while (i < ft_atoi(av[1]))
     {
-        table->forks_array[i].fork_id = i+1; // Fork IDs start from 1
-        if (pthread_mutex_init(&table->forks_array[i].fork, NULL) != 0)
-        {
-            printf("Error: Mutex initialization failed for fork %zu\n", i);
-            // Cleanup code here?
-            return;
-        }
-        i++;
-    }
-}
-
-static void init_philos(t_table *table)
-{
-    size_t i;
-
-    i = 0;
-    while (i < table->num_of_philos)
-    {
-        table->philos_array[i].id = i+1; // Philosopher IDs start from 1
+        table->philos_array[i].id = i + 1; // Philosopher IDs start from 1
+        table->philos_array[i].eating = 0;
         table->philos_array[i].meals_eaten = 0;
-        table->philos_array[i].is_full = false;
-        table->philos_array[i].time_since_meal = 0;
-        table->philos_array[i].r_fork = &(table->forks_array[i]);
-        table->philos_array[i].l_fork = &table->forks_array[(i + 1) % table->num_of_philos];
-        // check logic for the right fork?
-        table->philos_array[i].thread_id = 0;   //correct to init pthread_t?
+        //init time_since_meal
         table->philos_array[i].table = table;
+        //init start_time
+        table->philos_array[i].is_dead = false;//careful with this
+        table->philos_array[i].l_fork = &fixed_forks_array[i];
+        if (i == 0)
+            table->philos_array[i].r_fork = &fixed_forks_array[ft_atoi(av[1]) - 1];
+        else
+            table->philos_array[i].r_fork = &fixed_forks_array[i - 1];     
         i++;
     }
 }
-*/
+
+void init_forks(const char **av, t_mtx *fixed_forks_array)
+{
+    int i;
+
+    i = 0;
+    while (i < ft_atoi(av[1]))
+    {
+        pthread_mutex_init(&fixed_forks_array[i], NULL); //understand this
+        i++;
+    }
+}

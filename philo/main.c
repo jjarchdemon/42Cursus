@@ -28,14 +28,17 @@
 
 int	main(int ac, const char **av)
 {
-	//t_table	table;
-	//t_philo	stack_philos_array[PHILO_MAX];	//hardocoded max. no of philosophers
-	//t_mtx	stack_forks_array[PHILO_MAX];	//same for forks
+	t_table	table;
+	t_philo	fixed_philos_array[PHILO_MAX];	//hardocoded max. no of philosophers
+	t_mtx	fixed_forks_array[PHILO_MAX];	//same for forks
 	if (ac != 5 && ac != 6)
 		return (write(2,"Error: Wrong number of arguments\n", 33), 1);
 	if (is_invalid_input(av))
 		return (write(2,"Error: Invalid input\n", 22), 1);
 	//1)init the table
+	init_table(&table, av, fixed_philos_array);
+	init_forks(av, fixed_forks_array);
+	init_philos(&table, av, fixed_forks_array);
 	//2)create the threads
 	//3)destroy the threads
 	return (0);

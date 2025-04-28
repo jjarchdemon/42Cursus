@@ -50,6 +50,7 @@ typedef struct s_philo
 	size_t		time_since_meal;// time since last meal | last_meal
 	
 	t_table		*table;			// pointer to table state, for the arguments
+	size_t		start_time;		// start time of the simulation?
 	bool 		is_dead;		// is philosopher dead | int *dead
 	
 	t_mtx		*l_fork;		// pointer to left fork
@@ -67,7 +68,7 @@ typedef struct s_table
 	size_t	time_to_sleep;	// time to sleep
 	size_t	num_of_meals;	// number of times to eat
 
-	int		dead_flag; 
+	bool		dead_flag; 
 	t_mtx	dead_lock;
 	t_mtx	write_lock;
 	t_mtx	meal_lock;
@@ -76,9 +77,12 @@ typedef struct s_table
 
 int		is_invalid_input(const char **av);
 
-void	init_table(t_table *table);
+void init_table(t_table *table, const char **av, t_philo *fixed_philos_array);
+void init_philos(t_table *table, const char **av, t_mtx *fixed_forks_array);
+void init_forks(const char **av, t_mtx *fixed_forks_array);
+
 
 void	print_table_state(t_table *table);
 
-
+int ft_atoi(const char *str);
 #endif

@@ -24,13 +24,13 @@ $(NAME): $(OBJS)
 #Compile object files
 %.o: %.c philo.h
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "\033[0;32mObject files created!\033[0m"
+#	@echo "\033[0;32mObject files created!\033[0m"
 
 ###############################################################
 #Generate dependencies
 %.d: %.c
 	@$(CC) $(CFLAGS) -MM $< -MF $@
-	@echo "\033[0;32mDependencies created!\033[0m"
+#	@echo "\033[0;32mDependencies created!\033[0m"
 
 # Include dependencies
 -include $(DEPS)
