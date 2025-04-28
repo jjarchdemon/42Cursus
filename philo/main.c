@@ -20,14 +20,14 @@ int	main(int ac, char **av)
 
 	if (ac == 5 || ac == 6)
 	{
-		//1) error checking and parsing the input
-		parse_input(&table, av);//TODO
+		parse_input(&table, av);//yet to implement error handling
 		//2) init the table state
 		init_table(&table);//TODO
+		print_table_state(&table);//delete this later
 		//3) start simulation
-		start_dinner(&table);//TODO
+		//start_dinner(&table);//TODO
 		//4) end simulation cleanly
-		clean(&table);//TODO
+		//clean(&table);//TODO
 	}
 	else
 	{

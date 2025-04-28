@@ -2,7 +2,11 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
 
 #sources from object files
-SRCS =	blend_color.c #change this 
+SRCS =	debug.c \
+		error_handling.c \
+		init_table.c \
+		parse_input.c \
+		main.c
 OBJS = $(SRCS:.c=.o)
 ###############################################################
 DEPS = $(SRCS:.c=.d) #dependencies

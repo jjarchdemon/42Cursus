@@ -29,13 +29,13 @@ typedef pthread_mutex_t t_mtx;
 
 typedef struct s_fork
 {
+	size_t	fork_id;
 	t_mtx	fork;
-	int		fork_id;
 }	t_fork;
 
 typedef struct s_philo
 {
-	int			id;				// philosopher id
+	size_t			id;				// philosopher id
 	size_t		meals_eaten;	// no. of meals eaten
 	bool		is_full;		// is philosopher full
 	size_t		time_since_meal;// time since last meal
@@ -52,8 +52,8 @@ typedef struct s_table
 	size_t	time_to_eat;	// time to eat
 	size_t	time_to_sleep;	// time to sleep
 	size_t	num_of_meals;	// number of times to eat
-	t_fork	*forks;			// array of forks
-	t_philo	*philos;		// array of philosophers
+	t_philo	*philos_array;	// array of philosophers
+	t_fork	*forks_array;	// array of forks
 	size_t	start_simulation;//when simulation starts
 	bool	end_simulation;	// triggered when a philo dies or
 							// all philos are full
@@ -63,9 +63,9 @@ typedef struct s_table
 
 
 void	parse_input(t_table *table, char **av);
+void	init_table(t_table *table);
 
-
-
+void	print_table_state(t_table *table);
 
 
 #endif
