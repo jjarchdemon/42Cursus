@@ -34,3 +34,15 @@ int ft_atoi(const char *str)
 	}
 	return (sign * num);
 }
+
+//get the exact time in milliseconds
+size_t get_now_time(void)
+{
+	struct timeval	tv;
+	size_t			time;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		write(2,"Error: gettimeofday failed\n", 27);
+	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	return (time);
+}

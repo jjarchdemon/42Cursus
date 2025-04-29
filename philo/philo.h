@@ -85,4 +85,5 @@ void init_forks(const char **av, t_mtx *fixed_forks_array);
 void	print_table_state(t_table *table);
 
 int ft_atoi(const char *str);
+size_t get_now_time(void);
 #endif

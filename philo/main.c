@@ -39,6 +39,8 @@ int	main(int ac, const char **av)
 	init_table(&table, av, fixed_philos_array);
 	init_forks(av, fixed_forks_array);
 	init_philos(&table, av, fixed_forks_array);
+	
+	print_table_state(&table);
 	//2)create the threads
 	//3)destroy the threads
 	return (0);

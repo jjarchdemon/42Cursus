@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_table.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,9 +40,9 @@ void init_philos(t_table *table, const char **av, t_mtx *fixed_forks_array)
         table->philos_array[i].id = i + 1; // Philosopher IDs start from 1
         table->philos_array[i].eating = 0;
         table->philos_array[i].meals_eaten = 0;
-        //init time_since_meal
+        table->philos_array[i].time_since_meal = get_now_time();
         table->philos_array[i].table = table;
-        //init start_time
+        table->philos_array[i].start_time = get_now_time();
         table->philos_array[i].is_dead = false;//careful with this
         table->philos_array[i].l_fork = &fixed_forks_array[i];
         if (i == 0)

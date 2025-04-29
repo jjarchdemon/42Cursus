@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -pthread
 #sources from object files
 SRCS =	debug.c \
 		error_handling.c \
-		init_table.c \
+		init.c \
 		main.c \
 		parse_input.c \
 		utils.c
