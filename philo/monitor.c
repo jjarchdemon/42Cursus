@@ -1,7 +1,7 @@
 #include "philo.h"
 
 //print messsage
-void print_message(char *message, t_philo *philo, int id)
+void print_message(t_philo *philo, int id, char *message) 
 {
     size_t time;
 
