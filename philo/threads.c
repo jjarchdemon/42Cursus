@@ -21,9 +21,9 @@ void routine(void *philosopher)
 		ft_usleep(1);  // to avoid deadlock? and why 1?
 	while (!is_philo_dead(philo))
 	{
-		eating(philo);//TODO
-		sleeping(philo);//TODO
-		thinking(philo);//TODO
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
 	}
 	return (philosopher);
 }
@@ -36,7 +36,7 @@ int	create_threads(t_table *table, t_mtx *fixed_forks_array)
 	if (pthread_create(&observer, NULL, &monitor, table->philos_array) != 0)
 	{
 		destroy_mtxs_n_forks(table, fixed_forks_array);
-		//print error message "Error: Thread creation not possible"
+		print_error_message("Waiter thread not created");
 		return (1);
 	}
 	i = 0;
@@ -46,7 +46,7 @@ int	create_threads(t_table *table, t_mtx *fixed_forks_array)
 				&table->philos_array[i]) != 0)
 		{
 			destroy_mtxs_n_forks(table, fixed_forks_array);
-			//print error message "Error: Thread creation not possible"
+			print_error_message("Threads not created");
 			return (1);
 		}
 		i++;
@@ -55,7 +55,7 @@ int	create_threads(t_table *table, t_mtx *fixed_forks_array)
 	if (pthread_join(observer, NULL) != 0)
 	{
 		destroy_mtxs_n_forks(table, fixed_forks_array);
-		//print error message "Error: Thread joining not possible"
+		print_error_message("Waiter thread didn't join");
 		return (1);
 	}
 	while (i < table->num_of_philos)
@@ -63,7 +63,7 @@ int	create_threads(t_table *table, t_mtx *fixed_forks_array)
 		if (pthread_join(table->philos_array[i].thread, NULL) != 0)
 		{
 			destroy_mtxs_n_forks(table, fixed_forks_array);
-			//print error message "Error: Thread joining not possible"
+			print_error_message("Threads not joined");
 			return (1);
 		}
 		i++;

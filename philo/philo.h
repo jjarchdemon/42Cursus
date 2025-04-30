@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/30 13:52:06 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 15:02:06 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,18 @@ void init_forks(const char **av, t_mtx *fixed_forks_array);
 
 void	print_table_state(t_table *table);
 
+
+
+void routine(void *philosopher);
+void *monitor(void *fixed_philos_array);
+
+
 //utils.c
 int ft_atoi(const char *str);
 size_t get_now_time(void);
 void destroy_mtxs_n_forks(t_table *table, t_mtx *fixed_forks_array);
 void ft_usleep(size_t time);
 void print_elapsed_time(t_philo *philo);
+
+void print_error_message(char *message);
 #endif
