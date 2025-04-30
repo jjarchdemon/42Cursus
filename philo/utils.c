@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:48:35 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/30 12:24:56 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 13:52:43 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,12 @@ size_t get_now_time(void)
 		write(2,"Error: gettimeofday failed\n", 27);
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (time);
+}
+
+void print_elapsed_time(t_philo *philo)
+{
+    size_t elapsed_time;
+
+    elapsed_time = get_now_time() - philo->start_time;
+    printf("%zu ", elapsed_time);
 }
