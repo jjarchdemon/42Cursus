@@ -12,7 +12,7 @@ int is_philo_dead(t_philo *philo)
 	return (0);
 }
 
-void routine(void *philosopher)
+void *routine(void *philosopher)
 {
 	t_philo	*philo;
 

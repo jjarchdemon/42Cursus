@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/30 15:02:06 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 16:00:10 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	size_t	num_of_philos;	// number of philosophers
+	int	num_of_philos;	// number of philosophers
 	size_t	time_to_die;	// time to die
 	size_t	time_to_eat;	// time to eat
 	size_t	time_to_sleep;	// time to sleep
-	size_t	num_of_meals;	// number of times to eat
+	int	num_of_meals;	// number of times to eat
 
 	bool	dead_flag; 
 	t_mtx	dead_lock;
@@ -83,12 +83,17 @@ void init_forks(const char **av, t_mtx *fixed_forks_array);
 
 
 void	print_table_state(t_table *table);
+int is_philo_dead(t_philo *philo);
 
-
-
-void routine(void *philosopher);
+void *routine(void *philosopher);
 void *monitor(void *fixed_philos_array);
 
+void thinking(t_philo *philo);
+void sleeping(t_philo *philo);
+void eating(t_philo *philo);
+
+int	create_threads(t_table *table, t_mtx *fixed_forks_array);
+void print_with_lock(t_philo *philo, const char *message);
 
 //utils.c
 int ft_atoi(const char *str);
@@ -96,6 +101,5 @@ size_t get_now_time(void);
 void destroy_mtxs_n_forks(t_table *table, t_mtx *fixed_forks_array);
 void ft_usleep(size_t time);
 void print_elapsed_time(t_philo *philo);
-
 void print_error_message(char *message);
 #endif

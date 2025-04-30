@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:57:20 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 17:27:50 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 15:57:28 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void print_table_state(t_table *table)
     size_t i;
 
     i = 0;
-    printf("Number of Philosophers: %zu\n", table->num_of_philos);
+    printf("Number of Philosophers: %zu\n", (size_t)table->num_of_philos);
     printf("Time to Die (ms): %zu\n", table->time_to_die);
     printf("Time to Eat (ms): %zu\n", table->time_to_eat);
     printf("Time to Sleep (ms): %zu\n", table->time_to_sleep);
-    printf("Number of Meals: %zu\n", table->num_of_meals);
+    printf("Number of Meals: %zu\n", (size_t)table->num_of_meals);
     printf("Dead Flag: %s\n", table->dead_flag ? "true" : "false");
     printf("Table pointer: %p\n", (void *)table);
-    while (i < table->num_of_philos)
+    while (i < (size_t)table->num_of_philos)
     {
         printf("Philosopher ID: %d\n", table->philos_array[i].id);
         printf("  Eating: %d\n", table->philos_array[i].eating);

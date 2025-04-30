@@ -23,14 +23,8 @@ int check_if_dead(t_philo *fixed_philos_array)
     {
         if (philosopher_dead(&fixed_philos_array[i], fixed_philos_array[i].table->time_to_die))
         {
-            pthread_mutex_lock(fixed_philos_array[i].write_lock);
-	        if (!is_philo_dead(fixed_philos_array[i]))
-	        {
-		        print_elapsed_time(&fixed_philos_array[i]);
-		        printf("%d died\n", fixed_philos_array[i].id);
-	        }
-	        pthread_mutex_unlock(fixed_philos_array[i].write_lock);
-            
+            print_with_lock(&fixed_philos_array[i], "died");
+
             pthread_mutex_lock(fixed_philos_array[0].dead_lock);
             fixed_philos_array[i].is_dead = true;
             pthread_mutex_unlock(fixed_philos_array[0].dead_lock);
@@ -39,7 +33,7 @@ int check_if_dead(t_philo *fixed_philos_array)
         }
         i++;
     }
-
+    return (0);
 }
 
 //function to check if all philosophers have eaten the required number of meals
@@ -76,7 +70,6 @@ int check_if_all_ate(t_philo *fixed_philos_array)
 void *monitor(void *fixed_philos_array)
 {
     t_philo	*the_philos_array;
-    int		i;
 
     the_philos_array = (t_philo *)fixed_philos_array;
     while (1)

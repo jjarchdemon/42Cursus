@@ -6,7 +6,11 @@ SRCS =	debug.c \
 		error_handling.c \
 		init.c \
 		main.c \
+		monitor.c \
+		more_utils.c \
 		parse_input.c \
+		routine.c \
+		threads.c \
 		utils.c
 OBJS = $(SRCS:.c=.o)
 ###############################################################

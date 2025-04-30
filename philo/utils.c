@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:48:35 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/30 15:02:54 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 15:41:57 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void ft_usleep(size_t time)
 	start_time = get_now_time();
 	while ((get_now_time() - start_time) < time)
 		usleep(200);
-	return (0);
 }
 
 //get the exact time in milliseconds
