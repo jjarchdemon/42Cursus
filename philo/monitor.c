@@ -43,7 +43,32 @@ int check_if_dead(t_philo *fixed_philos_array)
 }
 
 //function to check if all philosophers have eaten the required number of meals
+int check_if_all_ate(t_philo *fixed_philos_array)
+{
+    int i;
+    int finished_eating;
 
+    i = 0;
+    finished_eating = 0;
+    if (fixed_philos_array[0].table->num_of_meals == -1)
+        return (0);
+    while (i < fixed_philos_array[0].table->num_of_philos)
+    {
+        pthread_mutex_lock(fixed_philos_array[i].meal_lock);
+        if (fixed_philos_array[i].meals_eaten >= fixed_philos_array[i].table->num_of_meals)
+            finished_eating++;
+        pthread_mutex_unlock(fixed_philos_array[i].meal_lock);
+        i++;
+    }
+    if (finished_eating == fixed_philos_array[0].table->num_of_philos)
+    {
+        pthread_mutex_lock(fixed_philos_array[0].dead_lock);
+        fixed_philos_array[0].is_dead = true;
+        pthread_mutex_unlock(fixed_philos_array[0].dead_lock);
+        return (1);
+    }
+    return (0);
+}
 
 
 //monitor routine
