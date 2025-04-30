@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 17:26:43 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 09:11:26 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_table
 	size_t	time_to_sleep;	// time to sleep
 	size_t	num_of_meals;	// number of times to eat
 
-	bool		dead_flag; 
+	bool	dead_flag; 
 	t_mtx	dead_lock;
 	t_mtx	write_lock;
 	t_mtx	meal_lock;
@@ -84,6 +84,9 @@ void init_forks(const char **av, t_mtx *fixed_forks_array);
 
 void	print_table_state(t_table *table);
 
+//utils.c
 int ft_atoi(const char *str);
 size_t get_now_time(void);
+void destroy_mtxs_n_forks(t_table *table, t_mtx *fixed_forks_array);
+void ft_usleep(size_t time);
 #endif

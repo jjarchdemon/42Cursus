@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:48:35 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 14:48:52 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 12:24:56 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,34 @@ int ft_atoi(const char *str)
 		str++;
 	}
 	return (sign * num);
+}
+
+void destroy_mtxs_n_forks(t_table *table, t_mtx *fixed_forks_array)
+{
+	int i;
+
+	i = 0;
+	//destroy the forks mutexes in the fork_array
+	while (i < table->num_of_philos)
+	{
+		pthread_mutex_destroy(&fixed_forks_array[i]);
+		i++;
+	}
+	//destroy the mutexes
+	pthread_mutex_destroy(&table->write_lock);
+	pthread_mutex_destroy(&table->dead_lock);
+	pthread_mutex_destroy(&table->meal_lock);
+}
+
+// improved usleep function in milliseconds
+void ft_usleep(size_t time)
+{
+	size_t	start_time;
+
+	start_time = get_now_time();
+	while ((get_now_time() - start_time) < time)
+		usleep(200);
+	return (0);
 }
 
 //get the exact time in milliseconds
