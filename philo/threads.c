@@ -3,7 +3,7 @@
 int is_philo_dead(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
-	if (philo->is_dead == true)
+	if (philo->is_dead)
 	{
 		pthread_mutex_unlock(philo->dead_lock);
 		return (1);
@@ -42,7 +42,7 @@ int	create_threads(t_table *table, t_mtx *fixed_forks_array)
 	i = 0;
 	while (i < table->num_of_philos)
 	{
-		if (pthread_create(&table->philos_array[i].thread, NULL, &philo_routine,
+		if (pthread_create(&table->philos_array[i].thread, NULL, &routine,
 				&table->philos_array[i]) != 0)
 		{
 			destroy_mtxs_n_forks(table, fixed_forks_array);

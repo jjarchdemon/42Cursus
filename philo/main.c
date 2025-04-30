@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:32 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/28 17:31:27 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/04/30 13:37:55 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(int ac, const char **av)
 	init_forks(av, fixed_forks_array);
 	init_philos(&table, av, fixed_forks_array);
 	
-	print_table_state(&table);
-	//2)create the threads
+	print_table_state(&table);//for debugging
+	create_threads(&table, fixed_forks_array);
 	//3)destroy the threads
 	return (0);
 }
