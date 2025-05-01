@@ -1,16 +1,16 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
+EXTRAFLAGS = -g3 -fsanitize=address
 
 #sources from object files
 SRCS =	debug.c \
-		error_handling.c \
 		init.c \
 		main.c \
 		monitor.c \
-		more_utils.c \
 		parse_input.c \
 		routine.c \
 		threads.c \
+		utils_basic.c \
 		utils.c
 OBJS = $(SRCS:.c=.o)
 ###############################################################
@@ -22,7 +22,7 @@ NAME = philo
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(EXTRAFLAGS) $(OBJS) -o $(NAME)
 	@echo "\033[0;32mphilo compiled successfully!\033[0m"
 
 #Compile object files

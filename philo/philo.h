@@ -18,7 +18,6 @@
 # include <stdio.h>     //printf
 # include <unistd.h>    //write, usleep
 # include <string.h>    //memset
-# include <stdbool.h>	//bool type
 # include <limits.h>    //INT_MAX 
 
 /*
@@ -48,16 +47,14 @@ typedef struct s_philo
 	int			eating;
 	int			meals_eaten;	// no. of meals eaten
 	size_t		time_since_meal;// time since last meal | last_meal
-	
-	t_table		*table;			// pointer to table state, for the arguments
 	size_t		start_time;		// start time of the simulation?
-	bool 		is_dead;		// is philosopher dead | int *dead
-	
+	int 		*dead;		// is philosopher dead | int *dead
 	t_mtx		*l_fork;		// pointer to left fork
 	t_mtx		*r_fork;		// pointer to right fork
 	t_mtx		*write_lock;
 	t_mtx		*dead_lock;
 	t_mtx		*meal_lock;
+	t_table		*table;			// pointer to table state, for the arguments
 }	t_philo;
 
 typedef struct s_table
@@ -68,38 +65,43 @@ typedef struct s_table
 	size_t	time_to_sleep;	// time to sleep
 	int	num_of_meals;	// number of times to eat
 
-	bool	dead_flag; 
+	int	dead_flag; 
 	t_mtx	dead_lock;
 	t_mtx	write_lock;
 	t_mtx	meal_lock;
 	t_philo	*philos_array;	// array of philosophers
 }	t_table;
 
+//parsing input
 int		is_invalid_input(const char **av);
 
-void init_table(t_table *table, const char **av, t_philo *fixed_philos_array);
-void init_philos(t_table *table, const char **av, t_mtx *fixed_forks_array);
-void init_forks(const char **av, t_mtx *fixed_forks_array);
+// initialization
+void init_table(t_table *table, const char **av, t_philo *philos_array);
+void init_philos(t_table *table, const char **av, t_mtx *forks_array);
+void init_forks(const char **av, t_mtx *forks_array);
 
+//threads
+int	create_threads(t_table *table, t_mtx *forks_array);
 
-void	print_table_state(t_table *table);
-int is_philo_dead(t_philo *philo);
-
-void *routine(void *philosopher);
-void *monitor(void *fixed_philos_array);
-
+//routine
 void thinking(t_philo *philo);
 void sleeping(t_philo *philo);
 void eating(t_philo *philo);
 
-int	create_threads(t_table *table, t_mtx *fixed_forks_array);
-void print_with_lock(t_philo *philo, const char *message);
+//two thread things
+void *routine(void *philosopher);
+void *monitor(void *philos_array);
 
+int is_philo_dead(t_philo *philo);
 //utils.c
 int ft_atoi(const char *str);
 size_t get_now_time(void);
-void destroy_mtxs_n_forks(t_table *table, t_mtx *fixed_forks_array);
+void destroy_mtxs_n_forks(t_table *table, t_mtx *forks_array);
 void ft_usleep(size_t time);
-void print_elapsed_time(t_philo *philo);
 void print_error_message(char *message);
+void print_with_lock(t_philo *philo, const char *message);
+
+
+// debug
+void	print_table_state(t_table *table);
 #endif

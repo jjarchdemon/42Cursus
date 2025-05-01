@@ -1,17 +1,5 @@
 #include "philo.h"
 
-//helper function to print a message with lock
-void print_with_lock(t_philo *philo, const char *message)
-{
-	pthread_mutex_lock(philo->write_lock);
-	if (!is_philo_dead(philo))
-	{
-		print_elapsed_time(philo);
-		printf("%d %s\n", philo->id, message);
-	}
-	pthread_mutex_unlock(philo->write_lock);
-}
-
 void thinking(t_philo *philo)
 {
 	print_with_lock(philo, "is thinking");
@@ -20,13 +8,12 @@ void thinking(t_philo *philo)
 void sleeping(t_philo *philo)
 {
 	print_with_lock(philo, "is sleeping");
-	usleep(philo->table->time_to_sleep * 1000);
+	ft_usleep(philo->table->time_to_sleep);
 }
 
 void eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
-	
 	print_with_lock(philo, "has taken a fork");
 
 	//condition for when no of philos is 1
@@ -38,10 +25,9 @@ void eating(t_philo *philo)
 	}
 	
 	pthread_mutex_lock(philo->l_fork);
-
 	print_with_lock(philo, "has taken a fork");
 
-	philo->eating = 1;// convert this to bool?
+	philo->eating = 1;
 	print_with_lock(philo, "is eating");
 
 	pthread_mutex_lock(philo->meal_lock);
@@ -56,3 +42,4 @@ void eating(t_philo *philo)
 	pthread_mutex_unlock(philo->r_fork);
 
 }
+

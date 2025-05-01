@@ -12,21 +12,21 @@
 
 #include "philo.h"
 
-void destroy_mtxs_n_forks(t_table *table, t_mtx *fixed_forks_array)
+void destroy_mtxs_n_forks(t_table *table, t_mtx *forks_array)
 {
 	int i;
 
-	i = 0;
-	//destroy the forks mutexes in the fork_array
-	while (i < table->num_of_philos)
-	{
-		pthread_mutex_destroy(&fixed_forks_array[i]);
-		i++;
-	}
 	//destroy the mutexes
 	pthread_mutex_destroy(&table->write_lock);
 	pthread_mutex_destroy(&table->dead_lock);
 	pthread_mutex_destroy(&table->meal_lock);
+	i = 0;
+	//destroy the forks mutexes in the fork_array
+	while (i < table->num_of_philos)
+	{
+		pthread_mutex_destroy(&forks_array[i]);
+		i++;
+	}
 }
 
 // improved usleep function in milliseconds
@@ -36,7 +36,7 @@ void ft_usleep(size_t time)
 
 	start_time = get_now_time();
 	while ((get_now_time() - start_time) < time)
-		usleep(200);
+		usleep(500);
 }
 
 //get the exact time in milliseconds
@@ -57,4 +57,16 @@ void print_elapsed_time(t_philo *philo)
 
     elapsed_time = get_now_time() - philo->start_time;
     printf("%zu ", elapsed_time);
+}
+
+//helper function to print a message with lock
+void print_with_lock(t_philo *philo, const char *message)
+{
+	pthread_mutex_lock(philo->write_lock);
+	if (!is_philo_dead(philo))
+	{
+		print_elapsed_time(philo);
+		printf("%d %s\n", philo->id, message);
+	}
+	pthread_mutex_unlock(philo->write_lock);
 }

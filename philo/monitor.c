@@ -1,7 +1,8 @@
+/* ************************************************************************** */
 #include "philo.h"
 
 //checks if philosopher is dead
-int philosopher_dead(t_philo *philo, size_t time_to_die)
+static int philosopher_dead(t_philo *philo, size_t time_to_die)
 {
     pthread_mutex_lock(philo->meal_lock);
     if (get_now_time() - philo->time_since_meal >= time_to_die && philo->eating == 0)
@@ -14,20 +15,20 @@ int philosopher_dead(t_philo *philo, size_t time_to_die)
 }
 
 //check if any philosopher is dead
-int check_if_dead(t_philo *fixed_philos_array)
+static int check_if_dead(t_philo *philos_array)
 {
     int i;
 
     i = 0;
-    while (i < fixed_philos_array[0].table->num_of_philos)
+    while (i < philos_array[0].table->num_of_philos)
     {
-        if (philosopher_dead(&fixed_philos_array[i], fixed_philos_array[i].table->time_to_die))
+        if (philosopher_dead(&philos_array[i], philos_array[i].table->time_to_die))
         {
-            print_with_lock(&fixed_philos_array[i], "died");
+            print_with_lock(&philos_array[i], "died");
 
-            pthread_mutex_lock(fixed_philos_array[0].dead_lock);
-            fixed_philos_array[i].is_dead = true;
-            pthread_mutex_unlock(fixed_philos_array[0].dead_lock);
+            pthread_mutex_lock(philos_array[0].dead_lock);
+            *philos_array->dead = 1;//what is this syntax?
+            pthread_mutex_unlock(philos_array[0].dead_lock);
             
             return (1);
         }
@@ -37,28 +38,28 @@ int check_if_dead(t_philo *fixed_philos_array)
 }
 
 //function to check if all philosophers have eaten the required number of meals
-int check_if_all_ate(t_philo *fixed_philos_array)
+static int check_if_all_ate(t_philo *philos_array)
 {
     int i;
     int finished_eating;
 
     i = 0;
     finished_eating = 0;
-    if (fixed_philos_array[0].table->num_of_meals == -1)
+    if (philos_array[0].table->num_of_meals == -1)
         return (0);
-    while (i < fixed_philos_array[0].table->num_of_philos)
+    while (i < philos_array[0].table->num_of_philos)
     {
-        pthread_mutex_lock(fixed_philos_array[i].meal_lock);
-        if (fixed_philos_array[i].meals_eaten >= fixed_philos_array[i].table->num_of_meals)
+        pthread_mutex_lock(philos_array[i].meal_lock);
+        if (philos_array[i].meals_eaten >= philos_array[i].table->num_of_meals)
             finished_eating++;
-        pthread_mutex_unlock(fixed_philos_array[i].meal_lock);
+        pthread_mutex_unlock(philos_array[i].meal_lock);
         i++;
     }
-    if (finished_eating == fixed_philos_array[0].table->num_of_philos)
+    if (finished_eating == philos_array[0].table->num_of_philos)
     {
-        pthread_mutex_lock(fixed_philos_array[0].dead_lock);
-        fixed_philos_array[0].is_dead = true;
-        pthread_mutex_unlock(fixed_philos_array[0].dead_lock);
+        pthread_mutex_lock(philos_array[0].dead_lock);
+        *philos_array->dead = 1;
+        pthread_mutex_unlock(philos_array[0].dead_lock);
         return (1);
     }
     return (0);
@@ -66,16 +67,15 @@ int check_if_all_ate(t_philo *fixed_philos_array)
 
 
 //monitor routine
-
-void *monitor(void *fixed_philos_array)
+void *monitor(void *philos_array)
 {
     t_philo	*the_philos_array;
 
-    the_philos_array = (t_philo *)fixed_philos_array;
+    the_philos_array = (t_philo *)philos_array;
     while (1)
     {
         if (check_if_dead(the_philos_array) == 1 || check_if_all_ate(the_philos_array) == 1)
             break;
     }
-    return (fixed_philos_array); 
+    return (philos_array); 
 }
