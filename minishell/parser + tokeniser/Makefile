@@ -3,7 +3,7 @@ NAME = minishell
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude
-LDFLAGS = -lreadline
+LDFLAGS = -lreadline -lncurses
 # CFLAGS = -Wall -Wextra -Iinclude -g # <---------------------------------------
 
 # Directories
@@ -19,6 +19,7 @@ SRCS = $(SRC_DIR)/main.c \
 		$(SRC_DIR)/tokenizer.c \
 		$(SRC_DIR)/tokenizer_utils.c \
 		$(SRC_DIR)/astree.c \
+		$(SRC_DIR)/signals.c
 
 # Header files
 HDRS = $(INCLUDE_DIR)/minishell.h
@@ -31,7 +32,7 @@ all: $(NAME)
 
 # Rules to build the executables
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Object files depend on their respective source files
 $(OBJS): %.o: %.c $(HDRS)

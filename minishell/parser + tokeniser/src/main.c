@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:23:10 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/12 14:00:54 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/14 10:56:22 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,24 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	t_token	*token_ll;
-	Parser	parser; //new
+	Parser	parser;
 
 	(void) argc;
 	(void) argv;
 	(void) envp;
+
+	setup_signals(); // Initialize signal handlers
+	// signal(SIGQUIT, SIG_IGN); // simple solution for (ctrl-\)
 	line = NULL;
 	while (1)
 	{
 		line = readline(PROMPT);
 		if (line == NULL)
+		{
+			write(1, "exit\n", 5); // Handle ctrl-D (EOF)
 			exit(EXIT_SUCCESS);
-		//printf("line\t->\t'%s'\n", line);
+		}
+		printf("line\t->\t'%s'\n", line);
 		token_ll = tokenize(line);
 
 		parser.current = token_ll; // Initialize parser with the token list

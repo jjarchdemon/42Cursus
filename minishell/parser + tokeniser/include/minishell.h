@@ -6,15 +6,19 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 10:52:33 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/12 13:49:14 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/14 11:10:46 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <signal.h>	//signal, sigaction, sigemptyset, sigaddset, kill
+#include <unistd.h> //write
 
 #include <readline/readline.h>
+#include <readline/history.h>
+#include <bits/types/sigset_t.h>	//sigset_t (show not be necessary)
 
 #define PROMPT "minishell$ "
 
@@ -77,9 +81,14 @@ typedef struct ASTNode
 typedef struct {
 	t_token *current;
 } Parser;
-
-
-
+/*
+typedef struct s_sigaction
+{
+	void (*sa_handler)(int);
+	sigset_t sa_mask;	//why is this an error?
+	int sa_flags;
+} t_sigaction;
+*/
 void	del_content(void *content);
 int		ft_isspace(char c);
 void	ft_lstclear(t_token **lst, void (*del)(void *));
@@ -108,3 +117,5 @@ ASTNode *parse_command(Parser *parser);
 ASTNode *parse_pipeline(Parser *parser);
 ASTNode *parse_sequence(Parser *parser);
 ASTNode *parse(Parser *parser);
+
+void setup_signals(void);
