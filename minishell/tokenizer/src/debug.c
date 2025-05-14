@@ -14,9 +14,6 @@
 
 void	print_tokens(t_token *token)
 {
-	int	i;
-
-	i = 0;
 	if (token == NULL)
 		printf("There are no tokens\n");
 	else
