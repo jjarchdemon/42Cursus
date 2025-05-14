@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:23:10 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/14 10:56:22 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/14 14:54:59 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int argc, char **argv, char **envp)
 	(void) envp;
 
 	setup_signals(); // Initialize signal handlers
-	// signal(SIGQUIT, SIG_IGN); // simple solution for (ctrl-\)
 	line = NULL;
 	while (1)
 	{
@@ -45,7 +44,7 @@ int	main(int argc, char **argv, char **envp)
 		parser.current = token_ll; // Initialize parser with the token list
 		ASTNode *tree = parse(&parser); // Parse the tokens into an AST
 		print_ast_tree(tree, "", 1); // Print the AST
-		// free_ast_tree(tree); //TODO Free the AST 
+		free_ast_tree(tree);
 		// add_history(line);
 
 		free(line);

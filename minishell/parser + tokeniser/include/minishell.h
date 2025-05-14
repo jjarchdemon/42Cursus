@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 10:52:33 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/14 11:10:46 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/14 14:49:35 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,7 @@ typedef struct ASTNode
 typedef struct {
 	t_token *current;
 } Parser;
-/*
-typedef struct s_sigaction
-{
-	void (*sa_handler)(int);
-	sigset_t sa_mask;	//why is this an error?
-	int sa_flags;
-} t_sigaction;
-*/
+
 void	del_content(void *content);
 int		ft_isspace(char c);
 void	ft_lstclear(t_token **lst, void (*del)(void *));
@@ -112,6 +105,7 @@ t_token	*tokenize(char *line);
 
 
 void print_ast_tree(ASTNode *node, const char *prefix, int is_last);
+void	free_ast_tree(ASTNode *node);
 
 ASTNode *parse_command(Parser *parser);
 ASTNode *parse_pipeline(Parser *parser);

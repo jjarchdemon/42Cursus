@@ -6,75 +6,11 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 09:43:23 by joseph            #+#    #+#             */
-/*   Updated: 2025/05/12 14:21:32 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/14 14:54:51 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-// ************************** .  LEXER   ***************************************
-// all the types of tokens we will use in the lexer
-//TODO : add more token types as needed
-
-typedef enum {
-	TOKEN_WORD,
-	TOKEN_PIPE,
-	TOKEN_SEQUENCE,  // ;
-	TOKEN_REDIRECT_IN,   // <
-	TOKEN_REDIRECT_OUT,  // >
-	TOKEN_EOF
-} TokenType;
-
-// a structure to hold the token information
-typedef struct t_token {
-	TokenType type;
-	char *value;
-	struct t_token *next;
-} t_token;
-
-// ************************* .   PARSER  ****************************** 
-
-//AST node types
-typedef enum
-{
-	AST_COMMAND,
-	AST_PIPELINE,
-	AST_SEQUENCE,
-	AST_REDIRECT
-} ASTNodeType;
-
-// AST node structure
-typedef struct ASTNode
-{
-	ASTNodeType type;
-	union {
-		struct {
-			char **argv;
-		} command;	//COMMAND node holds an array of strings (arguments)
-
-		struct {
-			struct ASTNode *left;
-			struct ASTNode *right;
-		} binary;	//PIPELINE or SEQUENCE node holds two child nodes (left and right)
-
-		struct {
-			struct ASTNode *command;
-			char *filename;
-			int redirect_type; // 0 for input (<), 1 for output (>)
-		} redirect;	//REDIRECT node holds a command and a file name.
-	};
-} ASTNode;
-
-//TODO : make a new AST node loooking at the csilva's notion page
-
-//to keep track of where we are in the token list
-typedef struct {
-	Token *current;
-} Parser;
-
-*/
-
 
 //the helper functions - advance, peek, match
 
@@ -212,8 +148,6 @@ ASTNode *parse(Parser *parser)
 	return parse_sequence(parser);
 }
 
-
-
 // Helper function to print arguments of a command
 static void print_command_args(char **argv) {
 	if (argv) {
@@ -273,34 +207,32 @@ void print_ast_tree(ASTNode *node, const char *prefix, int is_last)
 			break; // COMMAND has no children
 	}
 }
-/*
-int main() {
-    // Simulate: ls -l ; grep foo | sort > out.txt
 
-    // COMMAND: ls -l
-    char *ls_argv[] = {"ls", "-l", NULL};
-    ASTNode *ls_node = create_command_node(ls_argv);
-
-    // COMMAND: grep foo
-    char *grep_argv[] = {"grep", "foo", NULL};
-    ASTNode *grep_node = create_command_node(grep_argv);
-
-    // COMMAND: sort
-    char *sort_argv[] = {"sort", NULL};
-    ASTNode *sort_node = create_command_node(sort_argv);
-
-    // REDIRECT: sort > out.txt
-    ASTNode *redirect_node = create_redirect_node(sort_node, "out.txt", 1);
-
-    // PIPELINE: grep foo | sort > out.txt
-    ASTNode *pipeline_node = create_binary_node(AST_PIPELINE, grep_node, redirect_node);
-
-    // SEQUENCE: ls -l ; (grep foo | sort > out.txt)
-    ASTNode *root = create_binary_node(AST_SEQUENCE, ls_node, pipeline_node);
-
-    // Print the AST
-    print_ast_tree(root, "", 1);
-
-    return 0;
+void	free_ast_tree(ASTNode *node)
+{
+	if (!node)
+		return;
+	switch (node->type) {
+		case AST_COMMAND:
+			char **argv = node->command.argv;
+			while (*argv)
+			{
+				free(*argv); // Free each argument
+				argv++;
+			}
+			free(node->command.argv); // Free the array of arguments
+			break;
+		case AST_PIPELINE:
+		case AST_SEQUENCE:
+			free_ast_tree(node->binary.left);  // Free left child
+			free_ast_tree(node->binary.right); // Free right child
+			break;
+		case AST_REDIRECT:
+			free(node->redirect.filename); // Free the filename
+			free_ast_tree(node->redirect.command); // Free the command
+			break;
+		default:
+			break;
+	}
+	free(node); // Free the node itself
 }
-*/
