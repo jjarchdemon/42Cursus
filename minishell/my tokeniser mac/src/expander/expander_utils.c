@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void init_expander(t_expander *expander, char *str, t_list**expanded_args)
+void    init_expander(t_expander *expander, char *str, t_list**expanded_args)
 {
     expander->context = NO_QUOTE;
     expander->i = 0;

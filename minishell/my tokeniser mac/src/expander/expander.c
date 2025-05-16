@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_ast_node *expand_node(t_ast_node *node)
+t_ast_node  *expand_node(t_ast_node *node)
 {
     if (node->type == AST_CMD)
         expand_command(node);//expand the command node
@@ -9,7 +9,7 @@ t_ast_node *expand_node(t_ast_node *node)
     return (node);
 }
 //expand the command node
-void expand_command(t_ast_node *node)
+void    expand_command(t_ast_node *node)
 {
     char **args;
     t_list *expanded_args;//rename to args_ll
@@ -26,7 +26,7 @@ void expand_command(t_ast_node *node)
 }
 
 //expand the redirect node except heredoc
-void expand_redirect(t_ast_node *node)
+void    expand_redirect(t_ast_node *node)
 {
     char *file;
     t_list *expanded_args;//rename to files_ll
