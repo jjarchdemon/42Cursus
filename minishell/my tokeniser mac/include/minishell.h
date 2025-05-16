@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 10:52:33 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/16 15:34:11 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/16 17:59:58 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ typedef enum e_ast_type
 	AST_ERROR,
 	AST_CMD,
 	AST_PIPE,
-	AST_REDIRECT_IN,
-	AST_REDIRECT_OUT_APP,
-	AST_REDIRECT_OUT_TRUNC,
-	AST_HEREDOC,
+	AST_REDIRECT,
+	//AST_REDIRECT_OUT_APP,
+	//AST_REDIRECT_OUT_TRUNC,
+	//AST_HEREDOC,
 }	t_ast_type;
 
 typedef struct s_ast_node	t_ast_node;
@@ -109,7 +109,7 @@ typedef struct s_ast_redirect
 {
 	t_token_type type;
 	t_ast_node *child;
-	char *file;
+	char *file;//because redirection will always have a file
 }	t_ast_redirect;
 
 struct s_ast_node
@@ -134,7 +134,7 @@ typedef enum e_exp_context
 
 typedef struct s_expander
 {
-	t_exp_context	content;
+	t_exp_context	context;
 	int 			i;
 	char 			*buf;
 	int 			buf_size;
