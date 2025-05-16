@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:58:35 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/15 20:28:48 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/16 11:25:54 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ int	ft_isspace(char c)
 		return (1);
 	return (0);
 }
+
 //should we add & 
 int	ismeta(char c)
 {
-	if (c == '|' || c == '<' || c == '>' || c == ')'|| c == '(')
+	if (c == '|' || c == '<' || c == '>' || c == ')' || c == '(')
 		return (1);
 	return (0);
 }

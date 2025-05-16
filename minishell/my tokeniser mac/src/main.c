@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:23:10 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/15 21:20:37 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/16 11:26:44 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char **argv, char **envp)
 			exit(EXIT_SUCCESS);
 		printf("line\t->\t'%s'\n", line);
 		printf("\n");
-
 		token_ll = tokenize(line);
 		// add_history(line);
 		free(line);

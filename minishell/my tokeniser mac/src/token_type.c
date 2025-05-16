@@ -4,7 +4,7 @@
 
 t_token_type	get_type_pipe(char *line)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (*line && *line == '|')
@@ -19,7 +19,7 @@ t_token_type	get_type_pipe(char *line)
 
 t_token_type	get_type_redirectin(char *line)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (*line && *line == '<')
@@ -36,7 +36,7 @@ t_token_type	get_type_redirectin(char *line)
 
 t_token_type	get_type_redirectout(char *line)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (*line && *line == '>')
@@ -51,7 +51,7 @@ t_token_type	get_type_redirectout(char *line)
 	return (TOKEN_ERROR);
 }
 
-
+/*
 t_token_type	get_type_subshell(char *line)
 {
 	if (*line == '(')
@@ -59,7 +59,7 @@ t_token_type	get_type_subshell(char *line)
 	else if (*line == ')')
 		return (TOKEN_SUB_CLOSE);
 	return (TOKEN_ERROR);
-}
+}*/
 
 t_token_type	get_type_word(char *line)
 {

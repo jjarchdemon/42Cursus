@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 10:54:59 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/15 21:15:21 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/16 11:29:40 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_token	*tokenize(char *line)
 
 t_token	*tokenize(char *line)
 {
-	t_token	*tokens_ll;
+	t_token			*tokens_ll;
 	t_token_type	type;
 
 	tokens_ll = NULL;
@@ -54,7 +54,7 @@ t_token	*tokenize(char *line)
 		skip_whitespace(&line);
 		if (*line)
 		{
-			type = get_token_type(line);//scan the token & assign type
+			type = get_token_type(line);
 			if (type == TOKEN_ERROR)
 			{
 				printf("Error: invalid token\n");
@@ -66,9 +66,9 @@ t_token	*tokenize(char *line)
 				get_less_than_token(&line, &tokens_ll);
 			else if (type == TOKEN_REDIRECT_OUT_APP || type == TOKEN_REDIRECT_OUT_TRUNC)
 				get_greater_than_token(&line, &tokens_ll);
-			else if (type == TOKEN_SUB_OPEN || type == TOKEN_SUB_CLOSE)
-				printf("Error: subshell not implemented yet\n");
-				//implement this: get_subshell_token(&line, &tokens_ll);
+			//else if (type == TOKEN_SUB_OPEN || type == TOKEN_SUB_CLOSE)
+			//	printf("Error: subshell not implemented yet\n");
+			//	implement this: get_subshell_token(&line, &tokens_ll);
 			else if (type == TOKEN_WORD)
 				get_word_token(&line, &tokens_ll);
 			else
@@ -84,14 +84,14 @@ t_token	*tokenize(char *line)
 t_token_type	get_token_type(char *line)
 {
 	if (*line == '|')
-		return(get_type_pipe(line));
+		return (get_type_pipe(line));
 	else if (*line == '<')
-		return(get_type_redirectin(line));
+		return (get_type_redirectin(line));
 	else if (*line == '>')
-		return(get_type_redirectout(line));
-	else if (*line =='(' || *line == ')')
-		return(get_type_subshell(line));
-	return(get_type_word(line));
+		return (get_type_redirectout(line));
+	//else if (*line =='(' || *line == ')')
+	//	return(get_type_subshell(line));
+	return (get_type_word(line));
 }
 
 t_token	*get_token(char *start, char *end)

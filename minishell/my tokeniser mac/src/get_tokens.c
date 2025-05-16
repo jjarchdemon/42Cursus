@@ -6,35 +6,11 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 11:59:51 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/15 20:48:59 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/16 11:14:15 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-void	get_double_quote_token(char **s, t_token **tokens_ll)
-{
-	char	*start;
-	char	*end;
-	t_token	*token;
-
-	start = *s;
-	*s += 1;
-	while (**s && **s != '"')
-		*s += 1;
-	if (**s && **s == '"')
-		*s += 1;
-	end = *s;
-	token = get_token(start, end);
-	token->type = TOKEN_D_QUOTE;
-	if (token->len > 1 && token->content[token->len - 1] == '"')
-		token->fully_quoted = 1;
-	// else
-	// 	token->fully_quoted = 0;
-	ft_lstadd_back(tokens_ll, token);
-}
-*/
 
 void	get_word_token(char **s, t_token **tokens_ll)
 {
@@ -50,28 +26,6 @@ void	get_word_token(char **s, t_token **tokens_ll)
 	token->type = TOKEN_WORD;
 	ft_lstadd_back(tokens_ll, token);
 }
-/*
-void	get_single_quote_token(char **s, t_token **tokens_ll)
-{
-	char	*start;
-	char	*end;
-	t_token	*token;
-
-	start = *s;
-	*s += 1;
-	while (**s && **s != '\'')
-		*s += 1;
-	if (**s && **s == '\'')
-		*s += 1;
-	end = *s;
-	token = get_token(start, end);
-	token->type = TOKEN_S_QUOTE;
-	if (token->len > 1 && token->content[token->len - 1] == '\'')
-		token->fully_quoted = 1;
-	// else
-	// 	token->fully_quoted = 0;
-	ft_lstadd_back(tokens_ll, token);
-}*/
 
 void	get_pipe_token(char **s, t_token **tokens_ll)
 {
