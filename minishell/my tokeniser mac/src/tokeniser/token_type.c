@@ -51,16 +51,6 @@ t_token_type	get_type_redirectout(char *line)
 	return (TOKEN_ERROR);
 }
 
-/*
-t_token_type	get_type_subshell(char *line)
-{
-	if (*line == '(')
-		return (TOKEN_SUB_OPEN);
-	else if (*line == ')')
-		return (TOKEN_SUB_CLOSE);
-	return (TOKEN_ERROR);
-}*/
-
 t_token_type	get_type_word(char *line)
 {
 	char	c;
@@ -69,9 +59,9 @@ t_token_type	get_type_word(char *line)
 	in_quote = 0;
 	while (*line)
 	{
-		if (*line && *(line + 1) == '\\')
-			line++;//or line += 2;
-		else if (*line == '\"' || *line == '\'')
+		//if (*(line+1) == '\\' && *line) //handle escape
+		//	line++;   //line += 2?;
+		if (*line == '\"' || *line == '\'')
 		{
 			if (in_quote == 0)
 			{

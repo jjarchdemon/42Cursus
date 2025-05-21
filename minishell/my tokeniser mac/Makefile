@@ -12,7 +12,7 @@ INCLUDE_DIR = include
 
 # various directories
 SRC_TOKENISER_DIR =	$(SRC_DIR)/tokeniser
-SRC_EXPANDER_DIR =	$(SRC_DIR)/expander
+#SRC_EXPANDER_DIR =	$(SRC_DIR)/expander
 
 # Source files for tokeniser
 SRC_TOKENISER =	$(SRC_TOKENISER_DIR)/get_tokens.c \
@@ -22,13 +22,13 @@ SRC_TOKENISER =	$(SRC_TOKENISER_DIR)/get_tokens.c \
 				$(SRC_TOKENISER_DIR)/tokenizer_utils.c \
 				$(SRC_TOKENISER_DIR)/tokenizer.c \
 
-SRC_EXPANDER = $(SRC_EXPANDER_DIR)/expander.c
+#SRC_EXPANDER = $(SRC_EXPANDER_DIR)/expander.c
 
 # Source files
 SRCS =	$(SRC_DIR)/main.c \
 		$(SRC_DIR)/debug.c \
 		$(SRC_TOKENISER)
-		$(SRC_EXPANDER)
+#		$(SRC_EXPANDER)
 
 # Header files
 HDRS = $(INCLUDE_DIR)/minishell.h

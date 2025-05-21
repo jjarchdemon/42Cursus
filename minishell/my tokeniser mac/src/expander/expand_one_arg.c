@@ -1,11 +1,11 @@
 #include "minishell.h"
 
-void	expand_one_arg(char *str, t_list **expanded_args, char **envp)
+void	expand_one_arg(char *str, t_list **expanded_args_ll, char **envp)
 {
 	t_expander expander;
 
 
-	init_expander(&expander, str, expanded_args);
+	init_expander(&expander, str, expanded_args_ll);
 	while(*str)
 	{
 		if (expander.context == NO_QUOTE)

@@ -1,48 +1,73 @@
 #include "minishell.h"
 
-t_ast_node  *expand_node(t_ast_node *node)
+t_ast_node  *expand_node(t_ast_node *node, char **envp)
 {
-    if (node->type == AST_CMD)
-        expand_command(node);//expand the command node
-    else if (node->type == AST_REDIRECT)
-        expand_redirect(node);//expand the redirect node
-    return (node);
+	if (node->type == AST_CMD)
+		expand_command(node, envp);
+	else if (node->type == AST_REDIRECT)
+		expand_redirect(node, envp);
+	return (node);
 }
 //expand the command node
-void    expand_command(t_ast_node *node)
+void	expand_command(t_ast_node *node, char **envp)
 {
-    char **args;
-    t_list *expanded_args;//rename to args_ll
+	char **args;
+	t_list *expanded_args_ll;//rename to args_ll?
 
-    expanded_args = NULL;
-    args = node->u_data.cmd.args;
-    while (*args)
-    {
-        //expand one argument
-        //add the expanded argument to the linked list
-    }
-    //convert the linked list to an array
-    //free the linked list
+	expanded_args_ll = NULL;
+	args = node->u_data.cmd.args;
+	while (*args)
+	{
+		expand_one_arg(*args, &expanded_args_ll, envp);//need to pass envp
+		args++
+	}
+	//convert the linked list to an array
+	node->u_data.cmd.args = convert_ll_to_array(expanded_args_ll);
+	//free the linked list?
 }
 
 //expand the redirect node except heredoc
-void    expand_redirect(t_ast_node *node)
+void	expand_redirect(t_ast_node *node, char **envp)
 {
-    char *file;
-    t_list *expanded_args;//rename to files_ll
+	char *unexpanded_filename;
+	t_list *expanded_filenames_ll;
+	
+	//check if the redirect is heredoc
+	//if it is, do not expand
+	if (node->u_data.redirect.type == TOKEN_HEREDOC)
+		return;
 
-    if (node->u_data.redirect.type == TOKEN_HEREDOC)
-        return;
-    expanded_args = NULL;
-    file = node->u_data.redirect.file;
-    //expand one argument --> should give exactly one non empty word
-    //add the expanded argument to the linked list
-    // if linked list anything other than one word || it is ""
-    //  return error
-    //else
-    node->u_data.redirect.file = expanded_args->content;
-    //free the linked list
+	expanded_filenames_ll = NULL;
+	unexpanded_filename = node->u_data.redirect.file;
+	expand_one_arg(unexpanded_filename, &expanded_filenames_ll, envp);
+	if (ft_lstsize(expanded_filenames_ll) != 1
+		|| expanded_filenames_ll->content == "") //might be risky, use ft_strcmp?
+	{
+		perror("expand_redirect: invalid redirect");
+		return;
+	}
+	else
+		node->u_data.redirect.file = expanded_filenames_ll->content;
 }
 
+//convert the linked list to an array //check this its ChatGPT code
+char **convert_ll_to_array(t_list *args_ll)
+{
+	char **args;
+	int i;
+
+	i = 0;
+	args = malloc(sizeof(char *) * (ft_lstsize(args_ll) + 1));
+	if (!args)
+		return (NULL);
+	while (args_ll)
+	{
+		args[i] = args_ll->content;
+		args_ll = args_ll->next;
+		i++;
+	}
+	args[i] = NULL;
+	return (args);
+}
 
 
