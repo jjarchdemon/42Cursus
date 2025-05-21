@@ -210,11 +210,12 @@ void print_ast_tree(ASTNode *node, const char *prefix, int is_last)
 
 void	free_ast_tree(ASTNode *node)
 {
+	char **argv;
 	if (!node)
 		return;
 	switch (node->type) {
 		case AST_COMMAND:
-			char **argv = node->command.argv;
+			argv = node->command.argv;
 			while (*argv)
 			{
 				free(*argv); // Free each argument

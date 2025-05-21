@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:23:10 by jkolosow          #+#    #+#             */
-/*   Updated: 2025/05/14 14:54:59 by joseph           ###   ########.fr       */
+/*   Updated: 2025/05/21 14:04:40 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
 	t_token	*token_ll;
-	Parser	parser;
+	//Parser	parser;
 
 	(void) argc;
 	(void) argv;
@@ -41,15 +41,15 @@ int	main(int argc, char **argv, char **envp)
 		printf("line\t->\t'%s'\n", line);
 		token_ll = tokenize(line);
 
-		parser.current = token_ll; // Initialize parser with the token list
-		ASTNode *tree = parse(&parser); // Parse the tokens into an AST
-		print_ast_tree(tree, "", 1); // Print the AST
-		free_ast_tree(tree);
-		// add_history(line);
+		//parser.current = token_ll; // Initialize parser with the token list
+		//ASTNode *tree = parse(&parser); // Parse the tokens into an AST
+		//print_ast_tree(tree, "", 1); // Print the AST
+		//free_ast_tree(tree);
+		add_history(line);
 
 		free(line);
 		line = NULL;
-		//print_tokens(token_ll);
+		print_tokens(token_ll);
 		ft_lstclear(&token_ll, del_content);
 	}
 	return (EXIT_SUCCESS);
