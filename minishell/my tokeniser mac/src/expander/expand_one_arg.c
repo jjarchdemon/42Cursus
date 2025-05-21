@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	expand_one_arg(char *str, t_list **expanded_args)
+void	expand_one_arg(char *str, t_list **expanded_args, char **envp)
 {
 	t_expander expander;
 
@@ -9,11 +9,11 @@ void	expand_one_arg(char *str, t_list **expanded_args)
 	while(*str)
 	{
 		if (expander.context == NO_QUOTE)
-			no_quote_state(&expander, str);
+			no_quote_state(&expander, str, envp);
 		else if (expander.context == SINGLE_QUOTE)
-			single_quote_state(&expander, str);
+			single_quote_state(&expander, str, envp);
 		else if (expander.context == DOUBLE_QUOTE)
-			double_quote_state(&expander, str);
+			double_quote_state(&expander, str, envp);
 		if (*str)
 			str++;
 	}
@@ -35,12 +35,17 @@ For each character it sees:
 	If  ' ', it says "End of a word segment! Add what's in the buffer to the list."
 */
 //escaping character logic issue
-void	no_quote_state(t_expander *expander, char *str)
+void	no_quote_state(t_expander *expander, char *str, char **envp)
 {
+	int  expanded_variable_len = 0;
+
 	if (*str == '~')
-		expand_tilde(expander, str);
+		expand_tilde(expander, str, envp);
 	else if (*str == '$')
-		expand_variable(expander, str);
+	{
+		expanded_variable_len = expand_variable(expander, str, envp);
+		str += expanded_variable_len;
+	}
 	else if (*str == ' ')
 		//function to add the buffer to the linked list
 		//reset the buffer
@@ -61,7 +66,7 @@ void	no_quote_state(t_expander *expander, char *str)
 	}
 }
 
-void	single_quote_state(t_expander *expander, char *str)
+void	single_quote_state(t_expander *expander, char *str, char **envp)
 {
 	if (*str == '\'')
 		expander->context = NO_QUOTE;
@@ -72,13 +77,13 @@ void	single_quote_state(t_expander *expander, char *str)
 	} 
 }
 //escaping character still needs to be handled
-void	double_quote_state(t_expander *expander, char *str)
+void	double_quote_state(t_expander *expander, char *str, char **envp)
 {
+	int  expanded_variable_len = 0;
 	if (*str == '$')
 	{
-		//expand variable function
-		//add buffer to the linked list 
-		// reset the buffer
+		expanded_variable_len = expand_variable(expander, str, envp);
+		str += expanded_variable_len;
 	}
 	else if (*str == '\"')
 		expander->context = NO_QUOTE;
