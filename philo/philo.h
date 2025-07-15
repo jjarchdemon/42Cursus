@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/30 16:00:10 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/07/15 14:13:52 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@
 
 # define PHILO_MAX 200
 
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 
-typedef pthread_mutex_t t_mtx;
+typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_philo
 {
@@ -48,7 +48,7 @@ typedef struct s_philo
 	int			meals_eaten;	// no. of meals eaten
 	size_t		time_since_meal;// time since last meal | last_meal
 	size_t		start_time;		// start time of the simulation?
-	int 		*dead;		// is philosopher dead | int *dead
+	int			*dead;		// is philosopher dead | int *dead
 	t_mtx		*l_fork;		// pointer to left fork
 	t_mtx		*r_fork;		// pointer to right fork
 	t_mtx		*write_lock;
@@ -59,13 +59,12 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	int	num_of_philos;	// number of philosophers
+	int		num_of_philos;	// number of philosophers
 	size_t	time_to_die;	// time to die
 	size_t	time_to_eat;	// time to eat
 	size_t	time_to_sleep;	// time to sleep
-	int	num_of_meals;	// number of times to eat
-
-	int	dead_flag; 
+	int		num_of_meals;	// number of times to eat
+	int		dead_flag;
 	t_mtx	dead_lock;
 	t_mtx	write_lock;
 	t_mtx	meal_lock;
@@ -76,31 +75,30 @@ typedef struct s_table
 int		is_invalid_input(const char **av);
 
 // initialization
-void init_table(t_table *table, const char **av, t_philo *philos_array);
-void init_philos(t_table *table, const char **av, t_mtx *forks_array);
-void init_forks(const char **av, t_mtx *forks_array);
+void	init_table(t_table *table, const char **av, t_philo *philos_array);
+void	init_philos(t_table *table, const char **av, t_mtx *forks_array);
+void	init_forks(const char **av, t_mtx *forks_array);
 
 //threads
-int	create_threads(t_table *table, t_mtx *forks_array);
+int		create_threads(t_table *table, t_mtx *forks_array);
 
 //routine
-void thinking(t_philo *philo);
-void sleeping(t_philo *philo);
-void eating(t_philo *philo);
+void	thinking(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	eating(t_philo *philo);
 
 //two thread things
-void *routine(void *philosopher);
-void *monitor(void *philos_array);
+void	*routine(void *philosopher);
+void	*monitor(void *philos_array);
+int		is_philo_dead(t_philo *philo);
 
-int is_philo_dead(t_philo *philo);
 //utils.c
-int ft_atoi(const char *str);
-size_t get_now_time(void);
-void destroy_mtxs_n_forks(t_table *table, t_mtx *forks_array);
-void ft_usleep(size_t time);
-void print_error_message(char *message);
-void print_with_lock(t_philo *philo, const char *message);
-
+int		ft_atoi(const char *str);
+size_t	get_now_time(void);
+void	destroy_mtxs_n_forks(t_table *table, t_mtx *forks_array);
+void	ft_usleep(size_t time);
+void	print_error_message(char *message);
+void	print_with_lock(t_philo *philo, const char *message);
 
 // debug
 void	print_table_state(t_table *table);

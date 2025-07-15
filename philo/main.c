@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
+/*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:32 by jambatt           #+#    #+#             */
-/*   Updated: 2025/04/30 13:37:55 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/07/15 14:27:52 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,14 @@ int	main(int ac, const char **av)
 	t_table	table;
 	t_philo	philos_array[PHILO_MAX];
 	t_mtx	forks_array[PHILO_MAX];
+
 	if (ac != 5 && ac != 6)
-		return (write(2,"Error: Wrong number of arguments\n", 33), 1);
+		return (write(2, "Error: Wrong number of arguments\n", 33), 1);
 	if (is_invalid_input(av))
-		return (write(2,"Error: Invalid input\n", 22), 1);
+		return (write(2, "Error: Invalid input\n", 22), 1);
 	init_table(&table, av, philos_array);
 	init_forks(av, forks_array);
 	init_philos(&table, av, forks_array);
-	
-	//print_table_state(&table);//for debugging
 	create_threads(&table, forks_array);
 	destroy_mtxs_n_forks(&table, forks_array);
 	return (0);

@@ -1,9 +1,9 @@
 /* ************************************************************************** */
 #include "philo.h"
 
-static int ft_strlen(const char *str)
+static int	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -11,7 +11,7 @@ static int ft_strlen(const char *str)
 	return (i);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		sign;
 	size_t	num;
@@ -34,10 +34,9 @@ int ft_atoi(const char *str)
 	return (sign * num);
 }
 
-void print_error_message(char *message)
+void	print_error_message(char *message)
 {
 	write(2, "Error: ", 7);
 	write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
 }
-
