@@ -55,15 +55,11 @@ static int	join_threads(t_table *table, t_mtx *forks_array, pthread_t observer)
 	return (0);
 }
 
-int	create_threads(t_table *table, t_mtx *forks_array)
+void	create_threads(t_table *table, t_mtx *forks_array)
 {
 	pthread_t	observer;
 
-	if (create_monitor(table, forks_array, &observer) != 0)
-		return (1);
-	if (create_philo_threads(table, forks_array) != 0)
-		return (1);
-	if (join_threads(table, forks_array, observer) != 0)
-		return (1);
-	return (0);
+	create_monitor(table, forks_array, &observer);
+	create_philo_threads(table, forks_array);
+	join_threads(table, forks_array, observer);
 }

@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/15 14:13:52 by joseph           ###   ########.fr       */
+/*   Updated: 2025/07/16 10:56:49 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	init_philos(t_table *table, const char **av, t_mtx *forks_array);
 void	init_forks(const char **av, t_mtx *forks_array);
 
 //threads
-int		create_threads(t_table *table, t_mtx *forks_array);
+void	create_threads(t_table *table, t_mtx *forks_array);
 
 //routine
 void	thinking(t_philo *philo);
