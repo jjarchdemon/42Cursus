@@ -1,4 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/28 13:58:32 by jambatt           #+#    #+#             */
+/*   Updated: 2025/07/16 12:01:16 by joseph           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
+
+static int	create_monitor(t_table *table, t_mtx *forks_array, pthread_t *observer);
+static int	create_philo_threads(t_table *table, t_mtx *forks_array);
+static int	join_threads(t_table *table, t_mtx *forks_array, pthread_t observer);
+
+void	create_threads(t_table *table, t_mtx *forks_array)
+{
+	pthread_t	observer;
+
+	create_monitor(table, forks_array, &observer);
+	create_philo_threads(table, forks_array);
+	join_threads(table, forks_array, observer);
+}
 
 static int	create_monitor(t_table *table, t_mtx *forks_array,
 	pthread_t *observer)
@@ -53,13 +78,4 @@ static int	join_threads(t_table *table, t_mtx *forks_array, pthread_t observer)
 		i++;
 	}
 	return (0);
-}
-
-void	create_threads(t_table *table, t_mtx *forks_array)
-{
-	pthread_t	observer;
-
-	create_monitor(table, forks_array, &observer);
-	create_philo_threads(table, forks_array);
-	join_threads(table, forks_array, observer);
 }
