@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 11:07:48 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/22 11:07:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/07/22 11:22:01 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ void	*routine(void *philosopher)
 	while (!is_philo_dead(philo))
 	{
 		eating(philo);
+		if (is_philo_dead(philo))//
+			break;//
 		sleeping(philo);
+		if (is_philo_dead(philo))//
+			break;//
 		thinking(philo);
 	}
 	return (NULL);
