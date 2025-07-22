@@ -60,5 +60,5 @@ void	*routine(void *philosopher)
 		sleeping(philo);
 		thinking(philo);
 	}
-	return (philosopher);
+	return (NULL);
 }
