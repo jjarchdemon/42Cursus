@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/16 10:56:49 by joseph           ###   ########.fr       */
+/*   Updated: 2025/07/22 11:06:27 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,32 @@ typedef pthread_mutex_t	t_mtx;
 typedef struct s_philo
 {
 	pthread_t	thread;
-	int			id;				// philosopher id
+	int			id;
 	int			eating;
-	int			meals_eaten;	// no. of meals eaten
-	size_t		time_since_meal;// time since last meal | last_meal
-	size_t		start_time;		// start time of the simulation?
-	int			*dead;		// is philosopher dead | int *dead
-	t_mtx		*l_fork;		// pointer to left fork
-	t_mtx		*r_fork;		// pointer to right fork
+	int			meals_eaten;
+	size_t		time_since_meal;
+	size_t		start_time;
+	int			*dead;
+	t_mtx		*l_fork;
+	t_mtx		*r_fork;
 	t_mtx		*write_lock;
 	t_mtx		*dead_lock;
 	t_mtx		*meal_lock;
-	t_table		*table;			// pointer to table state, for the arguments
+	t_table		*table;
 }	t_philo;
 
 typedef struct s_table
 {
-	int		num_of_philos;	// number of philosophers
-	size_t	time_to_die;	// time to die
-	size_t	time_to_eat;	// time to eat
-	size_t	time_to_sleep;	// time to sleep
-	int		num_of_meals;	// number of times to eat
+	int		num_of_philos;
+	size_t	time_to_die;
+	size_t	time_to_eat;
+	size_t	time_to_sleep;
+	int		num_of_meals;
 	int		dead_flag;
 	t_mtx	dead_lock;
 	t_mtx	write_lock;
 	t_mtx	meal_lock;
-	t_philo	*philos_array;	// array of philosophers
+	t_philo	*philos_array;
 }	t_table;
 
 //parsing input

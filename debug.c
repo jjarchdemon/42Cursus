@@ -6,9 +6,11 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:57:20 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/15 14:24:23 by joseph           ###   ########.fr       */
+/*   Updated: 2025/07/22 11:13:40 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
 
 #include "philo.h"
 
@@ -32,10 +34,12 @@ void	print_table_state(t_table *table)
 		printf("  Eating: %d\n", table->philos_array[i].eating);
 		printf("  Meals Eaten: %d\n", table->philos_array[i].meals_eaten);
 		printf("  Start Time: %zu\n", table->philos_array[i].start_time);
-		printf("  Time Since Last Meal: %zu\n", table->philos_array[i].time_since_meal);
+		printf("  Time Since Last Meal: %zu\n",
+	       	table->philos_array[i].time_since_meal);
 		printf("  Left Fork ID: %p\n", (void *)table->philos_array[i].l_fork);
 		printf("  Right Fork ID: %p\n", (void *)table->philos_array[i].r_fork);
 		printf("  Table Pointer: %p\n", (void *)table->philos_array[i].table);
 		i++;
 	}
 }
+*/

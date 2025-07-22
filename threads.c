@@ -6,15 +6,18 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:32 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/16 12:01:16 by joseph           ###   ########.fr       */
+/*   Updated: 2025/07/22 11:09:47 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	create_monitor(t_table *table, t_mtx *forks_array, pthread_t *observer);
-static int	create_philo_threads(t_table *table, t_mtx *forks_array);
-static int	join_threads(t_table *table, t_mtx *forks_array, pthread_t observer);
+static int	create_monitor(t_table *table, t_mtx *forks_array,
+				pthread_t *observer);
+static int	create_philo_threads(t_table *table,
+				t_mtx *forks_array);
+static int	join_threads(t_table *table, t_mtx *forks_array,
+				pthread_t observer);
 
 void	create_threads(t_table *table, t_mtx *forks_array)
 {
