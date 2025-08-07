@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+         #
+#    By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/22 11:10:57 by jambatt           #+#    #+#              #
-#    Updated: 2025/07/22 11:11:00 by jambatt          ###   ########.fr        #
+#    Updated: 2025/08/01 11:09:41 by jambatt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-EXTRAFLAGS = -g3 -fsanitize=address
+#EXTRAFLAGS = -g3 -fsanitize=address
 
 #sources from object files
 SRCS =	debug.c \
@@ -34,7 +34,7 @@ NAME = philo
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(EXTRAFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "\033[0;32mphilo compiled successfully!\033[0m"
 
 #Compile object files
