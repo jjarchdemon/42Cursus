@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/08/09 01:54:06 by joseph           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:02:04 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 # define PHILO_H
 # include <pthread.h>   //all pthread functions
 # include <sys/time.h>  //gettimeofday
-# include <stdlib.h>    //malloc, free
-# include <stdio.h>     //printf
 # include <unistd.h>    //write, usleep
-# include <string.h>    //memset
-# include <limits.h>    //INT_MAX 
 
 /*
  *         - num_of_philos
@@ -51,7 +47,7 @@ typedef struct s_philo
 	int			*dead;
 	t_mtx		*l_fork;
 	t_mtx		*r_fork;
-	t_mtx		meal_lock;  // Individual lock for each philosopher
+	t_mtx		meal_lock;// Individual lock for each philosopher
 	t_table		*table;
 }	t_philo;
 
@@ -64,7 +60,7 @@ typedef struct s_table
 	int		num_of_meals;
 	int		dead_flag;
 	t_mtx	print_lock;
-	t_mtx	dead_lock;    // Keep dead_lock for safety
+	t_mtx	dead_lock;// Keep dead_lock for safety
 	t_philo	*philos_array;
 }	t_table;
 
@@ -94,6 +90,7 @@ int		ft_atoi(const char *str);
 size_t	get_now_time(void);
 void	destroy_mtxs_n_forks(t_table *table, t_mtx *forks_array);
 void	ft_usleep(size_t time);
+void	ft_usleep_interruptible(t_philo *philo, size_t time);
 void	print_error_message(char *message);
 void	print_with_lock(t_philo *philo, const char *message);
 int		get_dead_flag(t_philo *philo);

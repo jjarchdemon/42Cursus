@@ -6,7 +6,7 @@
 #    By: joseph <joseph@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/22 11:10:57 by jambatt           #+#    #+#              #
-#    Updated: 2025/08/09 02:18:28 by joseph           ###   ########.fr        #
+#    Updated: 2025/08/09 17:57:22 by joseph           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS =	debug.c \
 		routine.c \
 		threads.c \
 		utils_basic.c \
-		utils.c
+		utils.c \
+		utils2.c
 OBJS = $(SRCS:.c=.o)
 
 NAME = philo
