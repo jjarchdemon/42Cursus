@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/08/09 18:02:04 by joseph           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:17:02 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 # include <pthread.h>   //all pthread functions
 # include <sys/time.h>  //gettimeofday
+# include <stdio.h>     //printf
 # include <unistd.h>    //write, usleep
 
 /*
@@ -47,7 +48,7 @@ typedef struct s_philo
 	int			*dead;
 	t_mtx		*l_fork;
 	t_mtx		*r_fork;
-	t_mtx		meal_lock;// Individual lock for each philosopher
+	t_mtx		meal_lock;
 	t_table		*table;
 }	t_philo;
 
@@ -60,7 +61,7 @@ typedef struct s_table
 	int		num_of_meals;
 	int		dead_flag;
 	t_mtx	print_lock;
-	t_mtx	dead_lock;// Keep dead_lock for safety
+	t_mtx	dead_lock;
 	t_philo	*philos_array;
 }	t_table;
 

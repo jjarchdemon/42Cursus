@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 11:07:10 by jambatt           #+#    #+#             */
-/*   Updated: 2025/08/09 15:16:03 by joseph           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:18:24 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	*monitor(void *philos_array)
 		if (check_if_dead(the_philos_array) == 1
 			|| check_if_all_ate(the_philos_array) == 1)
 			break ;
-		usleep(100);// Check more frequently (0.1ms)
+		usleep(100);
 	}
 	return (philos_array);
 }

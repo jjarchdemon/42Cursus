@@ -1,4 +1,3 @@
-
 #include "philo.h"
 
 int	get_dead_flag(t_philo *philo)

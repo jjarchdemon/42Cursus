@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 11:07:48 by jambatt           #+#    #+#             */
-/*   Updated: 2025/08/09 17:56:20 by joseph           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:21:31 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	is_philo_dead(t_philo *philo)
 
 void	*routine(void *philosopher)
 {
-	t_philo	*philo = (t_philo *)philosopher;
-	
+	t_philo	*philo;
+
+	philo = (t_philo *)philosopher;
 	if (philo->table->num_of_philos == 1)
 	{
 		print_with_lock(philo, "has taken a fork");
@@ -67,13 +68,13 @@ void	*routine(void *philosopher)
 	{
 		eating(philo);
 		if (is_philo_dead(philo))
-			break;
+			break ;
 		sleeping(philo);
 		if (is_philo_dead(philo))
-			break;
+			break ;
 		thinking(philo);
 		if (is_philo_dead(philo))
-			break;
+			break ;
 	}
 	return (NULL);
 }

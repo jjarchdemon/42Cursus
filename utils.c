@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 14:48:35 by jambatt           #+#    #+#             */
-/*   Updated: 2025/08/09 18:00:18 by joseph           ###   ########.fr       */
+/*   Updated: 2025/08/09 18:20:50 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,35 @@
 // improved usleep function in milliseconds
 void	ft_usleep(size_t time)
 {
-    size_t	start;
-    size_t	current;
+	size_t	start;
+	size_t	current;
 
-    start = get_now_time();
-    while (1)
-    {
-        current = get_now_time();
-        if (current - start >= time)
-            break;
-        usleep(500);  // Sleep in 0.5ms chunks for better responsiveness
-    }
+	start = get_now_time();
+	while (1)
+	{
+		current = get_now_time();
+		if (current - start >= time)
+			break ;
+		usleep(500);
+	}
 }
 
 // New function that can be interrupted by death
 void	ft_usleep_interruptible(t_philo *philo, size_t time)
 {
-    size_t	start;
-    size_t	current;
+	size_t	start;
+	size_t	current;
 
-    start = get_now_time();
-    while (1)
-    {
-        if (get_dead_flag(philo))
-            return;
-        current = get_now_time();
-        if (current - start >= time)
-            break;
-        usleep(500);
-    }
+	start = get_now_time();
+	while (1)
+	{
+		if (get_dead_flag(philo))
+			return ;
+		current = get_now_time();
+		if (current - start >= time)
+			break ;
+		usleep(500);
+	}
 }
 
 //get the exact time in milliseconds
