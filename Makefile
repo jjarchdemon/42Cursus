@@ -3,16 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+         #
+#    By: joseph <joseph@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/22 11:10:57 by jambatt           #+#    #+#              #
-#    Updated: 2025/08/01 11:09:41 by jambatt          ###   ########.fr        #
+#    Updated: 2025/08/09 02:18:28 by joseph           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-#EXTRAFLAGS = -g3 -fsanitize=address
 
 #sources from object files
 SRCS =	debug.c \
@@ -25,9 +24,6 @@ SRCS =	debug.c \
 		utils_basic.c \
 		utils.c
 OBJS = $(SRCS:.c=.o)
-###############################################################
-DEPS = $(SRCS:.c=.d) #dependencies
-###############################################################
 
 NAME = philo
 
@@ -42,20 +38,10 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 #	@echo "\033[0;32mObject files created!\033[0m"
 
-###############################################################
-#Generate dependencies
-%.d: %.c
-	@$(CC) $(CFLAGS) -MM $< -MF $@
-#	@echo "\033[0;32mDependencies created!\033[0m"
-
-# Include dependencies
--include $(DEPS)
-###############################################################
-
 # Clean object files
 clean:
-	@rm -f $(OBJS) $(DEPS)
-	@echo "\033[0;33mObject files & dependencies removed!\033[0m"
+	@rm -f $(OBJS)
+	@echo "\033[0;33mObject files removed!\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)

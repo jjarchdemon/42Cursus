@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:08 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/22 11:06:27 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/08/09 01:54:06 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ typedef struct s_philo
 	int			*dead;
 	t_mtx		*l_fork;
 	t_mtx		*r_fork;
-	t_mtx		*write_lock;
-	t_mtx		*dead_lock;
-	t_mtx		*meal_lock;
+	t_mtx		meal_lock;  // Individual lock for each philosopher
 	t_table		*table;
 }	t_philo;
 
@@ -65,9 +63,8 @@ typedef struct s_table
 	size_t	time_to_sleep;
 	int		num_of_meals;
 	int		dead_flag;
-	t_mtx	dead_lock;
-	t_mtx	write_lock;
-	t_mtx	meal_lock;
+	t_mtx	print_lock;
+	t_mtx	dead_lock;    // Keep dead_lock for safety
 	t_philo	*philos_array;
 }	t_table;
 
@@ -99,6 +96,8 @@ void	destroy_mtxs_n_forks(t_table *table, t_mtx *forks_array);
 void	ft_usleep(size_t time);
 void	print_error_message(char *message);
 void	print_with_lock(t_philo *philo, const char *message);
+int		get_dead_flag(t_philo *philo);
+void	set_dead_flag(t_philo *philo);
 
 // debug
 void	print_table_state(t_table *table);

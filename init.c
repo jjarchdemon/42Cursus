@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:57:38 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/22 11:11:14 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/08/09 01:54:06 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	init_table(t_table *table, const char **av, t_philo *philos_array)
 	else
 		table->num_of_meals = -1;
 	table->dead_flag = 0;
+	pthread_mutex_init(&table->print_lock, NULL);
 	pthread_mutex_init(&table->dead_lock, NULL);
-	pthread_mutex_init(&table->write_lock, NULL);
-	pthread_mutex_init(&table->meal_lock, NULL);
 	table->philos_array = philos_array;
 }
 
@@ -42,10 +41,8 @@ void	init_philos(t_table *table, const char **av, t_mtx *forks_array)
 		table->philos_array[i].table = table;
 		table->philos_array[i].start_time = get_now_time();
 		table->philos_array[i].time_since_meal = get_now_time();
-		table->philos_array[i].write_lock = &table->write_lock;
-		table->philos_array[i].meal_lock = &table->meal_lock;
-		table->philos_array[i].dead_lock = &table->dead_lock;
 		table->philos_array[i].dead = &table->dead_flag;
+		pthread_mutex_init(&table->philos_array[i].meal_lock, NULL);
 		table->philos_array[i].l_fork = &forks_array[i];
 		if (i == 0)
 			table->philos_array[i].r_fork = &forks_array[ft_atoi(av[1]) - 1];

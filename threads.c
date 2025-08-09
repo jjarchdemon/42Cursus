@@ -6,7 +6,7 @@
 /*   By: joseph <joseph@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:58:32 by jambatt           #+#    #+#             */
-/*   Updated: 2025/07/22 11:09:47 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/08/09 01:47:16 by joseph           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	create_threads(t_table *table, t_mtx *forks_array)
 {
 	pthread_t	observer;
 
-	create_monitor(table, forks_array, &observer);
-	create_philo_threads(table, forks_array);
+	if (create_monitor(table, forks_array, &observer) != 0)
+		return ;
+	if (create_philo_threads(table, forks_array) != 0)
+		return ;
 	join_threads(table, forks_array, observer);
 }
 
