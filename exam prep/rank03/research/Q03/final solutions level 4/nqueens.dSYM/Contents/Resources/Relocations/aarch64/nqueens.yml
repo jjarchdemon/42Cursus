@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/joseph/multipass-shared/personal_exercises/test03/Q03/final solutions level 4/nqueens'
+relocations:     []
+...
