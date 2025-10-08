@@ -1,24 +1,12 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
 #include <fcntl.h>
-#define BUFFER_SIZE 10 
+#include <unistd.h>
 
-int str_search(char *str, char c)
-{
-	int  i = 0;
-	while (str[i])
-	{
-		if (c == str[i])
-			return i;
-		i++;
-	}
-	return -1;
-}
+//scale
 
-int str_len(char * str)
+int str_len(char *str)
 {
-	int i =0;
+	int i = 0;
 	while (str[i])
 		i++;
 	return i;
@@ -26,7 +14,7 @@ int str_len(char * str)
 
 void str_empty(char *str)
 {
-	int i = 0;
+	int i =0;
 	while (str[i])
 	{
 		str[i] = 0;
@@ -35,17 +23,31 @@ void str_empty(char *str)
 	str[i] = 0;
 }
 
+int str_search(char *str, char c)
+{
+	int i =0;
+	while(str[i])
+	{
+		if (c == str[i])
+			return i;
+		i++;
+	}
+	return -1;
+}
+
 void str_append(char *dest, char *src, int len)
 {
 	int i = 0;
 	int j = 0;
-	while (dest[i])
+	while(dest[i])
 		i++;
-	while (j < len)
+	if (len > 0)
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		while (j < len)
+		{
+			dest[i] = src[j];
+			i++;j++;
+		}
 	}
 	dest[i] = 0;
 }
@@ -53,7 +55,7 @@ void str_append(char *dest, char *src, int len)
 void str_copy(char *dest, char *src, int len)
 {
 	int i = 0;
-	if (len > 0)
+	if (len >= 0)
 	{
 		while (i < len)
 		{
@@ -61,9 +63,9 @@ void str_copy(char *dest, char *src, int len)
 			i++;
 		}
 	}
-	if (len < 0)
+	else
 	{
-		while (src[i])
+		while (str[i])
 		{
 			dest[i] = src[i];
 			i++;
@@ -72,43 +74,43 @@ void str_copy(char *dest, char *src, int len)
 	dest[i] = 0;
 }
 
-char *gnl (int fd)
+
+char *gnl(int fd)
 {
 	static char hold[1000000];
 	char temp[1000000];
-	char *line = NULL;
 	char buffer[BUFFER_SIZE + 1];
+	char *line = NULL;
 	int bytes = 0;
 	int location;
-
-	while (str_search(hold, '\n') == -1)
+	
+	while (str_search(hold, '\n') == -1)	//if or while
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes <= 0)
 			break;
 		buffer[bytes] = 0;
 		str_append(hold, buffer, bytes);
-	}
+	}	
 
 	if (str_len(hold) == 0)
 		return NULL;
 
 	location = str_search(hold, '\n');
-	
-	if (location > 0)
+	if (location >= 0)
 	{
-		line = malloc(sizeof(char) * (location+2));
+		line = malloc(sizeof(char) * location+2);
 		str_copy(line, hold, location+1);
 		line[location+1] = 0;
 		str_copy(temp, hold, -1);
 		str_empty(hold);
-		str_copy(hold, &temp[location+1] ,-1);
+		str_copy(hold, &temp[location+1], -1);
 	}
 	else
 	{
-		line = malloc(sizeof(char) * str_len(hold));
+		line = malloc(sizeof(char) * str_len(hold)+1);
 		str_copy(line, hold, -1);
-		line[str_len(hold)]= 0;
+		line[str_len(hold)] = 0;
 		str_empty(hold);
 	}
 	return line;
@@ -116,26 +118,16 @@ char *gnl (int fd)
 
 int main(void)
 {
-	int i = 0;
+	int fd = read("example.txt", O_RDONLY);
 
-	int fd = open("example.txt", O_RDONLY);
-	while (i < 5)
+	int i = 0;
+	while (i < 4)
 	{
 		printf("%s", gnl(fd));
 		i++;
 	}
-	close(fd);
 	return 0;
 }
-
-
-
-
-
-
-
-
-
 
 
 
