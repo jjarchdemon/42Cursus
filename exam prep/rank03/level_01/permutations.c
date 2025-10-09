@@ -21,6 +21,14 @@ void swap (char *a, char *b)
 	*b = temp;
 }
 
+int ft_strlen(char *str)
+{
+	int i = 0;
+	while (str[i])
+		i++;
+	return i;
+}
+
 void	generate_permutations(char *arr, int start, int size)
 {
 
@@ -34,6 +42,7 @@ void	generate_permutations(char *arr, int start, int size)
 	{
 		swap(&arr[start], &arr[i]);
 		generate_permutations(arr, start + 1, size);
+		sort_alpha(arr+start+i, ft_strlen(arr+start+i));
 		swap(&arr[start], &arr[i]);
 		i++;
 	}
