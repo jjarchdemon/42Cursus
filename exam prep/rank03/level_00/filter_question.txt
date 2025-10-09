@@ -1,4 +1,4 @@
-Write a program that will take one and only one argument s.
+ Write a program that will take one and only one argument s.
 Your program will then read from stdin and write all the content
 read in stdout except that every occurance of s must be replaced
 by a "*" (as many as the length of s).
