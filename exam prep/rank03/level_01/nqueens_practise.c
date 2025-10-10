@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 
 void nqueens(int n);
 int is_safe(int *board, int row, int col);
@@ -25,7 +25,7 @@ void nqueens(int n)
 
 void solve(int *board, int row, int n)
 {
-	static solution = 0;
+	static int solution = 0;
 	if (row == n)
 	{
 		solution++;
