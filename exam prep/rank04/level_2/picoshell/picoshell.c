@@ -4,13 +4,13 @@
 
 int	picoshell(char **cmds[])
 {
-	pid_t	pid;
-	int		pipefd[2];
-	int		prev_fd;
+	pid_t	pid;		// To store the process ID from fork()
+	int		pipefd[2];	// To store the two ends of a pipe [read, write]
+	int		prev_fd;	// To save the read end of the previous pipe
 	int		i;
 
-	prev_fd = -1;
-	i = 0;
+	prev_fd = -1;		// Initialize with an invalid file descriptor
+	i = 0;				// Start with the first command
 	while (cmds[i])
 	{
 		if (cmds[i + 1] && pipe(pipefd))
