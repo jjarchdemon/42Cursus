@@ -25,7 +25,7 @@ NAME = fdf
 
 
 #sources from object files
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(wildcard $(SRC_DIR)/*.c) #this needs to be indl files //TODO
 SRCS := $(filter-out  $(SRC_DIR)/alt/%, $(SRCS))  # Exclude the folder
 OBJS = $(SRCS:.c=.o)
 
