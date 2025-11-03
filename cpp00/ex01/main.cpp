@@ -1,5 +1,6 @@
-#include <iostream>
-#include <string>
+#include <iostream>	//cin, cout
+#include <string>	//string
+#include <iomanip>
 
 class Contact {
 
@@ -42,6 +43,20 @@ public:
 		std::cout << "Darkest secret: " << secret << std::endl;
 	}
 };
+
+class Phonebook {
+private:
+	Contact contact_list[8];
+	int contact_count = 0;
+
+public:
+	void addContact() {
+		Contact new_contact;
+		
+	}
+
+};
+
 
 int main()
 {
