@@ -1,70 +1,38 @@
-#include <iostream>	//cin, cout
-#include <string>	//string
-#include <iomanip>
+#include "contact.hpp"
 
-class Contact {
-
-private:
-	std::string first_name;
-	std::string last_name;
-	std::string nick_name;
-	std::string phone_number; //int?
-	std::string secret;
-
-public:
-	void makeTemplateContact(){
-		first_name = "Joseph";
-		last_name = "Johnson";
-		nick_name = "joe";
-		phone_number = "1234567";
-		secret = "nice try";
-	}
-
-	void askContact() {
-		std::cout << "Enter first name: ";
-		getline(std::cin, first_name);
-		std::cout << "Enter last name: ";
-		getline(std::cin, last_name);
-		std::cout << "Enter nick name: ";
-		getline(std::cin, nick_name);
-		std::cout << "Enter phonenumber: ";
-		getline(std::cin, phone_number);
-		std::cout << "Enter your darkest secret: ";
-		getline(std::cin, secret);
-	}
-
-	void displayDetails() {
-		std::cout << "Showing contact... " << std::endl;
-
-		std::cout << "First name: " << first_name << std::endl;
-		std::cout << "Last name: " << last_name << std::endl;
-		std::cout << "Nick name: " << nick_name << std::endl;
-		std::cout << "Phone number: " << phone_number << std::endl;
-		std::cout << "Darkest secret: " << secret << std::endl;
-	}
-};
-
-class Phonebook {
-private:
-	Contact contact_list[8];
-	int contact_count = 0;
-
-public:
-	void addContact() {
-		Contact new_contact;
-		
-	}
-
-};
 
 
 int main()
 {
 	Contact contact;
-	//contact.makeTemplateContact();
-	contact.askContact();
-	contact.displayDetails();
+	std::cout << "This is phonebook. Add your contacts!" << std::endl;
+	std::cout << "Commands to use: ADD, SEARCH and EXIT" << std::endl;
+	
+	// some kind of loop which looks for SEARCH ADD EXIT
+	std::string command;
+	while (1)
+	{
+		std::cout << "Enter command: ";
+		getline(std::cin, command);
 
+		if (command == "ADD")
+		{
+			//ask for details
+			//TODO logic top check for empty fields
+			contact.assignContact();
+		}
+		else if (command == "SEARCH")
+		{
+			contact.displayDetails();
+		}
+		else if (command == "EXIT")
+		{
+			std::cout << "Exiting phonebook program...";
+			break;
+		}
+		else //just ignore everything else
+			std::cout << "Invalid command. ADD, SEARCH or EXIT" << std::endl;
+	}
 	return 0;
 
 }

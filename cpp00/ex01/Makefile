@@ -1,6 +1,7 @@
 ###change all this
 
-SRCS = main.cpp
+SRCS = main.cpp \
+	contact.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 NAME = phonebook
@@ -13,7 +14,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.c
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
