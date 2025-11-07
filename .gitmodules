@@ -1,0 +1,3 @@
+[submodule "cub3d"]
+	path = cub3d
+	url = git@github.com:hadrian-24/cub3d.git
