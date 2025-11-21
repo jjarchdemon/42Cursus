@@ -4,7 +4,7 @@ CFLAGS  = -Wall -Wextra -Werror
 NAME    = fdf
 
 # Source files
-SRCS    = main.c 
+SRCS    = src/main.c 
 OBJS    = $(SRCS:.c=.o)
 
 # Libft
