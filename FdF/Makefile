@@ -7,14 +7,31 @@ NAME    = fdf
 SRCS    = main.c 
 OBJS    = $(SRCS:.c=.o)
 
-# MiniLibX
-MLX_DIR = include/minilibx-mac
-MLX_INC = -I$(MLX_DIR)
-MLX_LIB = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+# Libft
+#LIBFT_DIR	= include/libft
+#LIBFT		= $(LIBFT_DIR)/libft.a
+#LIBFT_INC	= -I$(LIBFT_DIR)
 
-#------------------------------------------
+# Detect platform
+UNAME_S	:= $(shell uname -s)
+
+# MiniLibX settings based on platform
+ifeq ($(UNAME_S),Linux)
+	MLX_DIR = include/minilibx-linux
+	MLX_LIB = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+else ifeq ($(UNAME_S),Darwin)
+	MLX_DIR = include/minilibx-mac
+	MLX_LIB = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+endif
+
+MLX_INC = -I$(MLX_DIR)
 
 all: $(MLX_DIR)/libmlx.a $(NAME)
+
+# Build libft
+#$(LIBFT):
+#	@echo "Building Libft library..."
+#	@$(MAKE) -s -C $(LIBFT_DIR) --no-print-directory >/dev/null 2>&1 || echo "Libft build failed!"
 
 # Compile final executable
 $(NAME): $(OBJS)
