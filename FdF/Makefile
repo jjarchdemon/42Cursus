@@ -55,7 +55,7 @@ clean:
 # Clean everything including executable
 fclean: clean
 	rm -f $(NAME)
-	@$(MAKE) -C $(MLX_DIR) fclean
+	@$(MAKE) -C $(MLX_DIR) clean
 
 # Rebuild everything
 re: fclean all
