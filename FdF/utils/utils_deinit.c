@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 12:02:00 by jambatt           #+#    #+#             */
-/*   Updated: 2025/11/22 12:07:43 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/11/22 12:58:16 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void    deinit_map(t_fdf *fdf)
 
 void    deinit_fdf(t_fdf *fdf)
 {
-	deinit_mlx(fdf);
 	deinit_img(fdf);
 	deinit_map(fdf);
+	deinit_mlx(fdf);
 	//put all the values to 0?
 	free(fdf);
 }
