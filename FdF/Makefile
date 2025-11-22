@@ -5,7 +5,8 @@ NAME    = fdf
 
 # Source files
 SRCS    = src/main.c  \
-			utils/utils_init.c
+			utils/utils_init.c \
+			utils/utils_deinit.c
 OBJS    = $(SRCS:.c=.o)
 
 # Libft
