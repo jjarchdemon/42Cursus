@@ -9,10 +9,15 @@ SRCS    = src/main.c  \
 			utils/utils_deinit.c
 OBJS    = $(SRCS:.c=.o)
 
+# --- ft_printf ---
+PRINTF_DIR  = include/ft_printf
+PRINTF_LIB  = $(PRINTF_DIR)/libftprintf.a
+PRINTF_INC  = -I$(PRINTF_DIR)
+
 # Libft
-#LIBFT_DIR	= include/libft
-#LIBFT		= $(LIBFT_DIR)/libft.a
-#LIBFT_INC	= -I$(LIBFT_DIR)
+LIBFT_DIR	= include/libft
+LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT_INC	= -I$(LIBFT_DIR)
 
 # Detect platform
 UNAME_S	:= $(shell uname -s)
@@ -28,20 +33,25 @@ endif
 
 MLX_INC = -I$(MLX_DIR)
 
-all: $(MLX_DIR)/libmlx.a $(NAME)
+all: $(MLX_DIR)/libmlx.a $(PRINTF_LIB) $(LIBFT) $(NAME)
 
 # Build libft
-#$(LIBFT):
-#	@echo "Building Libft library..."
-#	@$(MAKE) -s -C $(LIBFT_DIR) --no-print-directory >/dev/null 2>&1 || echo "Libft build failed!"
+$(LIBFT):
+	@echo "Building Libft library..."
+	@$(MAKE) -s -C $(LIBFT_DIR) 
+
+# Build ft_printf
+$(PRINTF_LIB):
+	@echo "Building ft_printf..."
+	@$(MAKE) -C $(PRINTF_DIR)
 
 # Compile final executable
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) $(MLX_LIB) -o $(NAME)
+$(NAME): $(OBJS) $(PRINTF_LIB) $(LIBFT)
+	$(CC) $(OBJS) $(LIBFT) $(PRINTF_LIB) $(MLX_LIB) -o $(NAME)
 
 # Compile .c files into .o
 %.o: %.c
-	$(CC) $(CFLAGS) $(MLX_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(LIBFT_INC) $(MLX_INC) $(PRINTF_INC) -c $< -o $@
 
 # Build MiniLibX if not present
 $(MLX_DIR)/libmlx.a:
@@ -51,15 +61,20 @@ $(MLX_DIR)/libmlx.a:
 # Clean object files
 clean:
 	rm -f $(OBJS)
-	@$(MAKE) -C $(MLX_DIR) clean
+	@$(MAKE) -s -C $(LIBFT_DIR) clean >/dev/null 2>&1 || true
+	@$(MAKE) -C $(MLX_DIR) clean >/dev/null 2>&1 || true
+	@$(MAKE) -C $(PRINTF_DIR) clean >/dev/null 2>&1 || true
+	@echo "Clean: objects and libraries cleaned"
 
 # Clean everything including executable
 fclean: clean
 	rm -f $(NAME)
 	@$(MAKE) -C $(MLX_DIR) clean
+	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory >/dev/null 2>&1 || true
+	@$(MAKE) -C $(PRINTF_DIR) fclean --no-print-directory >/dev/null 2>&1 || true
+	@echo "Clean: everything cleaned"
 
 # Rebuild everything
 re: fclean all
 
 .PHONY: all clean fclean re
-

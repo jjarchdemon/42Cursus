@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+         #
+#    By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 16:17:23 by jambatt           #+#    #+#              #
-#    Updated: 2024/12/04 16:17:32 by jambatt          ###   ########.fr        #
+#    Updated: 2025/11/22 12:16:02 by jambatt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
