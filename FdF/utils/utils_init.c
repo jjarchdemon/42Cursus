@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/21 16:19:09 by jambatt           #+#    #+#             */
-/*   Updated: 2025/11/22 11:54:02 by jambatt          ###   ########.fr       */
+/*   Created: 2025/11/22 11:38:55 by jambatt           #+#    #+#             */
+/*   Updated: 2025/11/22 11:53:04 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	main(void)
+void	init_fdf(t_fdf *fdf)
 {
-	t_fdf	fdf;
+	if (!fdf)
+		return;
 
-	init_fdf(&fdf);
-	#ifdef __APPLE__
-		printf("this is a mac\n");
-	#endif
-
-
-	mlx_loop(fdf.mlx_ptr);
-	return (0);
+	fdf->mlx_ptr = mlx_init();
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIDTH, HEIGHT, "FDF");
+	fdf->z_map = NULL;
+	fdf->height = 0;
+	fdf->width = 0;
+	fdf->img = NULL;
+	fdf->zoom = 10;//TODO: ?
+	fdf->x_offset = WIDTH / 2;//TODO: ?
+	fdf->y_offset = HEIGHT / 2;//TODO: ?
+	fdf->angle = 0.523599;	//TODO: ?
 }
