@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 11:38:55 by jambatt           #+#    #+#             */
-/*   Updated: 2025/11/22 11:53:04 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/11/22 12:13:55 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	init_fdf(t_fdf *fdf)
 	fdf->height = 0;
 	fdf->width = 0;
 	fdf->img = NULL;
-	fdf->zoom = 10;//TODO: ?
-	fdf->x_offset = WIDTH / 2;//TODO: ?
-	fdf->y_offset = HEIGHT / 2;//TODO: ?
-	fdf->angle = 0.523599;	//TODO: ?
+	fdf->zoom = ZOOM_LEVEL;
+	fdf->x_offset = WIDTH / 2;	//why?
+	fdf->y_offset = HEIGHT / 2;	//why?
+	fdf->angle = INITIAL_ANGLE;
 }

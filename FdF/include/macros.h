@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 10:13:52 by jambatt           #+#    #+#             */
-/*   Updated: 2025/11/21 16:17:21 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/11/22 12:14:12 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,6 @@
 # define GRAY 0x00808080
 # define LIGHT_GRAY 0x00D3D3D3
 # define DARK_GRAY 0x00A9A9A9
+
+# define INITIAL_ANGLE 0.52359;
+# define ZOOM_LEVEL 10;
