@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 12:20:09 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 13:12:39 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 13:48:06 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	parse_map(char *filename, t_fdf *fdf)
 	fdf->z_map = malloc(fdf->height * sizeof(int *));
 	fd = open(filename, O_RDONLY);
 	row = 0;
-	while (get_next_line(fd))
+	while ((line = get_next_line(fd)) != NULL)
 	{
 		fdf->z_map[row] = malloc(fdf->width * sizeof(int));
+		if (!fdf->z_map[row])
+			return ;//TODO: need a clean up function here
 		fill_z_map(fdf->z_map[row], line);
 		row++;
 	}
@@ -42,30 +44,54 @@ static int	get_height(char *file_path)
 {
 	int		fd;
 	int		height;
+	char	*line;
 
-	height = 0;
 	fd = open(file_path, O_RDONLY);
-	while (get_next_line(fd))
+	if (fd < 0)
+		return (0);
+	line = get_next_line(fd);
+	height = 0;
+	while (line)
+	{
 		height++;
+		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (height);
 }
 
+//TODO: understand this in depth
 static int	get_width(char *file_path)
 {
 	int		fd;
 	char	*line;
-	char	**words;
 	int		width;
+	int		i;
 
 	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	line = get_next_line(fd);
-	words = ft_split(line, ' ');
+	if (!line)
+		return (close(fd), 0);
 	width = 0;
-	while (words[width])
-		width++;
-	close(fd);
-	return (width);
+	i = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] != ' ')
+		{
+			width++;
+			while (line[i] && line[i] != ' ' && line[i] != '\n')
+				i++;
+		}
+		else
+			i++;
+	}
+	free(line);
+	while ((line = get_next_line(fd)))
+		free(line);
+	return (close(fd), width);
 }
 
 //TODO: understand this in depth
