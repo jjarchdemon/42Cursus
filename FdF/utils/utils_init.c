@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 11:38:55 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 11:29:50 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 12:03:42 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_fdf(t_fdf *fdf)
 
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, WIDTH, HEIGHT, "FDF");
-	fdf->z_map = NULL;
+	fdf->z_map = NULL;			//TODO: need to allocate thru parsing
 	fdf->height = 0;
 	fdf->width = 0;
 	init_image(fdf);

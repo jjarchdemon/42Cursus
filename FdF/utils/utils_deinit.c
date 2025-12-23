@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 12:02:00 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 11:39:32 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 11:57:28 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,17 @@ void    deinit_img(t_fdf *fdf)
 }
 void    deinit_map(t_fdf *fdf)
 {
-	if (!fdf)
-		return;
-	if (fdf->z_map)
-		free(fdf->z_map);
+	int	i;
+
+	if (!fdf || !fdf->z_map)
+		return ;
+	i = 0;
+	while (i < fdf->height)
+	{
+		free(fdf->z_map[i]);
+		i++;
+	}
+	free(fdf->z_map);
 }
 
 void    deinit_fdf(t_fdf *fdf)
@@ -65,5 +72,5 @@ void    deinit_fdf(t_fdf *fdf)
 	deinit_img(fdf);
 	deinit_map(fdf);
 	deinit_mlx(fdf);
-	free(fdf);
+	//free(fdf);
 }
