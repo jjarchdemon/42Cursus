@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 12:20:09 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 12:58:50 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 13:12:39 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	parse_map(char *filename, t_fdf *fdf)
 	char	*line;
 	int		row;
 
+	line = NULL;
 	fdf->height = get_height(filename);
 	fdf->width = get_width(filename);
 	fdf->z_map = malloc(fdf->height * sizeof(int *));
@@ -34,12 +35,12 @@ void	parse_map(char *filename, t_fdf *fdf)
 		row++;
 	}
 	close(fd);
+	print_fdf(fdf);//DEBUG
 }
 
 static int	get_height(char *file_path)
 {
 	int		fd;
-	char	*line;
 	int		height;
 
 	height = 0;

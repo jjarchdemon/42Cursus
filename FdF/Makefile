@@ -8,7 +8,10 @@ SRCS    = src/main.c  \
 			src/parsing.c \
 			utils/utils_init.c \
 			utils/utils_deinit.c \
-			utils/utils_close.c
+			utils/utils_close.c \
+			debug/debug.c \
+			include/get_next_line/get_next_line.c \
+			include/get_next_line/get_next_line_utils.c
 OBJS    = $(SRCS:.c=.o)
 
 # --- ft_printf ---
@@ -20,6 +23,9 @@ PRINTF_INC  = -I$(PRINTF_DIR)
 LIBFT_DIR	= include/libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 LIBFT_INC	= -I$(LIBFT_DIR)
+
+# Get Next Line
+GNL_INC = -Iinclude/get_next_line
 
 # Detect platform
 UNAME_S	:= $(shell uname -s)
@@ -53,7 +59,7 @@ $(NAME): $(OBJS) $(PRINTF_LIB) $(LIBFT)
 
 # Compile .c files into .o
 %.o: %.c
-	$(CC) $(CFLAGS) $(LIBFT_INC) $(MLX_INC) $(PRINTF_INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(LIBFT_INC) $(MLX_INC) $(PRINTF_INC) $(GNL_INC) -c $< -o $@
 
 # Build MiniLibX if not present
 $(MLX_DIR)/libmlx.a:

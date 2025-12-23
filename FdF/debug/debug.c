@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/21 16:19:09 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 13:06:22 by jambatt          ###   ########.fr       */
+/*   Created: 2025/12/23 13:02:37 by jambatt           #+#    #+#             */
+/*   Updated: 2025/12/23 13:04:37 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int	main(int ac, char **av)
+void	print_fdf(t_fdf *fdf)
 {
-	t_fdf	fdf;
+	int	i;
+	int	j;
 
-	if (ac != 2)
-		return (1);
-	init_fdf(&fdf);
-	parse_map(av[1], &fdf);//TODO: error handling for arguments
-	mlx_key_hook(fdf.win_ptr, key_hook, &fdf);//esc
-	mlx_hook(fdf.win_ptr, ON_DESTROY, 0, close_program, &fdf);//x button
-	mlx_loop(fdf.mlx_ptr);
-	return (0);
+	i = 0;
+	while (i < fdf->height)
+	{
+		j = 0;
+		while (j < fdf->width)
+		{
+			printf("%d ", fdf->z_map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
