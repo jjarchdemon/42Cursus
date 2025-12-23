@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:19:09 by jambatt           #+#    #+#             */
-/*   Updated: 2025/11/22 12:53:42 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 10:32:21 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ int	main(void)
 	t_fdf	fdf;
 
 	init_fdf(&fdf);
-	#ifdef __APPLE__
-		printf("this is a mac\n");
-	#endif
 
 	mlx_key_hook(fdf.win_ptr, key_hook, &fdf);//esc
-	mlx_hook(fdf.win_ptr, ON_DESTROY, 0L, close_program, &fdf);//x button
+	mlx_hook(fdf.win_ptr, ON_DESTROY, 0, close_program, &fdf);//x button
 	mlx_loop(fdf.mlx_ptr);
 	return (0);
 }
