@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 15:01:47 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 15:03:23 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 15:06:17 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,4 @@ void	exit_with_error(t_fdf *fdf, char *error_msg)
 	ft_putendl_fd(error_msg, 2);
 	deinit_fdf(fdf);
 	exit(1);
-}
-
-void	exit_cleanly(t_fdf *fdf)
-{
-	deinit_fdf(fdf);
-	exit(0);
 }

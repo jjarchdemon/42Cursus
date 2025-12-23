@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:07:42 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 14:56:42 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 15:07:09 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	deinit_fdf(t_fdf *fdf);
 void	exit_cleanly(t_fdf *fdf);
 int		close_program(t_fdf *fdf);
 int		key_hook(int keycode, t_fdf *fdf);
+
+/* ------------------ ERROR UTILS ----------------------*/
+void	exit_with_error(t_fdf *fdf, char *error_msg);
 
 /* ------------------ DEBUG  ----------------------*/
 
