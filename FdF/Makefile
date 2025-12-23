@@ -9,6 +9,7 @@ SRCS    = src/main.c  \
 			utils/utils_init.c \
 			utils/utils_deinit.c \
 			utils/utils_close.c \
+			utils/utils_mlx.c \
 			debug/debug.c \
 			include/get_next_line/get_next_line.c \
 			include/get_next_line/get_next_line_utils.c

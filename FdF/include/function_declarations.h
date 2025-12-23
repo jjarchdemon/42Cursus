@@ -6,14 +6,18 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:07:42 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 13:55:05 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 14:56:42 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* ------------------ INIT UTILS ----------------------*/
 
 void	init_fdf(t_fdf *fdf);
-void	init_image(t_fdf *fdf);
+void	init_img(t_fdf *fdf);
+
+/* ------------------ MLX UTILS ----------------------*/
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	create_blank_image(t_fdf *fdf);
 
 /* ------------------ PARSING ----------------------*/
 void	parse_map(char *filename, t_fdf *fdf);
