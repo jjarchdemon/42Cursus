@@ -5,6 +5,7 @@ NAME    = fdf
 
 # Source files
 SRCS    = src/main.c  \
+			src/parsing.c \
 			utils/utils_init.c \
 			utils/utils_deinit.c \
 			utils/utils_close.c

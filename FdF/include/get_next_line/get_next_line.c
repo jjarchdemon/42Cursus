@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 12:47:52 by jambatt           #+#    #+#             */
-/*   Updated: 2025/01/03 12:56:53 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 12:31:16 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*join_free(char *str1, char *str2)
 }
 
 //extract portion of buffer after the first \n, frees original buffer,
-returns extracted portion
+//returns extracted portion
 
 //scans the buffer to find the position of the \n
 //if no \n, it frees the buffer and returns NULL
