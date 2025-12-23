@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 12:20:09 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 13:48:06 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 13:55:05 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parse_map(char *filename, t_fdf *fdf)
 		row++;
 	}
 	close(fd);
-	print_fdf(fdf);//DEBUG
+	print_z_map(fdf);//DEBUG
 }
 
 static int	get_height(char *file_path)

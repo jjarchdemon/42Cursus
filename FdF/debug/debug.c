@@ -6,13 +6,13 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 13:02:37 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 13:04:37 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 13:55:05 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	print_fdf(t_fdf *fdf)
+void	print_z_map(t_fdf *fdf)
 {
 	int	i;
 	int	j;

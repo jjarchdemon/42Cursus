@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:07:42 by jambatt           #+#    #+#             */
-/*   Updated: 2025/12/23 13:05:15 by jambatt          ###   ########.fr       */
+/*   Updated: 2025/12/23 13:55:05 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,4 @@ int		key_hook(int keycode, t_fdf *fdf);
 
 /* ------------------ DEBUG  ----------------------*/
 
-void	print_fdf(t_fdf *fdf);
+void	print_z_map(t_fdf *fdf);
