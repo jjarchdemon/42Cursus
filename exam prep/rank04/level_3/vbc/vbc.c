@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h> // change this from <malloc.h>
+#include <stdlib.h>        //changedfrom <malloc.h> +++++++++++++++
 #include <ctype.h>
 
 typedef struct node {
@@ -45,7 +45,7 @@ void    unexpected(char c)
 
 int accept(char **s, char c)
 {
-    if (**s == c)   //+++++++++++++++
+    if (**s == c)                               //+++++++++++++++
     {
         (*s)++;
         return (1);
@@ -61,7 +61,7 @@ int expect(char **s, char c)
     return (0);
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 int      check_balance(char *s);
 node    *parse_number_or_group(char **s);
@@ -176,7 +176,7 @@ int check_balance(char *s)
     return (balance);
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 int eval_tree(node *tree)
@@ -190,16 +190,16 @@ int eval_tree(node *tree)
         case VAL:
             return (tree->val);
     }
-    return (0);
+    return (0);                                  //+++++++++++++++
 }
 
 int main(int argc, char **argv)
 {
     if (argc != 2)
         return (1);
-    if (check_balance(argv[1]) == -1) //++++++++++++++
-        return(printf("Unexpected token ')'"), 1); //++++++++++++++
-    node *tree = parse_addition(&argv[1]); //++++++++++++++
+    if (check_balance(argv[1]) == -1)               //++++++++++++++
+        return(printf("Unexpected token ')'"), 1);  //++++++++++++++
+    node *tree = parse_addition(&argv[1]);          //++++++++++++++
     if (!tree)
         return (1);
     printf("%d\n", eval_tree(tree));
