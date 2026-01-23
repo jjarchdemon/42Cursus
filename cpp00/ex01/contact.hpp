@@ -1,24 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   contact.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 22:02:12 by jambatt           #+#    #+#             */
+/*   Updated: 2026/01/23 13:58:11 by jambatt          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include <iostream>
-#include <string>
+#include <iostream> //cin cout
+#include <iomanip>	//std::setw
+#include <string>	//std::string
 
 class Contact {
 
 private:
-    std::string first_name;
-	std::string last_name;
-	std::string nick_name;
-	std::string phone_number; //TODO logic for only number
-	std::string secret;
-
-    std::string getNonEmptyInput();
+    std::string _firstName;
+	std::string _lastName;
+	std::string _nickName;
+	std::string _phoneNumber;
+	std::string _darkestSecret;
 
 public:
-    void assignContact();
-    void displayDetails();
+	void setFirstName(std::string str);
+	void setLastName(std::string str);
+	void setNickName(std::string str);
+	void setPhoneNumber(std::string str);
+	void setDarkestSecret(std::string str);
 
+	std::string getFirstName();
+	std::string getLastName();
+	std::string getNickName();
+	std::string getPhoneNumber();
+	std::string getDarkestSecret();
 };
 
 #endif

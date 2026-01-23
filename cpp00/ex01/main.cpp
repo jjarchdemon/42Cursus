@@ -1,38 +1,42 @@
-#include "contact.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 22:02:29 by jambatt           #+#    #+#             */
+/*   Updated: 2026/01/23 14:48:20 by jambatt          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "Phonebook.hpp"
 
 
 int main()
 {
-	Contact contact;
+	Phonebook phonebook;
+
 	std::cout << "This is phonebook. Add your contacts!" << std::endl;
 	std::cout << "Commands to use: ADD, SEARCH and EXIT" << std::endl;
 	
-	// some kind of loop which looks for SEARCH ADD EXIT
 	std::string command;
 	while (1)
 	{
 		std::cout << "Enter command: ";
-		getline(std::cin, command);
-
+		if (!std::getline(std::cin, command))
+			break;
 		if (command == "ADD")
-		{
-			//ask for details
-			//TODO logic top check for empty fields
-			contact.assignContact();
-		}
+			phonebook.addContact();	
 		else if (command == "SEARCH")
-		{
-			contact.displayDetails();
-		}
+			phonebook.searchContacts();
 		else if (command == "EXIT")
 		{
 			std::cout << "Exiting phonebook program...";
 			break;
 		}
-		else //just ignore everything else
+		else
 			std::cout << "Invalid command. ADD, SEARCH or EXIT" << std::endl;
 	}
 	return 0;
-
 }

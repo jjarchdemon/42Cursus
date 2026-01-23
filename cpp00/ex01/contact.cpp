@@ -1,46 +1,68 @@
-#include "contact.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/22 22:02:19 by jambatt           #+#    #+#             */
+/*   Updated: 2026/01/22 22:25:51 by jambatt          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-std::string Contact::getNonEmptyInput() {
-    std::string input;
 
+#include "Contact.hpp"
 
-    while (1) {
-    	getline(std::cin, input);
+/************************ setters ************************/
 
-        if (std::cin.eof()) {
-            std::cout << "\nInput terminated.\n";
-            return "";
-        }
-
-        if (!input.empty()) {
-            break;  // valid input → exit loop
-        }
-
-        std::cout << "Field cannot be empty. Please enter again.\n";
-        std::cout << "Enter value: ";
-    }
-    return input;
+void	Contact::setFirstName(std::string str)
+{
+	this->_firstName = str;
 }
 
-void Contact::assignContact() {
-	std::cout << "Enter first name: ";
-	first_name = getNonEmptyInput();
-	std::cout << "Enter last name: ";
-	last_name = getNonEmptyInput();
-	std::cout << "Enter nick name: ";
-	nick_name = getNonEmptyInput();
-	std::cout << "Enter phone number: ";//TODO logic for only numbers
-	phone_number = getNonEmptyInput();
-	std::cout << "Enter your darkest secret: ";
-	secret = getNonEmptyInput();
+void	Contact::setLastName(std::string str)
+{
+	this->_lastName = str;
 }
 
+void	Contact::setNickName(std::string str)
+{
+	this->_nickName = str;
+}
 
-void Contact::displayDetails() {
-	std::cout << "Showing contact... " << std::endl;
-	std::cout << "First name: " << first_name << std::endl;
-	std::cout << "Last name: " << last_name << std::endl;
-	std::cout << "Nick name: " << nick_name << std::endl;
-	std::cout << "Phone number: " << phone_number << std::endl;
-	std::cout << "Darkest secret: " << secret << std::endl;
-	}
+void	Contact::setPhoneNumber(std::string str)
+{
+	this->_phoneNumber = str;
+}
+
+void	Contact::setDarkestSecret(std::string str)
+{
+	this->_darkestSecret = str;
+}
+
+/************************ getters ************************/
+
+std::string	Contact::getFirstName()
+{
+	return (this->_firstName);
+}
+
+std::string	Contact::getLastName()
+{
+	return (this->_lastName);
+}
+
+std::string	Contact::getNickName()
+{
+	return (this->_nickName);
+}
+
+std::string Contact::getPhoneNumber()
+{
+	return (this->_phoneNumber);
+}
+
+std::string Contact::getDarkestSecret()
+{
+	return (this->_darkestSecret);
+}

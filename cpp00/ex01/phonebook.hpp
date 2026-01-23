@@ -1,19 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/23 13:18:59 by jambatt           #+#    #+#             */
+/*   Updated: 2026/01/23 13:19:14 by jambatt          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#include "contact.hpp"
+#include "Contact.hpp"
 
 class Phonebook {
+
 private:
-	Contact contact_list[8];
-	int contact_count = 0;
+	Contact	_contacts[8];
+	int		_index;
+	int		_count;
 
 public:
-	void addContact() {
-        //Contact new_contact;
-		
-	}
-	
+	Phonebook();
+	void	addContact();
+	void	searchContacts();
+	void	displayContacts();
 };
 
 #endif

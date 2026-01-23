@@ -1,7 +1,8 @@
 ###change all this
 
 SRCS = main.cpp \
-	contact.cpp
+	Contact.cpp \
+	Phonebook.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 NAME = phonebook
