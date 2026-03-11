@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 16:26:16 by jambatt           #+#    #+#             */
-/*   Updated: 2026/01/26 12:56:15 by jambatt          ###   ########.fr       */
+/*   Updated: 2026/01/30 13:13:26 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,4 @@
 
 int main()
 {
-	Zombie *zombie;
-	int n = 5;
-
-	zombie = zombieHorde(n, "zombie");
-	for (int i = 0; i < n; i++)
-		zombie[i].announce();
-	delete[] zombie;
-	return (0);
 }

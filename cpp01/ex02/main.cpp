@@ -5,21 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/23 16:26:16 by jambatt           #+#    #+#             */
-/*   Updated: 2026/01/26 12:56:15 by jambatt          ###   ########.fr       */
+/*   Created: 2026/01/26 12:58:25 by jambatt           #+#    #+#             */
+/*   Updated: 2026/01/26 13:05:48 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
+#include <string>
 
 int main()
 {
-	Zombie *zombie;
-	int n = 5;
+	std::string greeting = "HI THIS IS BRAIN";
+	std::string *stringPTR = &greeting;
+	std::string &stringREF = greeting;
 
-	zombie = zombieHorde(n, "zombie");
-	for (int i = 0; i < n; i++)
-		zombie[i].announce();
-	delete[] zombie;
+	std::cout << "The memory address of the string variable: " << &greeting << std::endl;
+	std::cout << "The memory address held by stringPTR: " << stringPTR << std::endl;
+	std::cout << "The memory address held by stringREF: " << &stringREF << std::endl;
+	std::cout << greeting << std::endl;
+	std::cout << *stringPTR << std::endl;
+	std::cout << stringREF << std::endl;
 	return (0);
 }
