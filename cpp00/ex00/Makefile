@@ -7,17 +7,23 @@ CXX = c++
 RM = rm -f
 
 all: $(NAME)
+	@echo "compiled successfully"
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	@echo "compiled"
 
 %.o: %.c
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+	@echo "making object files"
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
+	@echo "removed .o files"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "removed everything"
 
 re: fclean all
+	@echo "recompiled successfully"
