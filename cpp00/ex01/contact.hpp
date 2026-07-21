@@ -6,10 +6,11 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 22:02:12 by jambatt           #+#    #+#             */
-/*   Updated: 2026/01/23 13:58:11 by jambatt          ###   ########.fr       */
+/*   Updated: 2026/07/21 17:57:19 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//mark const?
 
 #ifndef CONTACT_HPP
 #define CONTACT_HPP

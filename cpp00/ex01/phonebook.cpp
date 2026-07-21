@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 13:12:51 by jambatt           #+#    #+#             */
-/*   Updated: 2026/01/23 14:41:34 by jambatt          ###   ########.fr       */
+/*   Updated: 2026/07/21 18:10:13 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,22 @@ static std::string getNonEmptyInput(std::string prompt)
 {
 	std::string	input;
 
-	while (1)
+	std::cout << prompt;
+	if (!std::getline(std::cin, input))
 	{
-		std::cout << prompt;
-		if(!std::getline(std::cin, input))
-			return ("");
-		if (input.length() > 0)
-			return (input);
+		std::cout << std::endl;
+		return ("");
 	}
+	while (input.empty())
+	{
+		std::cout << "Input cannot be empty. Please try again: " << prompt;
+		if(!std::getline(std::cin, input))
+		{
+			std::cout << std::endl;
+			return ("");
+		}
+	}
+	return (input);
 }
 
 
@@ -50,14 +58,35 @@ static std::string getNonEmptyInput(std::string prompt)
 void	Phonebook::addContact()
 {
 	int i;
-
+	std::string firstName, lastName, nickName, phoneNumber, darkestSecret;
+	
 	i = this->_index % 8;
 
-	this->_contacts[i].setFirstName(getNonEmptyInput("Enter first name: "));
-	this->_contacts[i].setLastName(getNonEmptyInput("Enter last name: "));
-	this->_contacts[i].setNickName(getNonEmptyInput("Enter nickname: "));
-	this->_contacts[i].setPhoneNumber(getNonEmptyInput("Enter phone number: "));
-	this->_contacts[i].setDarkestSecret(getNonEmptyInput("Enter darkest secret: "));
+	firstName = getNonEmptyInput("Enter first name: ");
+	if (firstName.empty())
+		return;
+	
+	lastName = getNonEmptyInput("Enter last name: ");
+	if (lastName.empty())
+		return;
+	
+	nickName = getNonEmptyInput("Enter nickname: ");
+	if (nickName.empty())
+		return;
+	
+	phoneNumber = getNonEmptyInput("Enter phone number: ");
+	if (phoneNumber.empty())
+		return;
+
+	darkestSecret = getNonEmptyInput("Enter darkest secret: ");
+	if (darkestSecret.empty())
+		return;
+
+	this->_contacts[i].setFirstName(firstName);
+	this->_contacts[i].setLastName(lastName);
+	this->_contacts[i].setNickName(nickName);
+	this->_contacts[i].setPhoneNumber(phoneNumber);
+	this->_contacts[i].setDarkestSecret(darkestSecret);
 
 	this->_index++;
 	if (this->_count < 8)
