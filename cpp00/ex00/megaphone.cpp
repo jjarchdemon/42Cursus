@@ -6,7 +6,7 @@
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 11:44:51 by jambatt           #+#    #+#             */
-/*   Updated: 2026/03/11 11:44:56 by jambatt          ###   ########.fr       */
+/*   Updated: 2026/07/21 16:05:33 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int ac, char **av)
 {
 	if (ac == 1)
 	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return 0;
 	}
 	int i = 1;
@@ -29,8 +29,6 @@ int main(int ac, char **av)
 			std::cout << (char)std::toupper(av[i][j]);
 			j++;
 		}
-
-		std::cout << " ";
 		i++;
 	}
 	std::cout << std::endl;

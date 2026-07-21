@@ -6,7 +6,7 @@
 #    By: jambatt <jambatt@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/21 15:16:10 by jambatt           #+#    #+#              #
-#    Updated: 2026/07/21 15:16:15 by jambatt          ###   ########.fr        #
+#    Updated: 2026/07/21 15:28:59 by jambatt          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ $(NAME): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 	@echo "compiled"
 
-%.o: %.c
+%.o: %.cpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 	@echo "making object files"
 
