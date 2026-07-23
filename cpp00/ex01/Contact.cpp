@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jambatt <jambatt@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 22:02:19 by jambatt           #+#    #+#             */
-/*   Updated: 2026/01/22 22:25:51 by jambatt          ###   ########.fr       */
+/*   Updated: 2026/07/21 18:46:46 by jambatt          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,27 @@ void	Contact::setDarkestSecret(std::string str)
 
 /************************ getters ************************/
 
-std::string	Contact::getFirstName()
+std::string	Contact::getFirstName() const
 {
 	return (this->_firstName);
 }
 
-std::string	Contact::getLastName()
+std::string	Contact::getLastName() const
 {
 	return (this->_lastName);
 }
 
-std::string	Contact::getNickName()
+std::string	Contact::getNickName() const
 {
 	return (this->_nickName);
 }
 
-std::string Contact::getPhoneNumber()
+std::string Contact::getPhoneNumber() const
 {
 	return (this->_phoneNumber);
 }
 
-std::string Contact::getDarkestSecret()
+std::string Contact::getDarkestSecret() const
 {
 	return (this->_darkestSecret);
 }
