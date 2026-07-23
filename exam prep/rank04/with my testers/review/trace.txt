@@ -1,0 +1,37 @@
+= ft_popen ==================================================
+$> cc -Wextra -wall -Werror main.c ft_popen.c -o user_exe
+
+$> cc -Wextra -wall -werror main.c ft_popen.c -o ref_exe
+
+= Test 1 ====================================================
+$> ulimit -n 30; ./jbk6c940h6ktu34x8yrftmlt
+$> ulimit -n 30; ./jbk6c940h6ktu34x8yrftmlt
+$> diff -u 3 user_output_test1 testl. output | cat -e
+
+Diff OK :D
+= Test 2 ====================================================
+$> ulimit -n 30; /lveyhc617uwq5mbph530pzhj cd ./startpl8bddbn
+$> ulimit -n 30; /lveyhc617uwq5mbph530pzhj cd ./startpl8bddbn
+$> diff -U 3 user_output test test2.output 1 cat -e
+
+
+Diff OK :D
+= Test 3 ====================================================
+$> ulimit -n 30; ./qr681wdqp0k7e96am29f52hn cd ./startpl8bddbn; cd ..; cd ./startpl8bddbn
+$> ulimit -n 30; ./gr681wdqp0k7e96am29f52hn cd ./startplabddbn; cd ..; cd ./startplabddbn
+$> diff -u 3 user_output_test3 test3.output | cat -e
+
+Diff OK :D
+= Test 4 ====================================================
+$> ulimit -n 30; ./p2nmmom5j4bnfn879c378nel /usr/bin/ls -laR startpl8bddbn
+$> ulimit -n 30; ./p2nmmom5j4bnfn879c378nel /usr/bin/ls -laR startpl8bddbn
+$> diff -U 3 user_output_test4 test4. output | cat -e
+
+Diff OK :D
+= Test 5 ====================================================
+$> ulimit -n 30; ./i0xx1gyaf3bkrmyl24nk3ajg /usr/bin/ls -laR startpl8bddbn "|" /usr/bin/grep start
+Command 'ulimit -n 30; ./i0xx1gyaf3bkrmy124nk3ajg /usr/bin/ls - laR startpl8bddbn "|" /usr/bin/grep start' timed out after 10 seconds
+Test 5 timed out
+Grade: 0
+
+= Final grade: 0 ===========================================
